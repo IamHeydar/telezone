@@ -385,6 +385,15 @@
                 max-width: 100%;
             }
         }
+        
+        /* استایل برای لینک فعال در منوی ناوبری */
+        nav ul li a.active-nav-link {
+            font-weight: bold;
+            color: #555; /* یا هر رنگی که دوست دارید برای لینک فعال */
+            /* می‌توانید border-bottom یا هر استایل دیگری اضافه کنید */
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -395,9 +404,7 @@
                 &#9776; </div>
             <nav id="main-nav">
                 <ul>
-                    <li><a href="#">خانه</a></li>
-                    <li><a href="#">محصولات</a></li>
-                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#" data-category="home">خانه</a></li> <li><a href="#" data-category="all" class="nav-category-link active-nav-link">همه محصولات</a></li> <li><a href="#" data-category="mobile" class="nav-category-link">موبایل</a></li> <li><a href="#" data-category="accessory" class="nav-category-link">لوازم جانبی</a></li> <li><a href="#" data-category="headphone" class="nav-category-link">هدفون</a></li> <li><a href="#">درباره ما</a></li>
                     <li><a href="#">تماس با ما</a></li>
                 </ul>
             </nav>
@@ -411,7 +418,8 @@
         </div>
         
         <section class="products-section">
-            <h2>دسته بندی محصولات</h2> <div class="categories-grid">
+            <h2>دسته بندی محصولات</h2> 
+            <div class="categories-grid">
                 <div class="category-item active" data-category="all">
                     <h3>همه محصولات</h3>
                     <p>مشاهده تمام محصولات فروشگاه</p>
@@ -430,7 +438,8 @@
                 </div>
                 </div>
 
-            <h2 class="filtered-products-title">محصولات منتخب</h2> <div class="products">
+            <h2 class="filtered-products-title">محصولات منتخب</h2> 
+            <div class="products">
                 <div class="product" data-category="mobile">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=گوشی+موبایل" alt="گوشی موبایل سامسونگ S23">
@@ -537,15 +546,17 @@
         });
 
         // برای بستن منو وقتی روی یک لینک کلیک می‌شود (اختیاری)
-        const navLinks = document.querySelectorAll('#main-nav ul li a');
-        navLinks.forEach(link => {
+        const navLinksAll = document.querySelectorAll('#main-nav ul li a'); // انتخاب همه لینک‌های ناوبری
+        navLinksAll.forEach(link => {
             link.addEventListener('click', function() {
-                mainNav.classList.remove('active');
+                mainNav.classList.remove('active'); // منو را ببندید
             });
         });
 
-        // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید جدید) ---
-        const categoryItems = document.querySelectorAll('.category-item'); // انتخاب آیتم‌های دسته‌بندی جدید
+
+        // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید و لینک‌های ناوبری) ---
+        const categoryItems = document.querySelectorAll('.category-item'); // مربع‌های دسته‌بندی
+        const navCategoryLinks = document.querySelectorAll('.nav-category-link'); // لینک‌های دسته‌بندی در ناوبری
         const products = document.querySelectorAll('.product');
 
         // تابع برای فیلتر کردن و نمایش محصولات
@@ -558,28 +569,47 @@
                     product.classList.add('hidden'); // مخفی کردن محصول
                 }
             });
+
+            // به روز رسانی کلاس active برای مربع‌های دسته‌بندی
+            categoryItems.forEach(item => {
+                if (item.dataset.category === selectedCategory) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // به روز رسانی کلاس active برای لینک‌های ناوبری
+            navCategoryLinks.forEach(link => {
+                if (link.dataset.category === selectedCategory) {
+                    link.classList.add('active-nav-link');
+                } else {
+                    link.classList.remove('active-nav-link');
+                }
+            });
         };
 
+        // اضافه کردن event listener برای مربع‌های دسته‌بندی
         categoryItems.forEach(item => {
             item.addEventListener('click', () => {
-                // حذف کلاس active از همه آیتم‌ها
-                categoryItems.forEach(i => i.classList.remove('active'));
-                // اضافه کردن کلاس active به آیتم کلیک شده
-                item.classList.add('active');
-
                 const selectedCategory = item.dataset.category;
-                filterProducts(selectedCategory); // فراخوانی تابع فیلتر
+                filterProducts(selectedCategory);
+            });
+        });
+
+        // اضافه کردن event listener برای لینک‌های دسته‌بندی در ناوبری
+        navCategoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // جلوگیری از رفرش صفحه
+                const selectedCategory = link.dataset.category;
+                filterProducts(selectedCategory);
             });
         });
 
         // در ابتدا، همه محصولات را نمایش دهید (موقعی که صفحه لود می‌شود)
-        // و آیتم "همه محصولات" را فعال نگه دارید.
+        // و آیتم "همه محصولات" در هر دو بخش را فعال نگه دارید.
         window.addEventListener('DOMContentLoaded', () => {
-            const allProductsCategory = document.querySelector('.category-item[data-category="all"]');
-            if (allProductsCategory) {
-                allProductsCategory.classList.add('active');
-                filterProducts('all');
-            }
+            filterProducts('all'); // فیلتر کردن محصولات برای نمایش همه در ابتدا
         });
     </script>
 </body>
