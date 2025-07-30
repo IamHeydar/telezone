@@ -88,7 +88,7 @@
             background-color: #FFD700;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            z-index: 10;
             border-radius: 4px;
             padding: 10px 0;
             list-style: none;
@@ -102,14 +102,27 @@
             display: block;
             text-align: right;
             transition: background-color 0.3s;
+            white-space: nowrap; /* Prevent text wrapping */
         }
 
         .dropdown-menu li a:hover {
             background-color: #FFC000;
         }
 
+        /* Nested dropdown positioning */
+        .nested-dropdown-container {
+            right: 100%; /* Position to the left of the parent dropdown */
+            top: 0;
+            margin-right: 10px; /* Small gap between parent and nested */
+            margin-top: -10px; /* Adjust vertical alignment */
+        }
+
+        /* Show dropdown on hover for desktop */
         @media (min-width: 769px) {
-            nav ul li:hover .dropdown-menu {
+            nav ul li:hover > .dropdown-menu { /* Changed to direct child selector */
+                display: block;
+            }
+            .dropdown-menu li:hover > .nested-dropdown-container { /* Show nested dropdown on hover */
                 display: block;
             }
         }
@@ -229,33 +242,36 @@
 
         footer {
             background-color: #000;
-            color: #FFD700;
-            padding: 30px 0;
-            margin-top: 50px;
+            color: #fff; /* رنگ متن کلی فوتر */
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            font-size: 15px;
         }
         
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid; 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* ستون های ریسپانسیو */
             gap: 30px;
             padding: 0 20px;
-            align-items: flex-start;
-        }
-        
-        .footer-column {
-            min-width: 250px;
+            text-align: right; /* متن راست چین */
         }
         
         .footer-column h3 {
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            color: #FFD700;
+            color: #FFD700; /* رنگ زرد طلایی برای عناوین */
             font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3); /* خط زیرین کمرنگ */
         }
         
+        .footer-column p {
+            line-height: 1.7;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
         .footer-column ul {
             list-style: none;
             padding: 0;
@@ -263,87 +279,73 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex; /* برای قرار دادن آیکون و متن در یک خط */
+            align-items: center;
+            line-height: 1.6;
         }
         
-        .footer-column ul li a {
+        .footer-column ul li i { /* استایل برای آیکون ها (اختیاری اگر از فونت آیکون استفاده کنید) */
+            margin-left: 10px;
             color: #FFD700;
+            font-size: 18px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 16px;
+            transition: color 0.3s ease;
         }
         
         .footer-column ul li a:hover {
-            color: #fff;
-        }
-        
-        .footer-column p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ccc;
+            color: #FFD700; /* تغییر رنگ لینک ها هنگام هاور */
         }
 
-        .footer-column.contact-info ul li {
-            text-align: right;
-            line-height: 1.8;
+        /* استایل برای آیکون های شبکه اجتماعی */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: flex-end; /* Align to right */
         }
 
-        .footer-column.contact-info ul li a {
-            direction: ltr;
-            display: inline-block;
-            margin-right: 5px;
+        .social-icons a img {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
         }
-        .footer-column.contact-info ul li span {
-             display: inline-block;
-        }
-        .footer-column.contact-info ul li strong {
-            display: inline-block;
-            margin-left: 5px;
+
+        .social-icons a:hover img {
+            transform: scale(1.1);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            margin-top: 20px;
-            border-top: 1px solid #333;
-            color: #FFD700;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 215, 0, 0.1); /* خط جداکننده کمرنگ */
+            color: #aaa;
             font-size: 14px;
         }
         
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #FFD700;
-            color: #000;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            font-size: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 100;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-        }
-
+        /* ریسپانسیو برای فوتر در موبایل */
         @media (max-width: 768px) {
-            .header-container {
-                flex-wrap: wrap;
-                justify-content: space-between;
+            .footer-container {
+                grid-template-columns: 1fr; /* یک ستون در موبایل */
+                text-align: center; /* متن وسط چین در موبایل */
+            }
+            .footer-column h3 {
+                border-bottom: none; /* حذف خط زیر عنوان در موبایل */
+                padding-bottom: 0;
+            }
+            .social-icons {
+                justify-content: center; /* وسط چین کردن آیکون ها در موبایل */
+            }
+            .footer-column ul li {
+                justify-content: center; /* وسط چین کردن آیتم های لیست در موبایل */
             }
 
-            .menu-toggle {
-                display: block;
-            }
-
+            /* Responsive for main navigation in products-list */
             nav {
                 width: 100%;
                 order: 3;
@@ -366,6 +368,7 @@
 
             nav ul li {
                 margin: 10px 0;
+                width: 100%;
             }
 
             nav ul li a {
@@ -373,40 +376,33 @@
                 display: block;
             }
 
-            .dropdown-menu {
-                display: none !important;
-                position: static;
+            .dropdown.active-dropdown > .dropdown-menu { 
+                display: block !important;
+                position: static; 
                 box-shadow: none;
                 padding: 0;
             }
+            .nested-dropdown-container { /* Renamed from nested-dropdown for clarity */
+                display: none !important;
+                right: auto;
+                top: auto;
+                margin-right: 0;
+                margin-top: 0;
+            }
 
-            .dropdown.active-dropdown .dropdown-menu {
+            .dropdown-menu li.active-nested-dropdown > .nested-dropdown-container {
                 display: block !important;
             }
 
             .dropdown-menu li a {
-                padding: 8px 16px;
+                padding: 8px 16px; 
                 font-size: 15px;
+                text-align: center; 
+            }
+            .dropdown-toggle {
+                cursor: pointer;
             }
 
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 0 15px;
-            }
-            .footer-column {
-                min-width: unset;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 0;
-            }
-            .footer-column h3 {
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-            .footer-column.contact-info ul li {
-                text-align: center;
-            }
 
             .product-item {
                 flex-direction: column;
@@ -440,14 +436,34 @@
                 <ul>
                     <li><a href="index.html" class="nav-link">خانه</a></li>
                     <li class="dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">محصولات ▼</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="products-list.html?category=all" class="nav-link">همه محصولات</a></li>
-                            <li><a href="products-list.html?category=mobile" class="nav-link">موبایل</a></li>
-                            <li><a href="products-list.html?category=accessory" class="nav-link">لوازم جانبی</a></li>
-                            <li><a href="products-list.html?category=headphone" class="nav-link">هدفون</a></li>
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">موبایل ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=mobile&brand=Apple" class="nav-link">Apple</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=Samsung" class="nav-link">Samsung</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=Xiaomi" class="nav-link">Xiaomi</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=OnePlus" class="nav-link">OnePlus</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=NothingPhone" class="nav-link">Nothing Phone</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">هدفون و هندزفری ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=headphone&brand=Apple" class="nav-link">Apple</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=QCY" class="nav-link">QCY</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=Haylou" class="nav-link">Haylou</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=OneMore" class="nav-link">One More</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=Anker" class="nav-link">Anker</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ساعت هوشمند ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=applewatch&brand=Apple" class="nav-link">Apple Watch</a></li>
+                            <li><a href="products-list.html?type=smartwatch&brand=Samsung" class="nav-link">Samsung Watch</a></li>
+                            <li><a href="products-list.html?type=smartwatch&brand=Xiaomi" class="nav-link">Xiaomi Watch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products-list.html?type=accessory" class="nav-link">لوازم جانبی</a></li> 
                     <li><a href="index.html#about-us-section" class="nav-link">درباره ما</a></li>
                     <li><a href="index.html#contact-us-section" class="nav-link">تماس با ما</a></li>
                 </ul>
@@ -456,14 +472,10 @@
     </header>
     
     <main>
-        <h1>لیست گوشی‌های iPhone 16</h1>
+        <h1 id="page-title"></h1>
 
-        <section class="filter-section">
-            <button class="filter-btn active" data-filter="all">همه</button>
-            <button class="filter-btn" data-filter="ProMax">Pro Max</button>
-            <button class="filter-btn" data-filter="Pro">Pro</button>
-            <button class="filter-btn" data-filter="16">iPhone 16</button>
-        </section>
+        <section class="filter-section" id="filter-buttons-container">
+            </section>
 
         <div class="product-list-container" id="product-list">
             </div>
@@ -473,26 +485,29 @@
         <div class="footer-container">
             <div class="footer-column" id="about-us-section">
                 <h3>درباره Telezone</h3>
-                <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان</p>
+                <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان در ارائه محصولات با کیفیت و خدمات مشتری بی‌نظیر.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/Telezone_center/" target="_blank"><img src="https://via.placeholder.com/28x28?text=IG" alt="اینستاگرام"></a>
+                    </div>
             </div>
             
             <div class="footer-column">
                 <h3>لینک‌های مفید</h3>
                 <ul>
-                    <li><a href="#">سوالات متداول</a></li>
-                    <li><a href="#">روش‌های پرداخت</a></li>
-                    <li><a href="#">شرایط بازگشت کالا</a></li>
-                    <li><a href="#">حریم خصوصی</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> سوالات متداول</a></li>
+                    <li><a href="#"><i class="fas fa-credit-card"></i> روش‌های پرداخت</a></li>
+                    <li><a href="#"><i class="fas fa-undo-alt"></i> شرایط بازگشت کالا</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> حریم خصوصی</a></li>
                 </ul>
             </div>
             
             <div class="footer-column contact-info" id="contact-us-section">
                 <h3>تماس با ما</h3>
                 <ul>
-                    <li><strong>آدرس:</strong> تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، <br>واحد ۲۵۲</li>
-                    <li><strong>تلفن و واتساپ:</strong> <a href="tel:+989120416422">09120416422</a></li>
-                    <li><strong>ساعت کاری:</strong> ۱۰ الی ۲۰</li>
-                    <li><strong>اینستاگرام:</strong> <a href="https://www.instagram.com/Telezone_center/" target="_blank">💬 Telezone_center</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <strong>آدرس:</strong> تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، <br>واحد ۲۵۲</li>
+                    <li><i class="fas fa-phone-alt"></i> <strong>تلفن و واتساپ:</strong> <a href="tel:+989120416422">09120416422</a></li>
+                    <li><i class="fas fa-clock"></i> <strong>ساعت کاری:</strong> ۱۰ الی ۲۰</li>
+                    <li><i class="fas fa-envelope"></i> <strong>ایمیل:</strong> <a href="mailto:info@telezone.com">info@telezone.com</a></li>
                 </ul>
             </div>
         </div>
@@ -530,35 +545,66 @@
             { model: "iPhone 16", storage: "128GB", color: "Pink", price: "100,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" }
         ];
 
-        const productListContainer = document.getElementById('product-list');
-        const filterButtons = document.querySelectorAll('.filter-btn');
+        const appleWatchProducts = [
+            { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 10", size: "46mm", color: "Silver", price: "29,500,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 10", size: "46mm", color: "Rose Gold", price: "27,800,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 10", size: "42mm", color: "Jet Black", price: "28,400,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 10", size: "42mm", color: "Silver", price: "29,200,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 10", size: "42mm", color: "Rose Gold", price: "29,200,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
+            { model: "Apple Watch Series 9", size: "45mm", color: "Black", price: "تماس بگیرید", guaranty: true, category: "Series9", image: "https://via.placeholder.com/120x120?text=AW+S9" },
+            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Midnight", price: "19,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
+            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Silver", price: "تماس بگیرید", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
+            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Starlight", price: "19,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
+            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Black", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
+            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Silver", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
+            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Starlight", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" }
+        ];
 
-        function renderProducts(productsToRender) {
-            productListContainer.innerHTML = '';
-            if (productsToRender.length === 0) {
-                productListContainer.innerHTML = '<p style="text-align: center; color: #777;">محصولی یافت نشد.</p>';
-                return;
+        // Centralized product data configuration
+        const productsData = {
+            'mobile': {
+                title: 'لیست گوشی‌های iPhone 16',
+                products: iphone16Products,
+                filters: [
+                    { id: 'all', text: 'همه' },
+                    { id: 'ProMax', text: 'Pro Max' },
+                    { id: 'Pro', text: 'Pro' },
+                    { id: '16', text: 'iPhone 16' }
+                ]
+            },
+            'applewatch': {
+                title: 'لیست ساعت‌های هوشمند Apple Watch',
+                products: appleWatchProducts,
+                filters: [
+                    { id: 'all', text: 'همه' },
+                    { id: 'Series10', text: 'Series 10' },
+                    { id: 'Series9', text: 'Series 9' },
+                    { id: 'SE', text: 'SE 2024' }
+                ]
+            },
+            'accessory': { // Example for future use
+                title: 'لوازم جانبی',
+                products: [], // Add accessory data here when available
+                filters: [{ id: 'all', text: 'همه' }]
+            },
+            'headphone': { // Example for future use
+                title: 'هدفون و هندزفری',
+                products: [], // Add headphone data here when available
+                filters: [{ id: 'all', text: 'همه' }]
+            },
+            'smartwatch': { // Example for other smartwatches
+                title: 'ساعت‌های هوشمند (متفرقه)',
+                products: [], // Add other smartwatch data here
+                filters: [{ id: 'all', text: 'همه' }]
             }
+        };
 
-            productsToRender.forEach(product => {
-                const productItem = document.createElement('a');
-                productItem.href = '#'; 
-                productItem.classList.add('product-item');
+        const productListContainer = document.getElementById('product-list');
+        const filterButtonsContainer = document.getElementById('filter-buttons-container');
+        const pageTitle = document.getElementById('page-title');
 
-                productItem.innerHTML = `
-                    <div class="product-item-image">
-                        <img src="${product.image}" alt="${product.model} ${product.storage} ${product.color}">
-                    </div>
-                    <div class="product-item-details">
-                        <h3>${product.model} ${product.storage} ${product.color}</h3>
-                        <p><strong>منطقه:</strong> ${product.region}</p>
-                        <div class="product-item-price">${product.price} تومان</div>
-                    </div>
-                `;
-                productListContainer.appendChild(productItem);
-            });
-        }
-
+        // Function to get URL parameters
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -566,54 +612,188 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        function filterProducts(filterCategory) {
-            let filtered = [];
-            if (filterCategory === 'all') {
-                filtered = iphone16Products;
-            } else {
-                filtered = iphone16Products.filter(product => product.category === filterCategory);
+        // Function to update the current category in the nav
+        function updateNavLinkActiveState(productType) {
+            // Remove active class from all nav links first
+            document.querySelectorAll('nav ul li a.nav-link').forEach(link => {
+                link.classList.remove('active-nav-link');
+            });
+            // Also remove from the dropdown toggles themselves
+            document.querySelectorAll('.dropdown-toggle').forEach(toggle => toggle.classList.remove('active-nav-link'));
+
+            // Find and activate the correct dropdown menu item
+            let activeLinkFound = false;
+            document.querySelectorAll('nav ul li.dropdown .dropdown-menu a.nav-link').forEach(link => {
+                const url = new URL(link.href);
+                const typeParam = url.searchParams.get('type');
+                if (typeParam === productType) {
+                    link.classList.add('active-nav-link');
+                    activeLinkFound = true;
+                }
+            });
+
+            // If a specific product type link is active, activate its parent dropdown toggle
+            if (activeLinkFound) {
+                document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="?type=${productType}"]`) 
+                || document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle`)?.classList.add('active-nav-link');
             }
-            renderProducts(filtered);
         }
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterProducts(button.dataset.filter);
-            });
-        });
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const categoryFromUrl = getUrlParameter('category');
-            let initialFilter = 'all';
-
-            if (categoryFromUrl === 'mobile') {
-                initialFilter = 'all'; 
-            } else if (['ProMax', 'Pro', '16'].includes(categoryFromUrl)) {
-                initialFilter = categoryFromUrl;
+        // Function to render products
+        function renderProducts(productsToRender, productType) {
+            productListContainer.innerHTML = ''; // Clear previous products
+            if (productsToRender.length === 0) {
+                productListContainer.innerHTML = '<p style="text-align: center; color: #777;">محصولی یافت نشد.</p>';
+                return;
             }
-            
-            document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`).classList.add('active');
-            filterProducts(initialFilter);
 
+            productsToRender.forEach(product => {
+                const productItem = document.createElement('a');
+                productItem.href = '#'; // Placeholder for individual product pages
+                productItem.classList.add('product-item');
 
+                let productDescription = '';
+                if (productType === 'mobile') {
+                    productDescription = `
+                        <h3>${product.model} ${product.storage} ${product.color}</h3>
+                        <p><strong>منطقه:</strong> ${product.region}</p>
+                    `;
+                } else if (productType === 'applewatch' || productType === 'smartwatch') { // Group applewatch and other smartwatches for display
+                    // Include 'year' if it exists for SE models
+                    const yearInfo = product.year ? ` (${product.year})` : '';
+                    productDescription = `
+                        <h3>${product.model} ${product.size} ${product.color}${yearInfo}</h3>
+                        <p><strong>گارانتی:</strong> ${product.guaranty ? 'دارد' : 'تماس بگیرید'}</p>
+                    `;
+                } else { // Generic display for other types (accessory, headphone etc.)
+                    productDescription = `
+                        <h3>${product.model}</h3>
+                        <p>${product.description || ''}</p>
+                    `;
+                }
+
+                productItem.innerHTML = `
+                    <div class="product-item-image">
+                        <img src="${product.image}" alt="${product.model} ${product.size || product.storage || ''} ${product.color}">
+                    </div>
+                    <div class="product-item-details">
+                        ${productDescription}
+                        <div class="product-item-price">${product.price} تومان</div>
+                    </div>
+                `;
+                productListContainer.appendChild(productItem);
+            });
+        }
+
+        // Function to filter and display products based on selected filter and product type
+        function filterAndDisplayProducts(filterCategory, productType) {
+            const currentProductsArray = productsData[productType]?.products || [];
+            let filtered = [];
+
+            if (filterCategory === 'all') {
+                filtered = currentProductsArray;
+            } else {
+                filtered = currentProductsArray.filter(product => product.category === filterCategory);
+            }
+            renderProducts(filtered, productType);
+        }
+
+        // Initialize the page on DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let productType = urlParams.get('type') || 'mobile'; // Default to 'mobile' if no type specified
+
+            // Fallback for invalid or non-existent product types
+            if (!productsData[productType]) {
+                productType = 'mobile';
+            }
+
+            // Set page title dynamically
+            pageTitle.textContent = productsData[productType].title;
+
+            // Clear existing filter buttons
+            filterButtonsContainer.innerHTML = '';
+
+            // Generate filter buttons dynamically based on productType
+            productsData[productType].filters.forEach(filter => {
+                const button = document.createElement('button');
+                button.classList.add('filter-btn');
+                button.dataset.filter = filter.id;
+                button.textContent = filter.text;
+                filterButtonsContainer.appendChild(button);
+            });
+
+            // Add event listeners to the newly created filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove 'active' class from all buttons and add to the clicked one
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterAndDisplayProducts(button.dataset.filter, productType);
+                });
+            });
+
+            // Determine initial filter based on URL or default to 'all'
+            let initialFilter = urlParams.get('filter') || 'all';
+            const activeFilterButton = document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`);
+            if (activeFilterButton) {
+                activeFilterButton.classList.add('active');
+                filterAndDisplayProducts(initialFilter, productType);
+            } else {
+                // If the initial filter from URL is not found, default to 'all'
+                document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+                filterAndDisplayProducts('all', productType);
+            }
+
+            // Update navigation link active state
+            updateNavLinkActiveState(productType);
+
+            // --- Existing header and back-to-top logic ---
             const menuToggle = document.getElementById('menu-toggle');
             const mainNav = document.getElementById('main-nav');
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownToggles = document.querySelectorAll('nav .dropdown > .dropdown-toggle');
 
             menuToggle.addEventListener('click', function() {
                 mainNav.classList.toggle('active');
                 if (!mainNav.classList.contains('active')) {
-                     dropdownToggle.parentElement.classList.remove('active-dropdown');
+                    // Close all dropdowns when main menu is closed
+                    document.querySelectorAll('.dropdown.active-dropdown').forEach(d => d.classList.remove('active-dropdown'));
+                    document.querySelectorAll('.dropdown-menu li.active-nested-dropdown').forEach(d => d.classList.remove('active-nested-dropdown'));
                 }
             });
 
-            dropdownToggle.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle('active-dropdown');
-                }
+            // Event listener for main dropdown toggles
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) { // Only for mobile view
+                        e.preventDefault();
+                        const parentDropdown = this.parentElement;
+                        // Close other open main dropdowns
+                        document.querySelectorAll('nav .dropdown').forEach(d => {
+                            if (d !== parentDropdown) {
+                                d.classList.remove('active-dropdown');
+                            }
+                        });
+                        // Toggle current main dropdown
+                        parentDropdown.classList.toggle('active-dropdown');
+                        // Ensure nested dropdowns are closed when main dropdown is toggled
+                        parentDropdown.querySelectorAll('li.active-nested-dropdown').forEach(li => li.classList.remove('active-nested-dropdown'));
+                    }
+                });
+            });
+
+            // Event listener for nested dropdown items (e.g., Apple, Samsung under Mobile)
+            document.querySelectorAll('.nested-dropdown-container a').forEach(nestedLink => {
+                nestedLink.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) { // Only for mobile view
+                        // This is a direct link to a products-list page, allow default behavior
+                    }
+                    // Close all menus after a link is clicked
+                    mainNav.classList.remove('active');
+                    document.querySelectorAll('.dropdown.active-dropdown').forEach(d => d.classList.remove('active-dropdown'));
+                    document.querySelectorAll('.dropdown-menu li.active-nested-dropdown').forEach(d => d.classList.remove('active-nested-dropdown'));
+                });
             });
 
             const backToTop = document.getElementById('back-to-top');
@@ -622,14 +802,6 @@
                     backToTop.classList.add('visible');
                 } else {
                     backToTop.classList.remove('visible');
-                }
-            });
-
-            document.querySelectorAll('nav ul li a.nav-link').forEach(link => {
-                if (link.href.includes('products-list.html')) {
-                    link.closest('.dropdown').querySelector('a.nav-link.dropdown-toggle').classList.add('active-nav-link');
-                } else {
-                    link.classList.remove('active-nav-link');
                 }
             });
         });
