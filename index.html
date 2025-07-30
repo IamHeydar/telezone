@@ -23,6 +23,7 @@
             color: #000;
             padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* اضافه شده برای موقعیت دهی منو */
         }
         
         .header-container {
@@ -40,6 +41,22 @@
             color: #000;
         }
         
+        /* استایل دکمه همبرگری */
+        .menu-toggle {
+            display: none; /* در حالت دسکتاپ مخفی است */
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -234,13 +251,56 @@
         .back-to-top.visible {
             opacity: 1;
         }
+
+        /* برای نمایش منو به صورت عمودی در حالت موبایل */
+        @media (max-width: 768px) { /* در صفحه نمایش‌های کوچک (موبایل و تبلت) */
+            .header-container {
+                flex-wrap: wrap; /* اجازه می‌دهد آیتم‌ها به خط بعدی بروند */
+                justify-content: space-between; /* لوگو و منو در دو طرف */
+            }
+
+            .menu-toggle {
+                display: block; /* دکمه همبرگری نمایش داده شود */
+            }
+
+            nav {
+                width: 100%; /* منو کل عرض را بگیرد */
+                order: 3; /* منو زیر لوگو قرار گیرد */
+                display: none; /* در حالت عادی مخفی باشد */
+                flex-direction: column; /* آیتم‌های منو زیر هم قرار گیرند */
+                background-color: #FFD700; /* رنگ پس‌زمینه منو */
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+
+            nav.active { /* کلاسی که با جاوااسکریپت اضافه می‌شود */
+                display: flex; /* منو نمایش داده شود */
+            }
+
+            nav ul {
+                flex-direction: column; /* آیتم‌های لیست عمودی شوند */
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 10px 0; /* فاصله بین آیتم‌های منو */
+            }
+
+            nav ul li a {
+                padding: 10px 0;
+                display: block; /* کل فضای آیتم قابل کلیک باشد */
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">Telezone</div>
-            <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                &#9776; </div>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#">خانه</a></li>
                     <li><a href="#">محصولات</a></li>
@@ -355,6 +415,22 @@
             } else {
                 backToTop.classList.remove('visible');
             }
+        });
+
+        // اسکریپت برای منوی همبرگری (داشبورد)
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active'); // کلاس 'active' را اضافه یا حذف می‌کند
+        });
+
+        // برای بستن منو وقتی روی یک لینک کلیک می‌شود (اختیاری)
+        const navLinks = document.querySelectorAll('#main-nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+            });
         });
     </script>
 </body>
