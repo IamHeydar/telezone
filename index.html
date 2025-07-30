@@ -115,7 +115,7 @@
         }
 
         /* Nested dropdown positioning */
-        .nested-dropdown {
+        .nested-dropdown-container {
             right: 100%; /* Position to the left of the parent dropdown */
             top: 0;
             margin-right: 10px; /* Small gap between parent and nested */
@@ -127,7 +127,7 @@
             nav ul li:hover > .dropdown-menu { /* Changed to direct child selector */
                 display: block;
             }
-            .dropdown-menu li:hover > .nested-dropdown { /* Show nested dropdown on hover */
+            .dropdown-menu li:hover > .nested-dropdown-container { /* Show nested dropdown on hover */
                 display: block;
             }
         }
@@ -313,7 +313,7 @@
             }
 
             /* Hide nested dropdowns by default in mobile */
-            .nested-dropdown {
+            .nested-dropdown-container {
                 display: none !important;
                 right: auto; /* Reset positioning */
                 top: auto;
@@ -322,7 +322,7 @@
             }
 
             /* Show nested dropdown when its direct parent li has active-nested-dropdown class */
-            .dropdown-menu li.active-nested-dropdown > .nested-dropdown {
+            .dropdown-menu li.active-nested-dropdown > .nested-dropdown-container {
                 display: block !important;
             }
 
@@ -647,6 +647,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ایرپاد ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=airpods&filter=Pro2" class="nav-link">ایرپاد پرو ۲</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods4" class="nav-link">ایرپاد ۴</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods2" class="nav-link">ایرپاد ۲</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="javascript:void(0);" class="nav-link dropdown-toggle">ساعت هوشمند ▼</a>
                         <ul class="dropdown-menu nested-dropdown-container">
                             <li><a href="products-list.html?type=applewatch&brand=Apple" class="nav-link">Apple Watch</a></li>
@@ -654,7 +662,15 @@
                             <li><a href="products-list.html?type=smartwatch&brand=Xiaomi" class="nav-link">Xiaomi Watch</a></li>
                         </ul>
                     </li>
-                    <li><a href="products-list.html?type=accessory" class="nav-link">لوازم جانبی</a></li> 
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">لوازم جانبی ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=accessory&filter=adapter" class="nav-link">آداپتور</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=cable" class="nav-link">کابل</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=case_glass" class="nav-link">کاور و گلس</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=powerbank" class="nav-link">پاور بانک</a></li>
+                        </ul>
+                    </li> 
                     <li><a href="index.html#about-us-section" class="nav-link">درباره ما</a></li>
                     <li><a href="index.html#contact-us-section" class="nav-link">تماس با ما</a></li>
                 </ul>
@@ -683,6 +699,11 @@
                     <img src="https://via.placeholder.com/80x80?text=Headphone" alt="هدفون و هندزفری">
                     <h3>هدفون و هندزفری</h3>
                     <p>بهترین کیفیت صدا برای شما</p>
+                </div>
+                <div class="category-item" data-type="airpods">
+                    <img src="https://via.placeholder.com/80x80?text=AirPods" alt="ایرپاد">
+                    <h3>ایرپاد</h3>
+                    <p>هدفون‌های بی‌سیم اپل</p>
                 </div>
                 <div class="category-item" data-type="accessory">
                     <img src="https://via.placeholder.com/80x80?text=Accessory" alt="لوازم جانبی">
@@ -886,7 +907,7 @@
                 }
             } else if (currentPath === 'products-list.html') {
                 if (typeParam) {
-                    const specificProductLink = document.querySelector(`nav ul li a[href="products-list.html?type=${typeParam}"]`);
+                    const specificProductLink = document.querySelector(`nav ul li a[href*="products-list.html?type=${typeParam}"]`);
                     if (specificProductLink) {
                         specificProductLink.classList.add('active-nav-link');
                         // Also activate the parent dropdown toggle if it's a sub-link
@@ -894,7 +915,7 @@
                     } else {
                         // Fallback if type param doesn't directly match a simple link (e.g., if there's brand param)
                         // Try to find the closest general type link
-                        const generalTypeLink = document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="products-list.html"]`);
+                        const generalTypeLink = document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="products-list.html?type=${typeParam.split('&')[0]}"]`);
                         if(generalTypeLink) {
                              generalTypeLink.classList.add('active-nav-link');
                         }
