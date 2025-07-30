@@ -41,17 +41,16 @@ const appleWatchProducts = [
     { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Starlight", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" }
 ];
 
-// Generic products provided in the separate products-data.js file by the user
+// New data for AirPods
+const airpodsProducts = [
+    { model: "AirPods Pro 2 Type-C", price: "16,450,000", category: "Pro2", image: "https://via.placeholder.com/120x120?text=AirPods+Pro2C" },
+    { model: "AirPods 4 ANC", price: "13,650,000", category: "AirPods4", image: "https://via.placeholder.com/120x120?text=AirPods+4ANC" },
+    { model: "AirPods 4", price: "10,250,000", category: "AirPods4", image: "https://via.placeholder.com/120x120?text=AirPods+4" },
+    { model: "AirPods 2", price: "8,600,000", category: "AirPods2", image: "https://via.placeholder.com/120x120?text=AirPods+2" }
+];
+
+// Refined general products (only relevant ones for new categories)
 const generalProducts = [
-    {
-        id: 1,
-        name: "گوشی موبایل سامسونگ S23",
-        category: "mobile", // این دسته بندی با دسته بندی 'mobile' برای iPhone 16 تداخل دارد
-        brand: "Samsung",
-        description: "گوشی پرچمدار سامسونگ با آخرین فناوری‌ها، دوربین 50 مگاپیکسلی و پردازنده قدرتمند.",
-        price: "25,000,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=گوشی+سامسونگ+S23"
-    },
     {
         id: 2,
         name: "هدفون بی‌سیم Sony WH-1000XM4",
@@ -59,34 +58,7 @@ const generalProducts = [
         brand: "Sony",
         description: "کیفیت صدای استثنایی با حذف نویز فعال، باتری 30 ساعته و طراحی ارگونومیک.",
         price: "8,500,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=هدفون+Sony"
-    },
-    {
-        id: 3,
-        name: "شارژر سریع 65 واتی Anker",
-        category: "accessory",
-        brand: "Anker",
-        description: "شارژ فوق سریع با قابلیت Power Delivery و سازگار با انواع دستگاه‌ها.",
-        price: "1,200,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=شارژر+Anker"
-    },
-    {
-        id: 4,
-        name: "کاور سیلیکونی آیفون 14 Pro",
-        category: "accessory",
-        brand: "Apple",
-        description: "محافظت عالی با طراحی زیبا و رنگ‌بندی متنوع، جنس نرم و ضد لغزش.",
-        price: "450,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=کاور+آیفون"
-    },
-    {
-        id: 5,
-        name: "گوشی موبایل آیفون 15 Pro Max",
-        category: "mobile", // این هم یک گوشی موبایل است که با iPhone 16 فعلی تداخل دارد
-        brand: "Apple",
-        description: "جدیدترین پرچمدار اپل با چیپ A17 Pro و سیستم دوربین پیشرفته.",
-        price: "60,000,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=آیفون+15"
+        imageUrl: "https://via.placeholder.com/120x120?text=هدفون+Sony"
     },
     {
         id: 6,
@@ -95,35 +67,24 @@ const generalProducts = [
         brand: "Xiaomi",
         description: "صدای Hi-Res و حذف نویز تا 48dB، اتصال همزمان به دو دستگاه.",
         price: "3,100,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=هندزفری+شیائومی"
-    },
-    {
-        id: 7,
-        name: "پاور بانک 20000mAh شیائومی",
-        category: "accessory",
-        brand: "Xiaomi",
-        description: "ظرفیت بالا برای شارژ چندین باره گوشی، دارای پورت‌های USB-C و USB-A.",
-        price: "900,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=پاوربانک+شیائومی"
-    },
-    {
-        id: 8,
-        name: "گوشی موبایل شیائومی 14 Ultra",
-        category: "mobile",
-        brand: "Xiaomi",
-        description: "گوشی هوشمند شیائومی با دوربین لایکا و قابلیت‌های عکاسی حرفه‌ای.",
-        price: "42,000,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=شیائومی+14"
+        imageUrl: "https://via.placeholder.com/120x120?text=هندزفری+شیائومی"
     },
     {
         id: 9,
         name: "ساعت هوشمند سامسونگ Galaxy Watch 6",
-        category: "accessory", // این محصول از نظر دسته‌بندی فعلی در "لوازم جانبی" قرار گرفته اما آن را به "ساعت هوشمند" منتقل می‌کنیم
+        category: "smartwatch",
         brand: "Samsung",
         description: "ردیابی سلامت پیشرفته و امکانات هوشمند، طراحی شیک.",
         price: "9,000,000",
-        imageUrl: "https://via.placeholder.com/300x200?text=گلکسی+واچ"
-    }
+        imageUrl: "https://via.placeholder.com/120x120?text=گلکسی+واچ"
+    },
+    // New accessories from your list, mapped to new categories
+    { model: "Apple 20W org Adapter", category: "adapter", price: "1,640,000", image: "https://via.placeholder.com/120x120?text=Apple+20W", brand: "Apple" },
+    { model: "Apple Cable Type-C to Lightning", category: "cable", price: "1,000,000", image: "https://via.placeholder.com/120x120?text=USB-C+to+Lightning", brand: "Apple" },
+    { model: "Apple Cable Type-C to Type-C", category: "cable", price: "1,300,000", image: "https://via.placeholder.com/120x120?text=USB-C+to+USB-C", brand: "Apple" },
+    { model: "Apple Cable USB to Lightning", category: "cable", price: "800,000", image: "https://via.placeholder.com/120x120?text=USB+to+Lightning", brand: "Apple" },
+    { model: "کاور سیلیکونی آیفون 14 Pro", category: "case_glass", brand: "Apple", description: "محافظت عالی با طراحی زیبا و رنگ‌بندی متنوع، جنس نرم و ضد لغزش.", price: "450,000", image: "https://via.placeholder.com/120x120?text=کاور+آیفون" },
+    { model: "پاور بانک 20000mAh شیائومی", category: "powerbank", brand: "Xiaomi", description: "ظرفیت بالا برای شارژ چندین باره گوشی، دارای پورت‌های USB-C و USB-A.", price: "900,000", image: "https://via.placeholder.com/120x120?text=پاوربانک+شیائومی" }
 ];
 
 // Centralized product data configuration
@@ -148,24 +109,6 @@ const productsData = {
             { id: 'SE', text: 'SE 2024' }
         ]
     },
-    'accessory': {
-        title: 'لوازم جانبی',
-        products: generalProducts
-            .filter(p => p.category === 'accessory' && !p.name.includes('ساعت هوشمند')) // فیلتر کردن ساعت‌های هوشمند از اینجا
-            .map(p => ({
-                model: p.name,
-                description: p.description,
-                price: p.price,
-                image: p.imageUrl,
-                category: p.brand // می‌توان از برند برای فیلتر کردن استفاده کرد
-            })),
-        filters: [
-            { id: 'all', text: 'همه' },
-            { id: 'Anker', text: 'Anker' },
-            { id: 'Apple', text: 'Apple' },
-            { id: 'Xiaomi', text: 'Xiaomi' }
-        ]
-    },
     'headphone': {
         title: 'هدفون و هندزفری',
         products: generalProducts
@@ -180,13 +123,44 @@ const productsData = {
         filters: [
             { id: 'all', text: 'همه' },
             { id: 'Sony', text: 'Sony' },
-            { id: 'Xiaomi', text: 'Xiaomi' }
+            { id: 'Xiaomi', text: 'Xiaomi' },
+            { id: 'Apple', text: 'Apple' } // Add Apple for consistency, though currently only general headphones are here
+        ]
+    },
+    'airpods': { // New category for AirPods
+        title: 'ایرپاد',
+        products: airpodsProducts,
+        filters: [
+            { id: 'all', text: 'همه' },
+            { id: 'Pro2', text: 'Pro 2' },
+            { id: 'AirPods4', text: 'AirPods 4' },
+            { id: 'AirPods2', text: 'AirPods 2' }
+        ]
+    },
+    'accessory': {
+        title: 'لوازم جانبی',
+        products: generalProducts
+            .filter(p => ['adapter', 'cable', 'case_glass', 'powerbank'].includes(p.category))
+            .map(p => ({
+                model: p.name || p.model, // Use name if available, otherwise model
+                description: p.description || '',
+                price: p.price,
+                image: p.imageUrl || p.image,
+                category: p.category, // Filter by this category
+                brand: p.brand || '' // Include brand for potential future use
+            })),
+        filters: [
+            { id: 'all', text: 'همه' },
+            { id: 'adapter', text: 'آداپتور' },
+            { id: 'cable', text: 'کابل' },
+            { id: 'case_glass', text: 'کاور و گلس' },
+            { id: 'powerbank', text: 'پاور بانک' }
         ]
     },
     'smartwatch': {
         title: 'ساعت‌های هوشمند (متفرقه)',
         products: generalProducts
-            .filter(p => (p.category === 'accessory' && p.name.includes('ساعت هوشمند')) || p.category === 'smartwatch') // شامل ساعت هوشمند سامسونگ نیز می‌شود
+            .filter(p => p.category === 'smartwatch')
             .map(p => ({
                 model: p.name,
                 description: p.description,
@@ -199,8 +173,5 @@ const productsData = {
             { id: 'Samsung', text: 'Samsung' }
         ]
     }
-    // توجه: گوشی‌های موبایل عمومی (سامسونگ S23، آیفون 15، شیائومی 14) از `generalProducts`
-    // در دسته‌بندی 'mobile' بالا ادغام نشده‌اند، زیرا این دسته‌بندی به طور خاص برای iPhone 16 طراحی شده است.
-    // اگر مایلید آن‌ها را نیز در لیست بگنجانید، ساختار دسته‌بندی 'mobile' و فیلترهای آن باید
-    // بازنگری شوند تا بتوانند برندها/مدل‌های مختلف را در خود جای دهند.
+    // MacBook and iPad will be added here once you provide their lists.
 };
