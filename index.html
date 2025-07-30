@@ -9,11 +9,11 @@
     
     <style>
         html {
-            scroll-behavior: smooth; /* اسکرول نرم برای لینک‌های داخلی */
+            scroll-behavior: smooth;
         }
         /* استایل‌های عمومی */
         body {
-            font-family: 'Shabnam', sans-serif; /* فونت شبنم اعمال شد */
+            font-family: 'Shabnam', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
@@ -26,7 +26,7 @@
             color: #000;
             padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* اضافه شده برای موقعیت دهی منو */
+            position: relative;
         }
         
         .header-container {
@@ -46,7 +46,7 @@
         
         /* استایل دکمه همبرگری */
         .menu-toggle {
-            display: none; /* در حالت دسکتاپ مخفی است */
+            display: none;
             font-size: 30px;
             cursor: pointer;
             color: #000;
@@ -69,7 +69,7 @@
         
         nav ul li {
             margin-right: 20px;
-            position: relative; /* برای زیرمنوها */
+            position: relative;
         }
         
         nav ul li a {
@@ -85,10 +85,10 @@
         
         /* استایل برای زیرمنوها */
         .dropdown-menu {
-            display: none; /* به صورت پیش‌فرض مخفی */
+            display: none;
             position: absolute;
-            top: 100%; /* زیر آیتم والد */
-            right: 0; /* راست چین */
+            top: 100%;
+            right: 0;
             background-color: #FFD700;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -104,7 +104,7 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            text-align: right; /* راست چین کردن متن زیرمنو */
+            text-align: right;
             transition: background-color 0.3s;
         }
 
@@ -113,7 +113,7 @@
         }
 
         /* نمایش زیرمنو با هاور در حالت دسکتاپ */
-        @media (min-width: 769px) { /* فقط در دسکتاپ */
+        @media (min-width: 769px) {
             nav ul li:hover .dropdown-menu {
                 display: block;
             }
@@ -133,10 +133,10 @@
             text-align: center;
             border-radius: 8px;
             margin-bottom: 30px;
-            min-height: 150px; /* حداقل ارتفاع برای نمایش لوگو */
-            display: flex; /* برای وسط چین کردن لوگو */
-            justify-content: center; /* برای وسط چین کردن لوگو */
-            align-items: center; /* برای وسط چین کردن لوگو */
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .banner img {
@@ -237,14 +237,14 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 ستون با عرض مساوی */
-            gap: 30px; /* فاصله بین ستون‌ها */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
             padding: 0 20px;
-            align-items: flex-start; /* ستون‌ها از بالا هم‌تراز شوند */
+            align-items: flex-start;
         }
         
         .footer-column {
-            min-width: 250px; /* حداقل عرض برای هر ستون */
+            min-width: 250px;
         }
         
         .footer-column h3 {
@@ -252,7 +252,7 @@
             padding-bottom: 10px;
             margin-bottom: 15px;
             color: #FFD700;
-            font-size: 20px; /* بزرگتر کردن فونت عنوان */
+            font-size: 20px;
         }
         
         .footer-column ul {
@@ -269,7 +269,7 @@
             color: #FFD700;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 16px; /* بزرگتر کردن فونت لینک‌ها */
+            font-size: 16px;
         }
         
         .footer-column ul li a:hover {
@@ -277,27 +277,27 @@
         }
         
         .footer-column p {
-            font-size: 16px; /* بزرگتر کردن فونت پاراگراف */
+            font-size: 16px;
             line-height: 1.6;
             color: #ccc;
         }
 
         /* استایل‌های خاص برای بخش تماس با ما */
         .footer-column.contact-info ul li {
-            text-align: right; /* راست چین کردن متن‌های تماس */
-            line-height: 1.8; /* فاصله خطوط بیشتر */
+            text-align: right;
+            line-height: 1.8;
         }
 
         .footer-column.contact-info ul li a {
-            direction: ltr; /* برای شماره تلفن و آیدی اینستاگرام */
-            display: inline-block; /* برای کنترل بهتر فاصله */
-            margin-right: 5px; /* فاصله از ستاره یا متن قبل */
+            direction: ltr;
+            display: inline-block;
+            margin-right: 5px;
         }
-        .footer-column.contact-info ul li span { /* برای متن‌های معمولی مثل آدرس و ساعت کاری */
+        .footer-column.contact-info ul li span {
              display: inline-block;
         }
         .footer-column.contact-info ul li strong {
-            display: inline-block; /* برای آدرس و تلفن */
+            display: inline-block;
             margin-left: 5px;
         }
 
@@ -307,7 +307,7 @@
             margin-top: 20px;
             border-top: 1px solid #333;
             color: #FFD700;
-            font-size: 14px; /* بزرگتر کردن فونت کپی‌رایت */
+            font-size: 14px;
         }
         
         /* دکمه برگشت به بالا */
@@ -328,7 +328,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transition: opacity 0.3s;
-            z-index: 100; /* اطمینان از نمایش روی بقیه عناصر */
+            z-index: 100;
         }
         
         .back-to-top.visible {
@@ -336,7 +336,7 @@
         }
 
         /* برای نمایش منو به صورت عمودی در حالت موبایل */
-        @media (max-width: 768px) { /* در صفحه نمایش‌های کوچک (موبایل و تبلت) */
+        @media (max-width: 768px) {
             .header-container {
                 flex-wrap: wrap;
                 justify-content: space-between;
@@ -395,22 +395,22 @@
 
             /* Responsive برای فوتر در موبایل */
             .footer-container {
-                grid-template-columns: 1fr; /* در موبایل تک ستون شود */
-                gap: 20px; /* فاصله بین ستون‌ها در موبایل */
-                padding: 0 15px; /* پدینگ در موبایل */
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
             }
             .footer-column {
                 min-width: unset;
-                width: 100%; /* در موبایل کل عرض را بگیرد */
+                width: 100%;
                 text-align: center;
-                margin-bottom: 0; /* حذف margin-bottom برای استفاده از gap */
+                margin-bottom: 0;
             }
             .footer-column h3 {
                 border-bottom: none;
                 padding-bottom: 0;
             }
             .footer-column.contact-info ul li {
-                text-align: center; /* مرکز چین کردن متن‌های تماس در موبایل */
+                text-align: center;
             }
         }
         
@@ -519,7 +519,11 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="nav-link dropdown-toggle">محصولات ▼</a>
                         <ul class="dropdown-menu">
-                            <li><a href="products-list.html?category=all" class="nav-link">همه محصولات</a></li> <li><a href="products-list.html?category=mobile" class="nav-link">موبایل</a></li> <li><a href="products-list.html?category=accessory" class="nav-link">لوازم جانبی</a></li> <li><a href="products-list.html?category=headphone" class="nav-link">هدفون</a></li> </ul>
+                            <li><a href="products-list.html?category=all" class="nav-link">همه محصولات</a></li>
+                            <li><a href="products-list.html?category=mobile" class="nav-link">موبایل</a></li>
+                            <li><a href="products-list.html?category=accessory" class="nav-link">لوازم جانبی</a></li>
+                            <li><a href="products-list.html?category=headphone" class="nav-link">هدفون</a></li>
+                        </ul>
                     </li>
                     <li><a href="#about-us-section" class="nav-link">درباره ما</a></li>
                     <li><a href="#contact-us-section" class="nav-link">تماس با ما</a></li>
@@ -530,7 +534,8 @@
     
     <main>
         <div class="banner">
-            <img src="1000121012.jpg" alt="لوگوی Telezone"> </div>
+            <img src="1000121012.jpg" alt="لوگوی Telezone">
+        </div>
         
         <section class="products-section">
             <h2>دسته بندی محصولات</h2> 
@@ -547,7 +552,8 @@
                     <h3>لوازم جانبی</h3>
                     <p>کاور، شارژر، گلس و ...</p>
                 </div>
-                <div class="category-item" data-category="repair"> <h3>تعمیرات</h3>
+                <div class="category-item" data-category="repair">
+                    <h3>تعمیرات</h3>
                     <p>تعمیرات تخصصی موبایل و تبلت</p>
                 </div>
             </div>
@@ -607,7 +613,7 @@
         // اسکریپت برای منوی همبرگری (داشبورد)
         const menuToggle = document.getElementById('menu-toggle');
         const mainNav = document.getElementById('main-nav');
-        const dropdownToggle = document.querySelector('.dropdown-toggle'); // انتخاب لینک 'محصولات'
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
 
         menuToggle.addEventListener('click', function() {
             mainNav.classList.toggle('active');
