@@ -110,8 +110,10 @@
         }
 
         /* نمایش زیرمنو با هاور در حالت دسکتاپ */
-        nav ul li:hover .dropdown-menu {
-            display: block;
+        @media (min-width: 769px) { /* فقط در دسکتاپ */
+            nav ul li:hover .dropdown-menu {
+                display: block;
+            }
         }
 
         /* بخش اصلی */
@@ -329,7 +331,7 @@
                 display: block; /* کل فضای آیتم قابل کلیک باشد */
             }
 
-            /* مخفی کردن زیرمنو در موبایل (چون با همبرگری باز می‌شود) */
+            /* مخفی کردن زیرمنو در موبایل (به صورت پیش‌فرض) */
             .dropdown-menu {
                 display: none !important; /* مهم: برای اطمینان از مخفی ماندن در موبایل */
                 position: static; /* موقعیت استاتیک در موبایل */
@@ -337,11 +339,16 @@
                 padding: 0;
             }
 
+            /* نمایش زیرمنو در موبایل وقتی کلاس active-dropdown را بگیرد */
+            .dropdown.active-dropdown .dropdown-menu {
+                display: block !important; /* یا flex برای انعطاف بیشتر */
+            }
+
+
             .dropdown-menu li a {
                 padding: 8px 16px; /* پدینگ کوچکتر برای آیتم‌های زیرمنو در موبایل */
                 font-size: 15px;
             }
-            /* اگر می‌خواهید در منوی همبرگری هم زیرمنو باز شود، باید از جاوااسکریپت استفاده کنید */
         }
 
         /* ** استایل‌های قبلی بخش فیلتر دسته‌بندی حذف شد **
@@ -454,7 +461,7 @@
             <nav id="main-nav">
                 <ul>
                     <li><a href="#" data-category="home">خانه</a></li> 
-                    <li class="dropdown"> <a href="#" data-category="all" class="nav-category-link active-nav-link">محصولات ▼</a> <ul class="dropdown-menu">
+                    <li class="dropdown"> <a href="javascript:void(0);" class="nav-category-link dropdown-toggle">محصولات ▼</a> <ul class="dropdown-menu">
                             <li><a href="#" data-category="all">همه محصولات</a></li>
                             <li><a href="#" data-category="mobile">موبایل</a></li>
                             <li><a href="#" data-category="accessory">لوازم جانبی</a></li>
@@ -597,27 +604,40 @@
         // اسکریپت برای منوی همبرگری (داشبورد)
         const menuToggle = document.getElementById('menu-toggle');
         const mainNav = document.getElementById('main-nav');
+        const dropdownToggle = document.querySelector('.dropdown-toggle'); // انتخاب لینک 'محصولات'
 
         menuToggle.addEventListener('click', function() {
             mainNav.classList.toggle('active'); // کلاس 'active' را اضافه یا حذف می‌کند
+            // وقتی منوی همبرگری بسته می‌شود، مطمئن شوید که زیرمنو محصولات اگر باز بود، بسته شود
+            if (!mainNav.classList.contains('active')) {
+                 dropdownToggle.parentElement.classList.remove('active-dropdown');
+            }
         });
 
         // برای بستن منو وقتی روی یک لینک کلیک می‌شود (اختیاری)
-        const navLinksAll = document.querySelectorAll('#main-nav ul li a'); // انتخاب همه لینک‌های ناوبری
+        const navLinksAll = document.querySelectorAll('#main-nav ul li a:not(.dropdown-toggle)'); // انتخاب همه لینک‌های ناوبری به جز dropdown-toggle
         navLinksAll.forEach(link => {
             link.addEventListener('click', function() {
-                // اگر روی یک لینک از زیرمنو کلیک شد، منوی همبرگری بسته شود
+                // اگر روی یک لینک از زیرمنو یا لینک اصلی (خانه، درباره ما، تماس با ما) کلیک شد، منوی همبرگری و زیرمنو بسته شود
                 if (mainNav.classList.contains('active')) {
                      mainNav.classList.remove('active'); 
                 }
+                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
             });
         });
 
+        // اضافه کردن event listener برای باز و بسته کردن زیرمنو در حالت موبایل
+        dropdownToggle.addEventListener('click', function(e) {
+            // این شرط اطمینان می‌دهد که این عملکرد فقط در حالت موبایل (و نه در دسکتاپ که هاور داریم) فعال شود.
+            // window.innerWidth <= 768px همان media query استایل‌های موبایل است.
+            if (window.innerWidth <= 768) { 
+                e.preventDefault(); // جلوگیری از رفتار پیش‌فرض (که باعث می‌شود به بالای صفحه برود)
+                this.parentElement.classList.toggle('active-dropdown'); // کلاس active-dropdown را اضافه یا حذف می‌کند
+            }
+        });
 
         // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید و لینک‌های ناوبری) ---
         const categoryItems = document.querySelectorAll('.category-item'); // مربع‌های دسته‌بندی
-        const navCategoryLinks = document.querySelectorAll('.nav-category-link'); // لینک‌های دسته‌بندی در ناوبری (شامل لینک اصلی 'محصولات')
-        const dropdownMenuLinks = document.querySelectorAll('.dropdown-menu a'); // لینک‌های داخل زیرمنو
         const products = document.querySelectorAll('.product');
 
         // تابع برای فیلتر کردن و نمایش محصولات
@@ -640,48 +660,81 @@
                 }
             });
 
-            // به روز رسانی کلاس active برای لینک‌های ناوبری (فقط لینک اصلی 'محصولات' و لینک‌های داخل زیرمنو)
-            navCategoryLinks.forEach(link => {
-                // اگر لینک اصلی "محصولات" است، active می شود
-                if (link.dataset.category === selectedCategory && link.parentElement.classList.contains('dropdown')) {
+            // به روز رسانی کلاس active برای لینک‌های ناوبری و زیرمنو
+            // ابتدا همه لینک‌های فعال را غیرفعال می‌کنیم
+            document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active-nav-link'));
+
+            // سپس لینک‌های مربوطه را فعال می‌کنیم
+            // لینک‌های داخل زیرمنو
+            document.querySelectorAll('.dropdown-menu a').forEach(link => {
+                if (link.dataset.category === selectedCategory) {
                     link.classList.add('active-nav-link');
-                } else if (link.parentElement.classList.contains('dropdown') && selectedCategory !== 'all') {
-                    // اگر دسته بندی خاصی انتخاب شده و این لینک اصلی محصولات است، غیرفعال می شود
-                    link.classList.remove('active-nav-link');
-                } else if (link.dataset.category === selectedCategory) {
-                     // برای لینک های دیگر (مثلا خانه)
-                    link.classList.add('active-nav-link');
-                } else {
-                    link.classList.remove('active-nav-link');
                 }
             });
 
-            dropdownMenuLinks.forEach(link => {
-                 if (link.dataset.category === selectedCategory) {
-                    link.classList.add('active-nav-link');
-                } else {
-                    link.classList.remove('active-nav-link');
-                }
-            });
+            // لینک اصلی "محصولات" (dropdown-toggle) را فعال می‌کنیم اگر یکی از زیرمجموعه‌های آن انتخاب شده باشد
+            const productSubCategorySelected = ['all', 'mobile', 'accessory', 'headphone'].includes(selectedCategory);
+            if (productSubCategorySelected) {
+                dropdownToggle.classList.add('active-nav-link');
+            } else {
+                // اگر دسته بندی‌ای غیر از محصولات انتخاب شده، لینک محصولات غیرفعال شود
+                dropdownToggle.classList.remove('active-nav-link');
+            }
+
+            // فعال کردن لینک 'خانه' اگر انتخاب شده
+            document.querySelector('a[data-category="home"]')?.classList.remove('active-nav-link'); // اطمینان از حذف از خانه
+            if (selectedCategory === 'home') {
+                 document.querySelector('a[data-category="home"]').classList.add('active-nav-link');
+            }
         };
+
 
         // اضافه کردن event listener برای مربع‌های دسته‌بندی
         categoryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const selectedCategory = item.dataset.category;
                 filterProducts(selectedCategory);
+                mainNav.classList.remove('active'); // بستن منوی همبرگری پس از انتخاب
+                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
             });
         });
 
-        // اضافه کردن event listener برای لینک‌های دسته‌بندی در ناوبری
-        // شامل لینک اصلی "محصولات" و لینک‌های داخل زیرمنو
-        document.querySelectorAll('.nav-category-link, .dropdown-menu a').forEach(link => {
+        // اضافه کردن event listener برای لینک‌های داخل زیرمنو
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault(); // جلوگیری از رفرش صفحه
                 const selectedCategory = link.dataset.category;
                 filterProducts(selectedCategory);
+                mainNav.classList.remove('active'); // بستن منوی همبرگری پس از انتخاب
+                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
             });
         });
+
+        // اضافه کردن event listener برای لینک‌های اصلی ناوبری (خانه، درباره ما، تماس با ما)
+        document.querySelectorAll('nav > ul > li > a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const clickedCategory = link.dataset.category;
+
+                // اگر لینک "خانه" کلیک شد، همه محصولات را نمایش دهید
+                if (clickedCategory === 'home') {
+                    filterProducts('all'); 
+                } else {
+                    // برای بقیه لینک های اصلی (درباره ما، تماس با ما)، فقط active-nav-link را تنظیم کنید
+                    // و هیچ فیلتری روی محصولات اعمال نکنید (فرض بر این است که این صفحات جداگانه هستند)
+                     products.forEach(p => p.classList.remove('hidden')); // همه محصولات را نمایش دهید
+                }
+                
+                // حذف active-nav-link از همه لینک‌ها
+                document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active-nav-link'));
+                // فعال کردن لینک کنونی
+                link.classList.add('active-nav-link');
+
+                mainNav.classList.remove('active'); // بستن منوی همبرگری
+                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
+            });
+        });
+
 
         // در ابتدا، همه محصولات را نمایش دهید (موقعی که صفحه لود می‌شود)
         // و آیتم "همه محصولات" در هر دو بخش را فعال نگه دارید.
