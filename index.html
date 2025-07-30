@@ -133,10 +133,21 @@
             text-align: center;
             border-radius: 8px;
             margin-bottom: 30px;
+            min-height: 150px; /* حداقل ارتفاع برای نمایش لوگو */
+            display: flex; /* برای وسط چین کردن لوگو */
+            justify-content: center; /* برای وسط چین کردن لوگو */
+            align-items: center; /* برای وسط چین کردن لوگو */
         }
         
-        .banner p {
-            font-size: 18px;
+        .banner img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* بخش محصولات - مخفی کردن در صفحه اصلی */
+        .products-section .filtered-products-title,
+        .products-section .products {
+            display: none; /* محصولات در صفحه اصلی مخفی هستند */
         }
         
         .products-section h2 {
@@ -147,7 +158,7 @@
             text-align: center;
         }
         
-        /* محصولات */
+        /* محصولات (این استایل‌ها بیشتر برای صفحه products-list.html کاربرد خواهند داشت) */
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -225,7 +236,6 @@
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            /* تغییر از flex به grid برای کنترل بهتر در دسکتاپ */
             display: grid; 
             grid-template-columns: repeat(3, 1fr); /* 3 ستون با عرض مساوی */
             gap: 30px; /* فاصله بین ستون‌ها */
@@ -234,9 +244,7 @@
         }
         
         .footer-column {
-            /* flex: 1; /* حذف flex برای استفاده از grid */
             min-width: 250px; /* حداقل عرض برای هر ستون */
-            /* margin: 15px; /* حذف margin برای استفاده از gap در grid */
         }
         
         .footer-column h3 {
@@ -320,6 +328,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transition: opacity 0.3s;
+            z-index: 100; /* اطمینان از نمایش روی بقیه عناصر */
         }
         
         .back-to-top.visible {
@@ -476,9 +485,10 @@
         }
 
         /* استایل برای مخفی کردن محصولات */
-        .product.hidden {
+        /* این کلاس الان در بالا به صورت کلی برای .products-section .products اعمال شده است */
+        /* .product.hidden {
             display: none;
-        }
+        } */
 
         /* ریسپانسیو برای گرید دسته‌بندی‌ها در موبایل */
         @media (max-width: 600px) {
@@ -509,30 +519,22 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="nav-link dropdown-toggle">محصولات ▼</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" data-category="all" class="nav-link">همه محصولات</a></li>
-                            <li><a href="#" data-category="mobile" class="nav-link">موبایل</a></li>
-                            <li><a href="#" data-category="accessory" class="nav-link">لوازم جانبی</a></li>
-                            <li><a href="#" data-category="headphone" class="nav-link">هدفون</a></li>
-                        </ul>
+                            <li><a href="products-list.html?category=all" class="nav-link">همه محصولات</a></li> <li><a href="products-list.html?category=mobile" class="nav-link">موبایل</a></li> <li><a href="products-list.html?category=accessory" class="nav-link">لوازم جانبی</a></li> <li><a href="products-list.html?category=headphone" class="nav-link">هدفون</a></li> </ul>
                     </li>
-                    <li><a href="#about-us-section" class="nav-link">درباره ما</a></li> <li><a href="#contact-us-section" class="nav-link">تماس با ما</a></li> </ul>
+                    <li><a href="#about-us-section" class="nav-link">درباره ما</a></li>
+                    <li><a href="#contact-us-section" class="nav-link">تماس با ما</a></li>
+                </ul>
             </nav>
         </div>
     </header>
     
     <main>
         <div class="banner">
-            <img src="1000121012.jpg" alt="لوگوی Telezone" style="max-width: 300px; height: auto; margin-bottom: 15px;">
-            <p>تخصص ما در عرضه بهترین موبایل‌ها و لوازم جانبی با قیمت مناسب</p>
-        </div>
+            <img src="1000121012.jpg" alt="لوگوی Telezone"> </div>
         
         <section class="products-section">
             <h2>دسته بندی محصولات</h2> 
             <div class="categories-grid">
-                <div class="category-item active" data-category="all">
-                    <h3>همه محصولات</h3>
-                    <p>مشاهده تمام محصولات فروشگاه</p>
-                </div>
                 <div class="category-item" data-category="mobile">
                     <h3>موبایل</h3>
                     <p>جدیدترین گوشی‌های هوشمند</p>
@@ -545,78 +547,36 @@
                     <h3>لوازم جانبی</h3>
                     <p>کاور، شارژر، گلس و ...</p>
                 </div>
+                <div class="category-item" data-category="repair"> <h3>تعمیرات</h3>
+                    <p>تعمیرات تخصصی موبایل و تبلت</p>
                 </div>
+            </div>
 
             <h2 class="filtered-products-title">محصولات منتخب</h2> 
             <div class="products">
-                <div class="product" data-category="mobile">
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200?text=گوشی+موبایل" alt="گوشی موبایل سامسونگ S23">
-                    </div>
-                    <div class="product-info">
-                        <h3>گوشی موبایل سامسونگ S23</h3>
-                        <p>گوشی پرچمدار سامسونگ با آخرین فناوری‌ها</p>
-                        <div class="price">25,000,000 تومان</div>
-                        <button class="add-to-cart">افزودن به سبد خرید</button>
-                    </div>
                 </div>
-                
-                <div class="product" data-category="headphone">
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200?text=هدفون" alt="هدفون">
-                    </div>
-                    <div class="product-info">
-                        <h3>هدفون بی‌سیم Sony WH-1000XM4</h3>
-                        <p>کیفیت صدای استثنایی با حذف نویز فعال</p>
-                        <div class="price">8,500,000 تومان</div>
-                        <button class="add-to-cart">افزودن به سبد خرید</button>
-                    </div>
-                </div>
-                
-                <div class="product" data-category="accessory">
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200?text=شارژر" alt="شارژر">
-                    </div>
-                    <div class="product-info">
-                        <h3>شارژر سریع 65 واتی Anker</h3>
-                        <p>شارژ فوق سریع با قابلیت PD</p>
-                        <div class="price">1,200,000 تومان</div>
-                        <button class="add-to-cart">افزودن به سبد خرید</button>
-                    </div>
-                </div>
-                
-                <div class="product" data-category="accessory">
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200?text=کاور" alt="کاور موبایل">
-                    </div>
-                    <div class="product-info">
-                        <h3>کاور سیلیکونی آیفون 14 Pro</h3>
-                        <p>محافظت عالی با طراحی زیبا</p>
-                        <div class="price">450,000 تومان</div>
-                        <button class="add-to-cart">افزودن به سبد خرید</button>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
     
     <footer>
         <div class="footer-container">
-            <div class="footer-column" id="about-us-section"> <h3>درباره Telezone</h3>
+            <div class="footer-column" id="about-us-section">
+                <h3>درباره Telezone</h3>
                 <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان</p>
             </div>
             
             <div class="footer-column">
                 <h3>لینک‌های مفید</h3>
                 <ul>
-                    <li><a href="#" class="nav-link">سوالات متداول</a></li>
-                    <li><a href="#" class="nav-link">روش‌های پرداخت</a></li>
-                    <li><a href="#" class="nav-link">شرایط بازگشت کالا</a></li>
-                    <li><a href="#" class="nav-link">حریم خصوصی</a></li>
+                    <li><a href="#">سوالات متداول</a></li>
+                    <li><a href="#">روش‌های پرداخت</a></li>
+                    <li><a href="#">شرایط بازگشت کالا</a></li>
+                    <li><a href="#">حریم خصوصی</a></li>
                 </ul>
             </div>
             
-            <div class="footer-column contact-info" id="contact-us-section"> <h3>تماس با ما</h3>
+            <div class="footer-column contact-info" id="contact-us-section">
+                <h3>تماس با ما</h3>
                 <ul>
                     <li><strong>آدرس:</strong> تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، <br>واحد ۲۵۲</li>
                     <li><strong>تلفن و واتساپ:</strong> <a href="tel:+989120416422">09120416422</a></li>
@@ -664,110 +624,59 @@
             }
         });
 
-        // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید و لینک‌های ناوبری) ---
+        // --- اسکریپت برای هدایت دسته‌بندی‌ها از صفحه اصلی به products-list.html ---
         const categoryItems = document.querySelectorAll('.category-item');
-        const products = document.querySelectorAll('.product');
-
-        // تابع برای فیلتر کردن و نمایش محصولات
-        const filterProducts = (selectedCategory) => {
-            products.forEach(product => {
-                const productCategory = product.dataset.category;
-                if (selectedCategory === 'all' || productCategory === selectedCategory) {
-                    product.classList.remove('hidden');
-                } else {
-                    product.classList.add('hidden');
-                }
-            });
-
-            categoryItems.forEach(item => {
-                if (item.dataset.category === selectedCategory) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-
-            // به روز رسانی کلاس active برای لینک‌های ناوبری و زیرمنو
-            document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
-
-            // فعال کردن لینک مربوطه
-            const currentNavLink = document.querySelector(`a[data-category="${selectedCategory}"]`);
-            if (currentNavLink) {
-                currentNavLink.classList.add('active-nav-link');
-            }
-            // اگر یکی از زیردسته های محصولات انتخاب شده، لینک اصلی محصولات را هم فعال کنید
-            const productSubCategorySelected = ['all', 'mobile', 'accessory', 'headphone'].includes(selectedCategory);
-            if (productSubCategorySelected) {
-                dropdownToggle.classList.add('active-nav-link');
-            }
-
-            // اگر به یک بخش فوتر اسکرول شده، لینک‌های منو نیازی به active-nav-link ندارند
-            const currentHash = window.location.hash;
-            if (currentHash && (currentHash === '#about-us-section' || currentHash === '#contact-us-section')) {
-                document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
-                document.querySelector(`a[href="${currentHash}"]`)?.classList.add('active-nav-link');
-            }
-        };
-
-
-        // اضافه کردن event listener برای مربع‌های دسته‌بندی
+        
         categoryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const selectedCategory = item.dataset.category;
-                filterProducts(selectedCategory);
-                mainNav.classList.remove('active');
-                dropdownToggle.parentElement.classList.remove('active-dropdown');
-            });
-        });
-
-        // اضافه کردن event listener برای لینک‌های داخل زیرمنو
-        document.querySelectorAll('.dropdown-menu a.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const selectedCategory = link.dataset.category;
-                filterProducts(selectedCategory);
-                mainNav.classList.remove('active');
-                dropdownToggle.parentElement.classList.remove('active-dropdown');
+                // هدایت به products-list.html با پارامتر دسته‌بندی
+                if (selectedCategory) {
+                    window.location.href = `products-list.html?category=${selectedCategory}`;
+                }
             });
         });
 
         // اضافه کردن event listener برای لینک‌های اصلی ناوبری (خانه، درباره ما، تماس با ما)
-        document.querySelectorAll('nav > ul > li > a.nav-link:not(.dropdown-toggle)').forEach(link => {
+        document.querySelectorAll('nav > ul > li > a.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 // اگر لینک به ID اشاره می‌کند، از جلوگیری پیش‌فرض جلوگیری نکنید
                 if (!link.getAttribute('href')?.startsWith('#')) {
-                    e.preventDefault(); 
+                    // برای لینک‌های محصولات (که به products-list.html می‌روند)
+                    if (link.href.includes('products-list.html')) {
+                        // نیازی به e.preventDefault نیست، چون قرار است به صفحه جدید بروند
+                    } else {
+                        e.preventDefault(); 
+                    }
                 }
                 
-                const clickedCategory = link.dataset.category;
+                // بستن منوی همبرگری پس از کلیک (چه به فوتر برود، چه به صفحه محصولات)
+                mainNav.classList.remove('active');
+                dropdownToggle.parentElement.classList.remove('active-dropdown');
 
-                if (clickedCategory === 'home') {
-                    filterProducts('all');
-                } else if (link.getAttribute('href')?.startsWith('#')) {
-                    // اگر لینک به بخش‌های فوتر است، فقط منو را ببندید
-                    // مرورگر خودش اسکرول را انجام می‌دهد
+                // اگر لینک به بخش‌های فوتر است، فعال کردن لینک منو
+                const currentHash = link.getAttribute('href');
+                if (currentHash && (currentHash === '#about-us-section' || currentHash === '#contact-us-section')) {
+                    document.querySelectorAll('nav ul li a.nav-link').forEach(l => l.classList.remove('active-nav-link'));
+                    link.classList.add('active-nav-link');
+                } else if (link.dataset.category === 'home') {
+                    // برای لینک خانه، فعال کردن آن
                     document.querySelectorAll('nav ul li a.nav-link').forEach(l => l.classList.remove('active-nav-link'));
                     link.classList.add('active-nav-link');
                 }
-                
-                mainNav.classList.remove('active');
-                dropdownToggle.parentElement.classList.remove('active-dropdown');
             });
         });
 
 
-        // در ابتدا، همه محصولات را نمایش دهید (موقعی که صفحه لود می‌شود)
+        // در ابتدا، فقط برای فعال کردن لینک خانه (اگر در صفحه اصلی هستیم)
         window.addEventListener('DOMContentLoaded', () => {
-            // بررسی هش URL در لود صفحه برای فعال کردن لینک مربوطه و اسکرول
-            const initialHash = window.location.hash;
-            if (initialHash && (initialHash === '#about-us-section' || initialHash === '#contact-us-section')) {
-                // اگر هش مربوط به فوتر است، فقط لینک مربوطه را فعال کنید و به آن اسکرول کنید
-                document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
-                document.querySelector(`a[href="${initialHash}"]`)?.classList.add('active-nav-link');
-                document.querySelector(initialHash)?.scrollIntoView(); // اسکرول به عنصر
+            const currentHash = window.location.hash;
+            if (currentHash && (currentHash === '#about-us-section' || currentHash === '#contact-us-section')) {
+                document.querySelector(`a[href="${currentHash}"]`)?.classList.add('active-nav-link');
+                document.querySelector(currentHash)?.scrollIntoView(); 
             } else {
-                // در غیر این صورت، محصولات را فیلتر کنید
-                filterProducts('all');
+                // اگر در صفحه اصلی هستیم و هش نداریم، لینک "خانه" را فعال کنید
+                document.querySelector('a[data-category="home"]')?.classList.add('active-nav-link');
             }
         });
     </script>
