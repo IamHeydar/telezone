@@ -225,24 +225,26 @@
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex; /* تغییر به flexbox برای کنترل بهتر */
-            justify-content: space-around; /* توزیع فاصله بین ستون‌ها */
-            align-items: flex-start; /* ستون‌ها از بالا هم‌تراز شوند */
+            /* تغییر از flex به grid برای کنترل بهتر در دسکتاپ */
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); /* 3 ستون با عرض مساوی */
+            gap: 30px; /* فاصله بین ستون‌ها */
             padding: 0 20px;
-            flex-wrap: wrap; /* اجازه می‌دهد آیتم‌ها در صفحه نمایش کوچک به خط بعدی بروند */
+            align-items: flex-start; /* ستون‌ها از بالا هم‌تراز شوند */
         }
         
         .footer-column {
-            flex: 1; /* هر ستون به طور مساوی فضا بگیرد */
-            min-width: 250px; /* حداقل عرض برای هر ستون تا در هم نروند */
-            margin: 15px; /* فاصله بین ستون‌ها */
+            /* flex: 1; /* حذف flex برای استفاده از grid */
+            min-width: 250px; /* حداقل عرض برای هر ستون */
+            /* margin: 15px; /* حذف margin برای استفاده از gap در grid */
         }
         
         .footer-column h3 {
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 15px;
-            color: #FFD700; /* رنگ عنوان ستون‌ها */
+            color: #FFD700;
+            font-size: 20px; /* بزرگتر کردن فونت عنوان */
         }
         
         .footer-column ul {
@@ -259,6 +261,7 @@
             color: #FFD700;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 16px; /* بزرگتر کردن فونت لینک‌ها */
         }
         
         .footer-column ul li a:hover {
@@ -266,9 +269,28 @@
         }
         
         .footer-column p {
-            font-size: 15px;
+            font-size: 16px; /* بزرگتر کردن فونت پاراگراف */
             line-height: 1.6;
-            color: #ccc; /* رنگ متن ستون‌ها */
+            color: #ccc;
+        }
+
+        /* استایل‌های خاص برای بخش تماس با ما */
+        .footer-column.contact-info ul li {
+            text-align: right; /* راست چین کردن متن‌های تماس */
+            line-height: 1.8; /* فاصله خطوط بیشتر */
+        }
+
+        .footer-column.contact-info ul li a {
+            direction: ltr; /* برای شماره تلفن و آیدی اینستاگرام */
+            display: inline-block; /* برای کنترل بهتر فاصله */
+            margin-right: 5px; /* فاصله از ستاره یا متن قبل */
+        }
+        .footer-column.contact-info ul li span { /* برای متن‌های معمولی مثل آدرس و ساعت کاری */
+             display: inline-block;
+        }
+        .footer-column.contact-info ul li strong {
+            display: inline-block; /* برای آدرس و تلفن */
+            margin-left: 5px;
         }
 
         .copyright {
@@ -277,6 +299,7 @@
             margin-top: 20px;
             border-top: 1px solid #333;
             color: #FFD700;
+            font-size: 14px; /* بزرگتر کردن فونت کپی‌رایت */
         }
         
         /* دکمه برگشت به بالا */
@@ -363,18 +386,22 @@
 
             /* Responsive برای فوتر در موبایل */
             .footer-container {
-                flex-direction: column; /* در موبایل ستون‌ها زیر هم قرار گیرند */
-                align-items: center; /* آیتم‌ها در مرکز قرار گیرند */
+                grid-template-columns: 1fr; /* در موبایل تک ستون شود */
+                gap: 20px; /* فاصله بین ستون‌ها در موبایل */
+                padding: 0 15px; /* پدینگ در موبایل */
             }
             .footer-column {
-                min-width: unset; /* حداقل عرض را بردارید */
-                width: 90%; /* یا هر مقدار دیگری که مناسب می‌دانید */
-                text-align: center; /* متن در مرکز */
-                margin-bottom: 30px; /* فاصله بیشتر بین ستون‌ها */
+                min-width: unset;
+                width: 100%; /* در موبایل کل عرض را بگیرد */
+                text-align: center;
+                margin-bottom: 0; /* حذف margin-bottom برای استفاده از gap */
             }
             .footer-column h3 {
-                border-bottom: none; /* خط زیر عنوان در موبایل حذف شود */
+                border-bottom: none;
                 padding-bottom: 0;
+            }
+            .footer-column.contact-info ul li {
+                text-align: center; /* مرکز چین کردن متن‌های تماس در موبایل */
             }
         }
         
@@ -488,9 +515,7 @@
                             <li><a href="#" data-category="headphone" class="nav-link">هدفون</a></li>
                         </ul>
                     </li>
-                    <li><a href="#about-us" class="nav-link">درباره ما</a></li>
-                    <li><a href="#contact-us" class="nav-link">تماس با ما</a></li>
-                </ul>
+                    <li><a href="#about-us-section" class="nav-link">درباره ما</a></li> <li><a href="#contact-us-section" class="nav-link">تماس با ما</a></li> </ul>
             </nav>
         </div>
     </header>
@@ -577,28 +602,26 @@
     
     <footer>
         <div class="footer-container">
-            <div class="footer-column" id="about-us">
-                <h3>درباره Telezone</h3>
+            <div class="footer-column" id="about-us-section"> <h3>درباره Telezone</h3>
                 <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان</p>
             </div>
             
             <div class="footer-column">
                 <h3>لینک‌های مفید</h3>
                 <ul>
-                    <li><a href="#">سوالات متداول</a></li>
-                    <li><a href="#">روش‌های پرداخت</a></li>
-                    <li><a href="#">شرایط بازگشت کالا</a></li>
-                    <li><a href="#">حریم خصوصی</a></li>
+                    <li><a href="#" class="nav-link">سوالات متداول</a></li>
+                    <li><a href="#" class="nav-link">روش‌های پرداخت</a></li>
+                    <li><a href="#" class="nav-link">شرایط بازگشت کالا</a></li>
+                    <li><a href="#" class="nav-link">حریم خصوصی</a></li>
                 </ul>
             </div>
             
-            <div class="footer-column" id="contact-us">
-                <h3>تماس با ما</h3>
+            <div class="footer-column contact-info" id="contact-us-section"> <h3>تماس با ما</h3>
                 <ul>
-                    <li>**آدرس:** تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، واحد ۲۵۲</li>
-                    <li>**تلفن و واتساپ:** <a href="tel:+989120416422">09120416422</a></li>
-                    <li>**ساعت کاری:** ۱۰ الی ۲۰</li>
-                    <li>**اینستاگرام:** <a href="https://www.instagram.com/Telezone_center/" target="_blank">💬 Telezone_center</a></li>
+                    <li><strong>آدرس:</strong> تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، <br>واحد ۲۵۲</li>
+                    <li><strong>تلفن و واتساپ:</strong> <a href="tel:+989120416422">09120416422</a></li>
+                    <li><strong>ساعت کاری:</strong> ۱۰ الی ۲۰</li>
+                    <li><strong>اینستاگرام:</strong> <a href="https://www.instagram.com/Telezone_center/" target="_blank">💬 Telezone_center</a></li>
                 </ul>
             </div>
         </div>
@@ -680,9 +703,9 @@
 
             // اگر به یک بخش فوتر اسکرول شده، لینک‌های منو نیازی به active-nav-link ندارند
             const currentHash = window.location.hash;
-            if (currentHash && (currentHash === '#about-us' || currentHash === '#contact-us')) {
+            if (currentHash && (currentHash === '#about-us-section' || currentHash === '#contact-us-section')) {
                 document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
-                document.querySelector(`a[href="${currentHash}"]`).classList.add('active-nav-link');
+                document.querySelector(`a[href="${currentHash}"]`)?.classList.add('active-nav-link');
             }
         };
 
@@ -737,7 +760,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             // بررسی هش URL در لود صفحه برای فعال کردن لینک مربوطه و اسکرول
             const initialHash = window.location.hash;
-            if (initialHash && (initialHash === '#about-us' || initialHash === '#contact-us')) {
+            if (initialHash && (initialHash === '#about-us-section' || initialHash === '#contact-us-section')) {
                 // اگر هش مربوط به فوتر است، فقط لینک مربوطه را فعال کنید و به آن اسکرول کنید
                 document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
                 document.querySelector(`a[href="${initialHash}"]`)?.classList.add('active-nav-link');
