@@ -104,11 +104,13 @@
             font-size: 18px;
         }
         
+        /* این استایل برای `h2` در `products-section` است که الان به "دسته بندی محصولات" تغییر کرده */
         .products-section h2 {
             color: #000;
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 20px;
+            text-align: center; /* مرکز چین شد */
         }
         
         /* محصولات */
@@ -293,44 +295,95 @@
             }
         }
 
-        /* استایل‌های بخش فیلتر دسته‌بندی */
-        .categories-filter {
+        /* ** استایل‌های قبلی بخش فیلتر دسته‌بندی حذف شد **
+        .categories-filter { ... }
+        .filter-btn { ... }
+        .filter-btn:hover { ... }
+        .filter-btn.active { ... }
+        */
+
+        /* --- استایل‌های جدید برای بخش دسته‌بندی محصولات به صورت گرید --- */
+        .products-section h2:first-of-type { /* برای 'دسته بندی محصولات' */
             text-align: center;
             margin-bottom: 30px;
-            display: flex; /* برای چیدمان دکمه‌ها در یک ردیف */
-            justify-content: center; /* وسط چین کردن دکمه‌ها */
-            flex-wrap: wrap; /* در صورت نیاز به خط بعدی بروند */
-            gap: 10px; /* فاصله بین دکمه‌ها */
         }
 
-        .filter-btn {
-            background-color: #eee;
-            color: #333;
-            border: 1px solid #ccc;
-            padding: 10px 20px;
-            border-radius: 25px;
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 ستون با عرض مساوی */
+            gap: 20px; /* فاصله بین آیتم‌های گرید */
+            max-width: 800px; /* عرض حداکثر برای گرید دسته‌بندی‌ها */
+            margin: 0 auto 50px auto; /* وسط چین و فاصله از پایین */
+            padding: 0 20px; /* پدینگ برای کناره‌ها */
+        }
+
+        .category-item {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
             transition: all 0.3s ease;
-            white-space: nowrap; /* جلوگیری از شکستن متن دکمه */
+            display: flex; /* برای چیدمان داخلی محتوا */
+            flex-direction: column; /* محتوا زیر هم */
+            justify-content: center; /* محتوا وسط چین عمودی */
+            align-items: center; /* محتوا وسط چین افقی */
+            min-height: 180px; /* حداقل ارتفاع برای یکدست بودن */
+            border: 2px solid transparent; /* برای حالت active */
         }
 
-        .filter-btn:hover {
-            background-color: #ddd;
-            border-color: #bbb;
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .filter-btn.active {
-            background-color: #FFD700; /* زرد طلایی */
+        .category-item.active {
+            border-color: #FFD700; /* border زرد طلایی برای فعال بودن */
+            box-shadow: 0 0 0 3px #FFD700, 0 10px 25px rgba(0, 0, 0, 0.2); /* افکت active جذاب تر */
+        }
+
+        .category-item img {
+            max-width: 80px; /* اندازه آیکون */
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
+        }
+
+        .category-item h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 24px;
             color: #000;
-            border-color: #FFD700;
-            font-weight: bold;
         }
+
+        .category-item p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* استایل برای عنوان "محصولات منتخب" */
+        .filtered-products-title {
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: right; /* راست چین کردن عنوان */
+        }
+
 
         /* استایل برای مخفی کردن محصولات */
         .product.hidden {
             display: none;
+        }
+
+        /* ریسپانسیو برای گرید دسته‌بندی‌ها در موبایل */
+        @media (max-width: 600px) {
+            .categories-grid {
+                grid-template-columns: 1fr; /* در موبایل تک ستون شود */
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -358,16 +411,26 @@
         </div>
         
         <section class="products-section">
-            <h2>محصولات پرطرفدار</h2>
-            
-            <div class="categories-filter">
-                <button class="filter-btn active" data-category="all">همه محصولات</button>
-                <button class="filter-btn" data-category="mobile">موبایل</button>
-                <button class="filter-btn" data-category="accessory">لوازم جانبی</button>
-                <button class="filter-btn" data-category="headphone">هدفون</button>
+            <h2>دسته بندی محصولات</h2> <div class="categories-grid">
+                <div class="category-item active" data-category="all">
+                    <h3>همه محصولات</h3>
+                    <p>مشاهده تمام محصولات فروشگاه</p>
+                </div>
+                <div class="category-item" data-category="mobile">
+                    <h3>موبایل</h3>
+                    <p>جدیدترین گوشی‌های هوشمند</p>
+                </div>
+                <div class="category-item" data-category="headphone">
+                    <h3>هدفون و هندزفری</h3>
+                    <p>بهترین کیفیت صدا برای شما</p>
+                </div>
+                <div class="category-item" data-category="accessory">
+                    <h3>لوازم جانبی</h3>
+                    <p>کاور، شارژر، گلس و ...</p>
+                </div>
                 </div>
 
-            <div class="products">
+            <h2 class="filtered-products-title">محصولات منتخب</h2> <div class="products">
                 <div class="product" data-category="mobile">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=گوشی+موبایل" alt="گوشی موبایل سامسونگ S23">
@@ -481,29 +544,42 @@
             });
         });
 
-        // --- اسکریپت برای فیلتر دسته‌بندی محصولات ---
-        const filterButtons = document.querySelectorAll('.filter-btn');
+        // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید جدید) ---
+        const categoryItems = document.querySelectorAll('.category-item'); // انتخاب آیتم‌های دسته‌بندی جدید
         const products = document.querySelectorAll('.product');
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // حذف کلاس active از همه دکمه‌ها
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // اضافه کردن کلاس active به دکمه کلیک شده
-                button.classList.add('active');
-
-                const selectedCategory = button.dataset.category; // دسته‌بندی انتخاب شده
-
-                products.forEach(product => {
-                    const productCategory = product.dataset.category; // دسته‌بندی محصول
-
-                    if (selectedCategory === 'all' || productCategory === selectedCategory) {
-                        product.classList.remove('hidden'); // نمایش محصول
-                    } else {
-                        product.classList.add('hidden'); // مخفی کردن محصول
-                    }
-                });
+        // تابع برای فیلتر کردن و نمایش محصولات
+        const filterProducts = (selectedCategory) => {
+            products.forEach(product => {
+                const productCategory = product.dataset.category;
+                if (selectedCategory === 'all' || productCategory === selectedCategory) {
+                    product.classList.remove('hidden'); // نمایش محصول
+                } else {
+                    product.classList.add('hidden'); // مخفی کردن محصول
+                }
             });
+        };
+
+        categoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // حذف کلاس active از همه آیتم‌ها
+                categoryItems.forEach(i => i.classList.remove('active'));
+                // اضافه کردن کلاس active به آیتم کلیک شده
+                item.classList.add('active');
+
+                const selectedCategory = item.dataset.category;
+                filterProducts(selectedCategory); // فراخوانی تابع فیلتر
+            });
+        });
+
+        // در ابتدا، همه محصولات را نمایش دهید (موقعی که صفحه لود می‌شود)
+        // و آیتم "همه محصولات" را فعال نگه دارید.
+        window.addEventListener('DOMContentLoaded', () => {
+            const allProductsCategory = document.querySelector('.category-item[data-category="all"]');
+            if (allProductsCategory) {
+                allProductsCategory.classList.add('active');
+                filterProducts('all');
+            }
         });
     </script>
 </body>
