@@ -292,6 +292,46 @@
                 display: block; /* کل فضای آیتم قابل کلیک باشد */
             }
         }
+
+        /* استایل‌های بخش فیلتر دسته‌بندی */
+        .categories-filter {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex; /* برای چیدمان دکمه‌ها در یک ردیف */
+            justify-content: center; /* وسط چین کردن دکمه‌ها */
+            flex-wrap: wrap; /* در صورت نیاز به خط بعدی بروند */
+            gap: 10px; /* فاصله بین دکمه‌ها */
+        }
+
+        .filter-btn {
+            background-color: #eee;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap; /* جلوگیری از شکستن متن دکمه */
+        }
+
+        .filter-btn:hover {
+            background-color: #ddd;
+            border-color: #bbb;
+        }
+
+        .filter-btn.active {
+            background-color: #FFD700; /* زرد طلایی */
+            color: #000;
+            border-color: #FFD700;
+            font-weight: bold;
+        }
+
+        /* استایل برای مخفی کردن محصولات */
+        .product.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -319,8 +359,16 @@
         
         <section class="products-section">
             <h2>محصولات پرطرفدار</h2>
+            
+            <div class="categories-filter">
+                <button class="filter-btn active" data-category="all">همه محصولات</button>
+                <button class="filter-btn" data-category="mobile">موبایل</button>
+                <button class="filter-btn" data-category="accessory">لوازم جانبی</button>
+                <button class="filter-btn" data-category="headphone">هدفون</button>
+                </div>
+
             <div class="products">
-                <div class="product">
+                <div class="product" data-category="mobile">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=گوشی+موبایل" alt="گوشی موبایل سامسونگ S23">
                     </div>
@@ -332,7 +380,7 @@
                     </div>
                 </div>
                 
-                <div class="product">
+                <div class="product" data-category="headphone">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=هدفون" alt="هدفون">
                     </div>
@@ -344,7 +392,7 @@
                     </div>
                 </div>
                 
-                <div class="product">
+                <div class="product" data-category="accessory">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=شارژر" alt="شارژر">
                     </div>
@@ -356,7 +404,7 @@
                     </div>
                 </div>
                 
-                <div class="product">
+                <div class="product" data-category="accessory">
                     <div class="product-image">
                         <img src="https://via.placeholder.com/300x200?text=کاور" alt="کاور موبایل">
                     </div>
@@ -430,6 +478,31 @@
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 mainNav.classList.remove('active');
+            });
+        });
+
+        // --- اسکریپت برای فیلتر دسته‌بندی محصولات ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const products = document.querySelectorAll('.product');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // حذف کلاس active از همه دکمه‌ها
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // اضافه کردن کلاس active به دکمه کلیک شده
+                button.classList.add('active');
+
+                const selectedCategory = button.dataset.category; // دسته‌بندی انتخاب شده
+
+                products.forEach(product => {
+                    const productCategory = product.dataset.category; // دسته‌بندی محصول
+
+                    if (selectedCategory === 'all' || productCategory === selectedCategory) {
+                        product.classList.remove('hidden'); // نمایش محصول
+                    } else {
+                        product.classList.add('hidden'); // مخفی کردن محصول
+                    }
+                });
             });
         });
     </script>
