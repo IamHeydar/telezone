@@ -6,6 +6,7 @@
     <title>Telezone - لیست محصولات</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shabnam-font/5.0.1/font-face.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         html {
@@ -519,92 +520,12 @@
     
     <a href="#" class="back-to-top" id="back-to-top">↑</a>
     
-    <script>
-        const iphone16Products = [
-            { model: "iPhone 16 Pro Max", storage: "1TB", color: "Black", price: "205,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "1TB", color: "Desert", price: "208,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "512GB", color: "Black", price: "171,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "512GB", color: "Silver", price: "173,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "512GB", color: "Desert", price: "172,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "149,500,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Silver", price: "151,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Natural", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "144,000,000", region: "CH NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "142,000,000", region: "CH NOT", category: "ProMax", image: "https://via.placeholder.com/120x120?text=iPhone+16+PM" },
-            { model: "iPhone 16 Pro", storage: "256GB", color: "Black", price: "143,500,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/120x120?text=iPhone+16+Pro" },
-            { model: "iPhone 16 Pro", storage: "256GB", color: "Silver", price: "143,000,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/120x120?text=iPhone+16+Pro" },
-            { model: "iPhone 16 Pro", storage: "256GB", color: "Natural", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/120x120?text=iPhone+16+Pro" },
-            { model: "iPhone 16 Pro", storage: "256GB", color: "Desert", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/120x120?text=iPhone+16+Pro" },
-            { model: "iPhone 16 Pro", storage: "128GB", color: "Desert", price: "134,000,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/120x120?text=iPhone+16+Pro" },
-            { model: "iPhone 16", storage: "256GB", color: "Black", price: "118,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" },
-            { model: "iPhone 16", storage: "256GB", color: "Silver", price: "117,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" },
-            { model: "iPhone 16", storage: "128GB", color: "Black", price: "97,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" },
-            { model: "iPhone 16", storage: "128GB", color: "Silver", price: "96,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" },
-            { model: "iPhone 16", storage: "128GB", color: "Blue", price: "96,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" },
-            { model: "iPhone 16", storage: "128GB", color: "Pink", price: "100,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/120x120?text=iPhone+16" }
-        ];
-
-        const appleWatchProducts = [
-            { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 10", size: "46mm", color: "Silver", price: "29,500,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 10", size: "46mm", color: "Rose Gold", price: "27,800,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 10", size: "42mm", color: "Jet Black", price: "28,400,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 10", size: "42mm", color: "Silver", price: "29,200,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 10", size: "42mm", color: "Rose Gold", price: "29,200,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/120x120?text=AW+S10" },
-            { model: "Apple Watch Series 9", size: "45mm", color: "Black", price: "تماس بگیرید", guaranty: true, category: "Series9", image: "https://via.placeholder.com/120x120?text=AW+S9" },
-            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Midnight", price: "19,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
-            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Silver", price: "تماس بگیرید", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
-            { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Starlight", price: "19,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
-            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Black", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
-            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Silver", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" },
-            { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Starlight", price: "17,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/120x120?text=AW+SE" }
-        ];
-
-        // Centralized product data configuration
-        const productsData = {
-            'mobile': {
-                title: 'لیست گوشی‌های iPhone 16',
-                products: iphone16Products,
-                filters: [
-                    { id: 'all', text: 'همه' },
-                    { id: 'ProMax', text: 'Pro Max' },
-                    { id: 'Pro', text: 'Pro' },
-                    { id: '16', text: 'iPhone 16' }
-                ]
-            },
-            'applewatch': {
-                title: 'لیست ساعت‌های هوشمند Apple Watch',
-                products: appleWatchProducts,
-                filters: [
-                    { id: 'all', text: 'همه' },
-                    { id: 'Series10', text: 'Series 10' },
-                    { id: 'Series9', text: 'Series 9' },
-                    { id: 'SE', text: 'SE 2024' }
-                ]
-            },
-            'accessory': { // Example for future use
-                title: 'لوازم جانبی',
-                products: [], // Add accessory data here when available
-                filters: [{ id: 'all', text: 'همه' }]
-            },
-            'headphone': { // Example for future use
-                title: 'هدفون و هندزفری',
-                products: [], // Add headphone data here when available
-                filters: [{ id: 'all', text: 'همه' }]
-            },
-            'smartwatch': { // Example for other smartwatches
-                title: 'ساعت‌های هوشمند (متفرقه)',
-                products: [], // Add other smartwatch data here
-                filters: [{ id: 'all', text: 'همه' }]
-            }
-        };
-
+    <script src="products-data.js"></script> <script>
         const productListContainer = document.getElementById('product-list');
         const filterButtonsContainer = document.getElementById('filter-buttons-container');
         const pageTitle = document.getElementById('page-title');
 
-        // Function to get URL parameters
+        // تابع برای دریافت پارامترهای URL
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -612,16 +533,16 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Function to update the current category in the nav
+        // تابع برای به‌روزرسانی وضعیت لینک ناوبری فعال
         function updateNavLinkActiveState(productType) {
-            // Remove active class from all nav links first
+            // حذف کلاس فعال از تمام لینک‌های ناوبری
             document.querySelectorAll('nav ul li a.nav-link').forEach(link => {
                 link.classList.remove('active-nav-link');
             });
-            // Also remove from the dropdown toggles themselves
+            // همچنین از دکمه‌های باز و بسته شدن زیرمنوها (dropdown toggles)
             document.querySelectorAll('.dropdown-toggle').forEach(toggle => toggle.classList.remove('active-nav-link'));
 
-            // Find and activate the correct dropdown menu item
+            // پیدا کردن و فعال کردن آیتم منوی درست
             let activeLinkFound = false;
             document.querySelectorAll('nav ul li.dropdown .dropdown-menu a.nav-link').forEach(link => {
                 const url = new URL(link.href);
@@ -632,17 +553,22 @@
                 }
             });
 
-            // If a specific product type link is active, activate its parent dropdown toggle
+            // اگر یک لینک خاص برای نوع محصول فعال شده باشد، دکمه والد آن زیرمنو را نیز فعال کن
             if (activeLinkFound) {
                 document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="?type=${productType}"]`) 
                 || document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle`)?.classList.add('active-nav-link');
             }
+             // برای لینک‌های مستقیم مثل "لوازم جانبی" که زیرمنو ندارند
+            const directNavLink = document.querySelector(`nav ul li a[href="products-list.html?type=${productType}"]`);
+            if (directNavLink) {
+                directNavLink.classList.add('active-nav-link');
+            }
         }
 
 
-        // Function to render products
+        // تابع برای رندر کردن محصولات
         function renderProducts(productsToRender, productType) {
-            productListContainer.innerHTML = ''; // Clear previous products
+            productListContainer.innerHTML = ''; // پاک کردن محصولات قبلی
             if (productsToRender.length === 0) {
                 productListContainer.innerHTML = '<p style="text-align: center; color: #777;">محصولی یافت نشد.</p>';
                 return;
@@ -650,7 +576,7 @@
 
             productsToRender.forEach(product => {
                 const productItem = document.createElement('a');
-                productItem.href = '#'; // Placeholder for individual product pages
+                productItem.href = '#'; // placeholder برای صفحات محصول تکی
                 productItem.classList.add('product-item');
 
                 let productDescription = '';
@@ -659,14 +585,19 @@
                         <h3>${product.model} ${product.storage} ${product.color}</h3>
                         <p><strong>منطقه:</strong> ${product.region}</p>
                     `;
-                } else if (productType === 'applewatch' || productType === 'smartwatch') { // Group applewatch and other smartwatches for display
-                    // Include 'year' if it exists for SE models
+                } else if (productType === 'applewatch') {
                     const yearInfo = product.year ? ` (${product.year})` : '';
                     productDescription = `
                         <h3>${product.model} ${product.size} ${product.color}${yearInfo}</h3>
                         <p><strong>گارانتی:</strong> ${product.guaranty ? 'دارد' : 'تماس بگیرید'}</p>
                     `;
-                } else { // Generic display for other types (accessory, headphone etc.)
+                } else if (productType === 'smartwatch') { // برای ساعت‌های هوشمند عمومی
+                    productDescription = `
+                        <h3>${product.model}</h3>
+                        <p>${product.description || ''}</p>
+                    `;
+                }
+                 else { // نمایش عمومی برای سایر انواع (لوازم جانبی، هدفون و غیره)
                     productDescription = `
                         <h3>${product.model}</h3>
                         <p>${product.description || ''}</p>
@@ -686,7 +617,7 @@
             });
         }
 
-        // Function to filter and display products based on selected filter and product type
+        // تابع برای فیلتر و نمایش محصولات بر اساس فیلتر و نوع محصول انتخاب شده
         function filterAndDisplayProducts(filterCategory, productType) {
             const currentProductsArray = productsData[productType]?.products || [];
             let filtered = [];
@@ -699,23 +630,23 @@
             renderProducts(filtered, productType);
         }
 
-        // Initialize the page on DOMContentLoaded
+        // مقداردهی اولیه صفحه پس از بارگذاری DOM
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            let productType = urlParams.get('type') || 'mobile'; // Default to 'mobile' if no type specified
+            let productType = urlParams.get('type') || 'mobile'; // پیش‌فرض 'mobile' اگر نوعی مشخص نشده باشد
 
-            // Fallback for invalid or non-existent product types
+            // بازگشت به حالت پیش‌فرض برای انواع محصولات نامعتبر
             if (!productsData[productType]) {
                 productType = 'mobile';
             }
 
-            // Set page title dynamically
+            // تنظیم عنوان صفحه به صورت پویا
             pageTitle.textContent = productsData[productType].title;
 
-            // Clear existing filter buttons
+            // پاک کردن دکمه‌های فیلتر موجود
             filterButtonsContainer.innerHTML = '';
 
-            // Generate filter buttons dynamically based on productType
+            // تولید دکمه‌های فیلتر به صورت پویا بر اساس نوع محصول
             productsData[productType].filters.forEach(filter => {
                 const button = document.createElement('button');
                 button.classList.add('filter-btn');
@@ -724,32 +655,32 @@
                 filterButtonsContainer.appendChild(button);
             });
 
-            // Add event listeners to the newly created filter buttons
+            // اضافه کردن شنونده رویداد به دکمه‌های فیلتر تازه ساخته شده
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
-                    // Remove 'active' class from all buttons and add to the clicked one
+                    // حذف کلاس 'active' از همه دکمه‌ها و اضافه کردن به دکمه کلیک شده
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     filterAndDisplayProducts(button.dataset.filter, productType);
                 });
             });
 
-            // Determine initial filter based on URL or default to 'all'
+            // تعیین فیلتر اولیه بر اساس URL یا پیش‌فرض 'all'
             let initialFilter = urlParams.get('filter') || 'all';
             const activeFilterButton = document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`);
             if (activeFilterButton) {
                 activeFilterButton.classList.add('active');
                 filterAndDisplayProducts(initialFilter, productType);
             } else {
-                // If the initial filter from URL is not found, default to 'all'
+                // اگر فیلتر اولیه از URL یافت نشد، پیش‌فرض 'all' را فعال کن
                 document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
                 filterAndDisplayProducts('all', productType);
             }
 
-            // Update navigation link active state
+            // به‌روزرسانی وضعیت لینک ناوبری فعال
             updateNavLinkActiveState(productType);
 
-            // --- Existing header and back-to-top logic ---
+            // --- منطق موجود هدر و برگشت به بالا ---
             const menuToggle = document.getElementById('menu-toggle');
             const mainNav = document.getElementById('main-nav');
             const dropdownToggles = document.querySelectorAll('nav .dropdown > .dropdown-toggle');
@@ -757,39 +688,39 @@
             menuToggle.addEventListener('click', function() {
                 mainNav.classList.toggle('active');
                 if (!mainNav.classList.contains('active')) {
-                    // Close all dropdowns when main menu is closed
+                    // بستن تمام زیرمنوها زمانی که منوی اصلی بسته می‌شود
                     document.querySelectorAll('.dropdown.active-dropdown').forEach(d => d.classList.remove('active-dropdown'));
                     document.querySelectorAll('.dropdown-menu li.active-nested-dropdown').forEach(d => d.classList.remove('active-nested-dropdown'));
                 }
             });
 
-            // Event listener for main dropdown toggles
+            // شنونده رویداد برای دکمه‌های باز و بسته شدن زیرمنوها (اصلی)
             dropdownToggles.forEach(toggle => {
                 toggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) { // Only for mobile view
+                    if (window.innerWidth <= 768) { // فقط برای حالت موبایل
                         e.preventDefault();
                         const parentDropdown = this.parentElement;
-                        // Close other open main dropdowns
+                        // بستن سایر زیرمنوهای اصلی باز
                         document.querySelectorAll('nav .dropdown').forEach(d => {
                             if (d !== parentDropdown) {
                                 d.classList.remove('active-dropdown');
                             }
                         });
-                        // Toggle current main dropdown
+                        // باز و بسته کردن زیرمنوی اصلی فعلی
                         parentDropdown.classList.toggle('active-dropdown');
-                        // Ensure nested dropdowns are closed when main dropdown is toggled
+                        // اطمینان از بسته بودن زیرمنوهای تو در تو زمانی که زیرمنوی اصلی باز/بسته می‌شود
                         parentDropdown.querySelectorAll('li.active-nested-dropdown').forEach(li => li.classList.remove('active-nested-dropdown'));
                     }
                 });
             });
 
-            // Event listener for nested dropdown items (e.g., Apple, Samsung under Mobile)
+            // شنونده رویداد برای آیتم‌های زیرمنوهای تو در تو (مانند Apple، Samsung در زیر موبایل)
             document.querySelectorAll('.nested-dropdown-container a').forEach(nestedLink => {
                 nestedLink.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) { // Only for mobile view
-                        // This is a direct link to a products-list page, allow default behavior
+                    if (window.innerWidth <= 768) { // فقط برای حالت موبایل
+                        // این یک لینک مستقیم به صفحه products-list است، اجازه می‌دهیم رفتار پیش‌فرض انجام شود
                     }
-                    // Close all menus after a link is clicked
+                    // بستن تمام منوها پس از کلیک روی یک لینک
                     mainNav.classList.remove('active');
                     document.querySelectorAll('.dropdown.active-dropdown').forEach(d => d.classList.remove('active-dropdown'));
                     document.querySelectorAll('.dropdown-menu li.active-nested-dropdown').forEach(d => d.classList.remove('active-nested-dropdown'));
