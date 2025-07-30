@@ -457,6 +457,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ایرپاد ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=airpods&filter=Pro2" class="nav-link">ایرپاد پرو ۲</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods4" class="nav-link">ایرپاد ۴</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods2" class="nav-link">ایرپاد ۲</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="javascript:void(0);" class="nav-link dropdown-toggle">ساعت هوشمند ▼</a>
                         <ul class="dropdown-menu nested-dropdown-container">
                             <li><a href="products-list.html?type=applewatch&brand=Apple" class="nav-link">Apple Watch</a></li>
@@ -464,7 +472,15 @@
                             <li><a href="products-list.html?type=smartwatch&brand=Xiaomi" class="nav-link">Xiaomi Watch</a></li>
                         </ul>
                     </li>
-                    <li><a href="products-list.html?type=accessory" class="nav-link">لوازم جانبی</a></li> 
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">لوازم جانبی ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=accessory&filter=adapter" class="nav-link">آداپتور</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=cable" class="nav-link">کابل</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=case_glass" class="nav-link">کاور و گلس</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=powerbank" class="nav-link">پاور بانک</a></li>
+                        </ul>
+                    </li> 
                     <li><a href="index.html#about-us-section" class="nav-link">درباره ما</a></li>
                     <li><a href="index.html#contact-us-section" class="nav-link">تماس با ما</a></li>
                 </ul>
@@ -520,7 +536,8 @@
     
     <a href="#" class="back-to-top" id="back-to-top">↑</a>
     
-    <script src="products-data.js"></script> <script>
+    <script src="products-data.js"></script> 
+    <script>
         const productListContainer = document.getElementById('product-list');
         const filterButtonsContainer = document.getElementById('filter-buttons-container');
         const pageTitle = document.getElementById('page-title');
@@ -534,7 +551,7 @@
         }
 
         // تابع برای به‌روزرسانی وضعیت لینک ناوبری فعال
-        function updateNavLinkActiveState(productType) {
+        function updateNavLinkActiveState(productType, filterCategory = null) {
             // حذف کلاس فعال از تمام لینک‌های ناوبری
             document.querySelectorAll('nav ul li a.nav-link').forEach(link => {
                 link.classList.remove('active-nav-link');
@@ -542,26 +559,36 @@
             // همچنین از دکمه‌های باز و بسته شدن زیرمنوها (dropdown toggles)
             document.querySelectorAll('.dropdown-toggle').forEach(toggle => toggle.classList.remove('active-nav-link'));
 
-            // پیدا کردن و فعال کردن آیتم منوی درست
             let activeLinkFound = false;
+
+            // سعی می‌کنیم لینک دقیق را پیدا و فعال کنیم (با در نظر گرفتن filterCategory برای زیرمنوها)
             document.querySelectorAll('nav ul li.dropdown .dropdown-menu a.nav-link').forEach(link => {
                 const url = new URL(link.href);
                 const typeParam = url.searchParams.get('type');
-                if (typeParam === productType) {
+                const filterParam = url.searchParams.get('filter');
+
+                if (typeParam === productType && (filterCategory === null || filterParam === filterCategory)) {
                     link.classList.add('active-nav-link');
                     activeLinkFound = true;
+                    // فعال کردن دکمه والد زیرمنو
+                    link.closest('.dropdown')?.querySelector('.dropdown-toggle')?.classList.add('active-nav-link');
                 }
             });
 
-            // اگر یک لینک خاص برای نوع محصول فعال شده باشد، دکمه والد آن زیرمنو را نیز فعال کن
-            if (activeLinkFound) {
-                document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="?type=${productType}"]`) 
-                || document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle`)?.classList.add('active-nav-link');
-            }
-             // برای لینک‌های مستقیم مثل "لوازم جانبی" که زیرمنو ندارند
-            const directNavLink = document.querySelector(`nav ul li a[href="products-list.html?type=${productType}"]`);
-            if (directNavLink) {
-                directNavLink.classList.add('active-nav-link');
+            // اگر یک لینک خاص برای نوع محصول فعال نشده بود (مثلاً اگر مستقیماً به صفحه نوع محصول آمده باشند نه از طریق فیلتر خاص)
+            // یا برای لینک‌های مستقیم مثل "لوازم جانبی" که زیرمنو ندارند یا زیرمنوی کلی دارند
+            if (!activeLinkFound) {
+                const directNavLink = document.querySelector(`nav ul li a[href="products-list.html?type=${productType}"]`);
+                if (directNavLink) {
+                    directNavLink.classList.add('active-nav-link');
+                } else {
+                    // اگر هنوز پیدا نشده، سعی می‌کنیم دکمه والد زیرمنو را بر اساس type فعال کنیم
+                    const parentToggle = document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="?type=${productType}"]`) 
+                                        || document.querySelector(`nav ul li.dropdown a.nav-link.dropdown-toggle[href*="products-list.html?type=${productType}"]`);
+                    if (parentToggle) {
+                        parentToggle.classList.add('active-nav-link');
+                    }
+                }
             }
         }
 
@@ -596,6 +623,11 @@
                         <h3>${product.model}</h3>
                         <p>${product.description || ''}</p>
                     `;
+                } else if (productType === 'airpods') { // New for AirPods
+                    productDescription = `
+                        <h3>${product.model}</h3>
+                        <p>${product.description || ''}</p>
+                    `;
                 }
                  else { // نمایش عمومی برای سایر انواع (لوازم جانبی، هدفون و غیره)
                     productDescription = `
@@ -625,6 +657,7 @@
             if (filterCategory === 'all') {
                 filtered = currentProductsArray;
             } else {
+                // برای دسته‌بندی‌های جدید از 'category' خود محصول برای فیلتر استفاده می‌کنیم
                 filtered = currentProductsArray.filter(product => product.category === filterCategory);
             }
             renderProducts(filtered, productType);
@@ -647,13 +680,20 @@
             filterButtonsContainer.innerHTML = '';
 
             // تولید دکمه‌های فیلتر به صورت پویا بر اساس نوع محصول
-            productsData[productType].filters.forEach(filter => {
-                const button = document.createElement('button');
-                button.classList.add('filter-btn');
-                button.dataset.filter = filter.id;
-                button.textContent = filter.text;
-                filterButtonsContainer.appendChild(button);
-            });
+            // اگر محصول دارای فیلتر نبود، بخش فیلتر را مخفی کن
+            if (productsData[productType].filters && productsData[productType].filters.length > 0) {
+                productsData[productType].filters.forEach(filter => {
+                    const button = document.createElement('button');
+                    button.classList.add('filter-btn');
+                    button.dataset.filter = filter.id;
+                    button.textContent = filter.text;
+                    filterButtonsContainer.appendChild(button);
+                });
+                filterButtonsContainer.style.display = 'flex'; // مطمئن شویم که نمایش داده می‌شود
+            } else {
+                filterButtonsContainer.style.display = 'none'; // مخفی کردن اگر فیلتری نیست
+            }
+
 
             // اضافه کردن شنونده رویداد به دکمه‌های فیلتر تازه ساخته شده
             document.querySelectorAll('.filter-btn').forEach(button => {
@@ -672,13 +712,19 @@
                 activeFilterButton.classList.add('active');
                 filterAndDisplayProducts(initialFilter, productType);
             } else {
-                // اگر فیلتر اولیه از URL یافت نشد، پیش‌فرض 'all' را فعال کن
-                document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
-                filterAndDisplayProducts('all', productType);
+                // اگر فیلتر اولیه از URL یافت نشد، پیش‌فرض 'all' را فعال کن (اگر دکمه 'all' وجود دارد)
+                const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+                if (allButton) {
+                    allButton.classList.add('active');
+                    filterAndDisplayProducts('all', productType);
+                } else {
+                    // اگر دکمه 'all' هم نبود و هیچ فیلتر خاصی فعال نشد، همه محصولات را نمایش بده
+                    filterAndDisplayProducts(null, productType); 
+                }
             }
 
             // به‌روزرسانی وضعیت لینک ناوبری فعال
-            updateNavLinkActiveState(productType);
+            updateNavLinkActiveState(productType, initialFilter);
 
             // --- منطق موجود هدر و برگشت به بالا ---
             const menuToggle = document.getElementById('menu-toggle');
