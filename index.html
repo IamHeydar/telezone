@@ -290,21 +290,22 @@
                 display: block;
             }
 
+            /* مخفی کردن زیرمنو در موبایل (به صورت پیش‌فرض) */
+            .dropdown-menu {
+                display: none !important;
+                position: static;
+                box-shadow: none;
+                padding: 0;
+            }
+
             /* نمایش زیرمنو در موبایل وقتی کلاس active-dropdown را بگیرد */
-            .dropdown.active-dropdown > .dropdown-menu { /* فقط زیرمنوی مستقیم را هدف قرار می دهیم */
+            .dropdown.active-dropdown .dropdown-menu {
                 display: block !important;
             }
 
-            /* استایل برای آیتم های زیرمنو در موبایل */
             .dropdown-menu li a {
-                padding: 8px 16px; /* فضای داخلی کمتر برای آیتم های زیرمنو */
+                padding: 8px 16px;
                 font-size: 15px;
-                text-align: center; /* وسط چین کردن در موبایل */
-            }
-
-            /* در موبایل، dropdown-toggle خودش نباید به صفحه برود، فقط زیرمنو را باز کند */
-            .dropdown-toggle {
-                cursor: pointer;
             }
         }
         
@@ -591,44 +592,13 @@
                 <ul>
                     <li><a href="#" data-category="home" class="nav-link">خانه</a></li> 
                     <li class="dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">موبایل ▼</a>
-                        <ul class="dropdown-menu nested-dropdown">
-                            <li><a href="products-list.html?category=mobile&brand=Apple">Apple</a></li>
-                            <li><a href="products-list.html?category=mobile&brand=Samsung">Samsung</a></li>
-                            <li><a href="products-list.html?category=mobile&brand=Xiaomi">Xiaomi</a></li>
-                            <li><a href="products-list.html?category=mobile&brand=OnePlus">OnePlus</a></li>
-                            <li><a href="products-list.html?category=mobile&brand=NothingPhone">Nothing Phone</a></li>
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">محصولات ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="products-list.html?category=all" class="nav-link">همه محصولات</a></li>
+                            <li><a href="products-list.html?category=mobile" class="nav-link">موبایل</a></li>
+                            <li><a href="products-list.html?category=accessory" class="nav-link">لوازم جانبی</a></li>
+                            <li><a href="products-list.html?category=headphone" class="nav-link">هدفون</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">هدفون و هندزفری ▼</a>
-                        <ul class="dropdown-menu nested-dropdown">
-                            <li><a href="products-list.html?category=headphone&brand=Apple">Apple</a></li>
-                            <li><a href="products-list.html?category=headphone&brand=QCY">QCY</a></li>
-                            <li><a href="products-list.html?category=headphone&brand=Haylou">Haylou</a></li>
-                            <li><a href="products-list.html?category=headphone&brand=OneMore">One More</a></li>
-                            <li><a href="products-list.html?category=headphone&brand=Anker">Anker</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ساعت هوشمند ▼</a>
-                        <ul class="dropdown-menu nested-dropdown">
-                            <li><a href="products-list.html?category=smartwatch&brand=Samsung">Samsung</a></li>
-                            <li><a href="products-list.html?category=smartwatch&brand=Apple">Apple</a></li>
-                            <li><a href="products-list.html?category=smartwatch&brand=Xiaomi">Xiaomi</a></li>
-                            <li><a href="products-list.html?category=smartwatch&brand=Huawei">Huawei</a></li>
-                            <li><a href="products-list.html?category=smartwatch&brand=Amazfit">Amazfit</a></li>
-                            </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">لوازم جانبی ▼</a>
-                        <ul class="dropdown-menu nested-dropdown">
-                            <li><a href="products-list.html?category=accessory&subCategory=Cover">کاور</a></li>
-                            <li><a href="products-list.html?category=accessory&subCategory=Glass">گلس</a></li>
-                            <li><a href="products-list.html?category=accessory&subCategory=Adapter">آداپتور و شارژر</a></li>
-                            <li><a href="products-list.html?category=accessory&subCategory=PowerBank">پاوربانک</a></li>
-                            <li><a href="products-list.html?category=accessory&subCategory=Cable">کابل و تبدیل</a></li>
-                            </ul>
                     </li>
                     <li><a href="#about-us-section" class="nav-link">درباره ما</a></li>
                     <li><a href="#contact-us-section" class="nav-link">تماس با ما</a></li>
@@ -639,7 +609,7 @@
     
     <main>
         <div class="banner">
-            <img src="1000121012.jpg" alt="لوگوی Telezone"> 
+            <img src="1000121012.jpg" alt="لوگوی Telezone">
         </div>
         
         <section class="products-section">
@@ -657,9 +627,9 @@
                     <h3>لوازم جانبی</h3>
                     <p>کاور، شارژر، گلس و ...</p>
                 </div>
-                <div class="category-item" data-category="smartwatch">
-                    <h3>ساعت هوشمند</h3>
-                    <p>فناوری پوشیدنی برای زندگی هوشمند</p>
+                <div class="category-item" data-category="repair">
+                    <h3>تعمیرات</h3>
+                    <p>تعمیرات تخصصی موبایل و تبلت</p>
                 </div>
             </div>
 
@@ -728,47 +698,30 @@
         // اسکریپت برای منوی همبرگری (داشبورد)
         const menuToggle = document.getElementById('menu-toggle');
         const mainNav = document.getElementById('main-nav');
-        // انتخاب همه دکمه‌های بازکننده دراپ‌داون
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
 
         menuToggle.addEventListener('click', function() {
             mainNav.classList.toggle('active');
-            // بستن همه دراپ‌داون‌ها هنگام بسته شدن منوی اصلی موبایل
             if (!mainNav.classList.contains('active')) {
-                 dropdownToggles.forEach(toggle => toggle.parentElement.classList.remove('active-dropdown'));
+                 dropdownToggle.parentElement.classList.remove('active-dropdown');
             }
         });
 
         // اضافه کردن event listener برای باز و بسته کردن زیرمنو در حالت موبایل
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) { 
-                    e.preventDefault(); // جلوگیری از عمل پیش‌فرض لینک
-                    const parentDropdown = this.parentElement;
-                    // اگر این دراپ‌داون از قبل باز است، ببندیدش
-                    if (parentDropdown.classList.contains('active-dropdown')) {
-                        parentDropdown.classList.remove('active-dropdown');
-                    } else {
-                        // دراپ‌داون‌های دیگر را ببندید
-                        dropdownToggles.forEach(otherToggle => {
-                            if (otherToggle !== this) { // به جز خود این دراپ‌داون
-                                otherToggle.parentElement.classList.remove('active-dropdown');
-                            }
-                        });
-                        // دراپ‌داون فعلی را باز کنید
-                        parentDropdown.classList.add('active-dropdown');
-                    }
-                }
-            });
+        dropdownToggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) { 
+                e.preventDefault();
+                this.parentElement.classList.toggle('active-dropdown');
+            }
         });
 
         // --- اسکریپت برای هدایت دسته‌بندی‌ها از صفحه اصلی به products-list.html ---
-        // این بخش حالا فقط category را ارسال می کند
         const categoryItems = document.querySelectorAll('.category-item');
         
         categoryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const selectedCategory = item.dataset.category;
+                // هدایت به products-list.html با پارامتر دسته‌بندی
                 if (selectedCategory) {
                     window.location.href = `products-list.html?category=${selectedCategory}`;
                 }
@@ -784,23 +737,13 @@
                     if (link.href.includes('products-list.html')) {
                         // نیازی به e.preventDefault نیست، چون قرار است به صفحه جدید بروند
                     } else {
-                        // برای لینک‌هایی که فقط منو را باز می‌کنند (در موبایل)
-                        if (window.innerWidth <= 768 && link.classList.contains('dropdown-toggle')) {
-                            // در اینجا کاری نمی‌کنیم، چون e.preventDefault() در رویداد click خود dropdownToggle مدیریت شده است.
-                        } else {
-                           // اگر لینک به آدرس واقعی می‌رود (مثل home)
-                           e.preventDefault(); 
-                           if (link.dataset.category === 'home') {
-                               window.location.href = 'index.html'; // یا فقط '/'
-                           }
-                        }
+                        e.preventDefault(); 
                     }
                 }
                 
                 // بستن منوی همبرگری پس از کلیک (چه به فوتر برود، چه به صفحه محصولات)
                 mainNav.classList.remove('active');
-                dropdownToggles.forEach(toggle => toggle.parentElement.classList.remove('active-dropdown'));
-
+                dropdownToggle.parentElement.classList.remove('active-dropdown');
 
                 // اگر لینک به بخش‌های فوتر است، فعال کردن لینک منو
                 const currentHash = link.getAttribute('href');
@@ -836,7 +779,6 @@
             // در اینجا می توانید منطق فیلتر کردن محصولات تخفیف دار را پیاده سازی کنید.
             // برای مثال، می توانید یک ویژگی "isOnSale" به محصولات خود در products-data.js اضافه کنید.
             // فعلاً ما 8 محصول اول را به عنوان تخفیف دار در نظر می گیریم.
-            // در آینده، باید products-data.js را به‌روز کنید تا فیلتر دقیق‌تر انجام شود.
             return products.slice(0, Math.min(count, products.length));
         }
 
