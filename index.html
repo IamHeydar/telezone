@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تل زون - فروشگاه تخصصی موبایل و لوازم جانبی</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/vazirmatn@5.0.1/index.min.css">
+    <title>Telezone - فروشگاه تخصصی موبایل و لوازم جانبی</title>
     <style>
         /* استایل‌های عمومی */
-        * {
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
-            line-height: 1.6;
         }
         
         /* هدر */
         header {
-            background-color: #000;
-            color: #FFD700;
-            padding: 15px 0;
+            background-color: #FFD700; /* زرد طلایی */
+            color: #000;
+            padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
         
         .header-container {
@@ -43,14 +34,7 @@
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: #FFD700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-left: 10px;
+            color: #000;
         }
         
         nav ul {
@@ -61,19 +45,18 @@
         }
         
         nav ul li {
-            margin-left: 20px;
+            margin-right: 20px;
         }
         
         nav ul li a {
-            color: #FFD700;
+            color: #000;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 16px;
         }
         
         nav ul li a:hover {
-            color: #fff;
+            color: #555;
         }
         
         /* بخش اصلی */
@@ -90,20 +73,15 @@
             text-align: center;
             border-radius: 8px;
             margin-bottom: 30px;
-            background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
         }
         
         .banner h1 {
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 15px;
         }
         
         .banner p {
             font-size: 18px;
-            margin-bottom: 0;
         }
         
         .products-section h2 {
@@ -111,14 +89,13 @@
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 20px;
-            font-size: 24px;
         }
         
         /* محصولات */
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
         
         .product {
@@ -127,68 +104,54 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #e0e0e0;
         }
         
         .product:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         
         .product-image {
-            height: 220px;
+            height: 200px;
             overflow: hidden;
-            background-color: #f9f9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            padding: 15px;
+            object-fit: cover;
         }
         
         .product-info {
-            padding: 20px;
+            padding: 15px;
         }
         
         .product-info h3 {
             margin-top: 0;
             color: #000;
-            font-size: 18px;
-            margin-bottom: 10px;
         }
         
         .product-info p {
             color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 15px;
         }
         
         .price {
             font-weight: bold;
             color: #FFD700;
-            font-size: 20px;
-            margin: 15px 0;
-            display: block;
+            font-size: 18px;
+            margin: 10px 0;
         }
         
         .add-to-cart {
             background-color: #FFD700;
             color: #000;
             border: none;
-            padding: 12px 15px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             width: 100%;
             transition: background-color 0.3s;
-            font-family: 'Vazirmatn';
-            font-size: 16px;
         }
         
         .add-to-cart:hover {
@@ -199,7 +162,7 @@
         footer {
             background-color: #000;
             color: #FFD700;
-            padding: 40px 0 20px;
+            padding: 30px 0;
             margin-top: 50px;
         }
         
@@ -207,7 +170,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             padding: 0 20px;
         }
@@ -215,8 +178,7 @@
         .footer-column h3 {
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 20px;
+            margin-bottom: 15px;
         }
         
         .footer-column ul {
@@ -226,50 +188,24 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-column ul li i {
-            margin-left: 8px;
-            color: #FFD700;
+            margin-bottom: 10px;
         }
         
         .footer-column ul li a {
             color: #FFD700;
             text-decoration: none;
             transition: color 0.3s;
-            display: flex;
-            align-items: center;
         }
         
         .footer-column ul li a:hover {
             color: #fff;
         }
         
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .social-links a {
-            color: #FFD700;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #fff;
-        }
-        
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
+            padding-top: 20px;
+            margin-top: 20px;
             border-top: 1px solid #333;
-            font-size: 14px;
         }
         
         /* دکمه برگشت به بالا */
@@ -290,16 +226,136 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transition: opacity 0.3s;
-            z-index: 99;
         }
         
         .back-to-top.visible {
             opacity: 1;
         }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Telezone</div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="banner">
+            <h1>به فروشگاه Telezone خوش آمدید</h1>
+            <p>تخصص ما در عرضه بهترین موبایل‌ها و لوازم جانبی با قیمت مناسب</p>
+        </div>
         
-        /* بخش ساعت کاری */
-        .working-hours {
-            background-color: rgba(255, 215, 0, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px
+        <section class="products-section">
+            <h2>محصولات پرطرفدار</h2>
+            <div class="products">
+                <!-- محصول 1 -->
+                <div class="product">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200?text=گوشی+موبایل" alt="گوشی موبایل">
+                    </div>
+                    <div class="product-info">
+                        <h3>گوشی موبایل سامسونگ S23</h3>
+                        <p>گوشی پرچمدار سامسونگ با آخرین فناوری‌ها</p>
+                        <div class="price">25,000,000 تومان</div>
+                        <button class="add-to-cart">افزودن به سبد خرید</button>
+                    </div>
+                </div>
+                
+                <!-- محصول 2 -->
+                <div class="product">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200?text=هدفون" alt="هدفون">
+                    </div>
+                    <div class="product-info">
+                        <h3>هدفون بی‌سیم Sony WH-1000XM4</h3>
+                        <p>کیفیت صدای استثنایی با حذف نویز فعال</p>
+                        <div class="price">8,500,000 تومان</div>
+                        <button class="add-to-cart">افزودن به سبد خرید</button>
+                    </div>
+                </div>
+                
+                <!-- محصول 3 -->
+                <div class="product">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200?text=شارژر" alt="شارژر">
+                    </div>
+                    <div class="product-info">
+                        <h3>شارژر سریع 65 واتی Anker</h3>
+                        <p>شارژ فوق سریع با قابلیت PD</p>
+                        <div class="price">1,200,000 تومان</div>
+                        <button class="add-to-cart">افزودن به سبد خرید</button>
+                    </div>
+                </div>
+                
+                <!-- محصول 4 -->
+                <div class="product">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200?text=کاور" alt="کاور موبایل">
+                    </div>
+                    <div class="product-info">
+                        <h3>کاور سیلیکونی آیفون 14 Pro</h3>
+                        <p>محافظت عالی با طراحی زیبا</p>
+                        <div class="price">450,000 تومان</div>
+                        <button class="add-to-cart">افزودن به سبد خرید</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>درباره Telezone</h3>
+                <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>لینک‌های مفید</h3>
+                <ul>
+                    <li><a href="#">سوالات متداول</a></li>
+                    <li><a href="#">روش‌های پرداخت</a></li>
+                    <li><a href="#">شرایط بازگشت کالا</a></li>
+                    <li><a href="#">حریم خصوصی</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>تماس با ما</h3>
+                <ul>
+                    <li>تهران، خیابان آزادی، پلاک 123</li>
+                    <li>تلفن: 021-12345678</li>
+                    <li>ایمیل: info@telezone.ir</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه Telezone می‌باشد. © 2023</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+    
+    <script>
+        // اسکریپت برای دکمه برگشت به بالا
+        window.addEventListener('scroll', function() {
+            var backToTop = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
