@@ -505,6 +505,94 @@
             border-bottom: 2px solid #000;
             padding-bottom: 5px;
         }
+
+        /* استایل‌های بخش محصولات تخفیف دار */
+        .discounted-products-section {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .discounted-products-section h2 {
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .discounted-products-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px; /* برای اسکرول بار احتمالی */
+        }
+
+        .discounted-product-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            min-width: 200px;
+            max-width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .discounted-product-item:hover {
+            transform: scale(1.05);
+        }
+
+        .discounted-product-image {
+            height: 120px;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .discounted-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .discounted-product-info {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .discounted-product-info h3 {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #333;
+            white-space: nowrap; /* جلوگیری از شکستن متن در خطوط زیاد */
+            overflow: hidden;
+            text-overflow: ellipsis; /* نمایش ... اگر متن طولانی بود */
+        }
+
+        .discount-price {
+            color: #FF4500; /* قرمز نارنجی برای قیمت تخفیف خورده */
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .original-price {
+            color: #777;
+            font-size: 14px;
+            text-decoration: line-through;
+        }
+
+        /* برای پنهان کردن اسکرول بار افقی در برخی مرورگرها (اختیاری) */
+        .discounted-products-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .discounted-products-slider {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     </style>
 </head>
 <body>
@@ -558,6 +646,11 @@
                 </div>
             </div>
 
+            <div class="discounted-products-section">
+                <h2>محصولات تخفیف دار</h2>
+                <div class="discounted-products-slider">
+                    </div>
+            </div>
             <h2 class="filtered-products-title">محصولات منتخب</h2> 
             <div class="products">
                 </div>
@@ -599,6 +692,7 @@
     
     <a href="#" class="back-to-top" id="back-to-top">↑</a>
     
+    <script src="products-data.js"></script>
     <script>
         // اسکریپت برای دکمه برگشت به بالا
         window.addEventListener('scroll', function() {
@@ -685,6 +779,39 @@
                 document.querySelector('a[data-category="home"]')?.classList.add('active-nav-link');
             }
         });
+
+        // --- نمایش محصولات تخفیف دار ---
+        const discountedProductsSlider = document.querySelector('.discounted-products-slider');
+
+        // تابع برای فیلتر کردن محصولات تخفیف دار (می توانید بر اساس یک ویژگی خاص فیلتر کنید)
+        function getDiscountedProducts(products, count = 8) { // Changed count to 8 for 8-10 products
+            // در اینجا می توانید منطق فیلتر کردن محصولات تخفیف دار را پیاده سازی کنید.
+            // برای مثال، می توانید یک ویژگی "isOnSale" به محصولات خود در products-data.js اضافه کنید.
+            // فعلاً ما 8 محصول اول را به عنوان تخفیف دار در نظر می گیریم.
+            return products.slice(0, Math.min(count, products.length));
+        }
+
+        // بررسی کنید که productsData قبل از استفاده تعریف شده باشد
+        if (typeof productsData !== 'undefined') {
+            const discountedProducts = getDiscountedProducts(productsData, 8); // Pass productsData to the function
+
+            discountedProducts.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('discounted-product-item');
+                productItem.innerHTML = `
+                    <div class="discounted-product-image">
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>${product.name}</h3>
+                        <div class="discount-price">${product.price} تومان</div>
+                        </div>
+                `;
+                discountedProductsSlider.appendChild(productItem);
+            });
+        } else {
+            console.error("productsData is not defined. Make sure products-data.js is loaded correctly.");
+        }
     </script>
 </body>
 </html>
