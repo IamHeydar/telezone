@@ -1,65 +1,710 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <!-- بقیه کدهای هد بدون تغییر -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telezone - فروشگاه تخصصی موبایل و لوازم جانبی</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shabnam-font/5.0.1/font-face.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* استایل‌های عمومی */
+        body {
+            font-family: 'Shabnam', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* هدر */
+        header {
+            background-color: #FFD700; /* زرد طلایی */
+            color: #000;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        /* استایل دکمه همبرگری */
+        .menu-toggle {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #555;
+        }
+        
+        /* استایل برای زیرمنوها */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #FFD700;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            border-radius: 4px;
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+        .dropdown-menu li a {
+            color: #000;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #FFC000;
+        }
+        /* Nested dropdown positioning */
+        .nested-dropdown-container {
+            right: 100%;
+            top: 0;
+            margin-right: 10px;
+            margin-top: -10px;
+        }
+        /* Show dropdown on hover for desktop */
+        @media (min-width: 769px) {
+            nav ul li:hover > .dropdown-menu {
+                display: block;
+            }
+            .dropdown-menu li:hover > .nested-dropdown-container {
+                display: block;
+            }
+        }
+        
+        /* بخش اصلی */
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .banner {
+            background-color: #000;
+            color: #FFD700;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .banner img {
+            max-width: 300px;
+            height: auto;
+        }
+        /* بخش محصولات - مخفی کردن در صفحه اصلی */
+        .products-section .filtered-products-title,
+        .products-section .products {
+            display: none;
+        }
+        
+        .products-section h2 {
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* محصولات */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-info h3 {
+            margin-top: 0;
+            color: #000;
+        }
+        
+        .product-info p {
+            color: #666;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .add-to-cart {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #FFC000;
+        }
+        
+        /* دکمه برگشت به بالا */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FFD700;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        /* برای نمایش منو به صورت عمودی در حالت موبایل */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                width: 100%;
+                order: 3;
+                display: none;
+                flex-direction: column;
+                background-color: #FFD700;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+            nav.active {
+                display: flex;
+            }
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+            }
+            nav ul li a {
+                padding: 10px 0;
+                display: block;
+            }
+            .dropdown.active-dropdown > .dropdown-menu {
+                display: block !important;
+                position: static;
+                box-shadow: none;
+                padding: 0;
+            }
+            .nested-dropdown-container {
+                display: none !important;
+                right: auto;
+                top: auto;
+                margin-right: 0;
+                margin-top: 0;
+            }
+            .dropdown-menu li.active-nested-dropdown > .nested-dropdown-container {
+                display: block !important;
+            }
+            .dropdown-menu li a {
+                padding: 8px 16px;
+                font-size: 15px;
+                text-align: center;
+            }
+            .dropdown-toggle {
+                cursor: pointer;
+            }
+        }
+        
+        /* --- استایل‌های جدید برای بخش دسته‌بندی محصولات به صورت گرید --- */
+        .products-section h2:first-of-type {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+        .category-item {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            border: 2px solid transparent;
+        }
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .category-item.active {
+            border-color: #FFD700;
+            box-shadow: 0 0 0 3px #FFD700, 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .category-item img {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
+        }
+        .category-item h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 24px;
+            color: #000;
+        }
+        .category-item p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+        /* استایل برای عنوان "محصولات منتخب" */
+        .filtered-products-title {
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        /* استایل‌های بخش محصولات تخفیف دار */
+        .discounted-products-section {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .discounted-products-section h2 {
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .discounted-products-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .discounted-product-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            min-width: 200px;
+            max-width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+            scroll-snap-align: start;
+        }
+        .discounted-product-item:hover {
+            transform: scale(1.03);
+        }
+        .discounted-product-image {
+            height: 120px;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+        }
+        .discounted-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .discounted-product-info {
+            padding: 10px;
+            text-align: center;
+        }
+        .discounted-product-info h3 {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .discount-price {
+            color: #FF4500;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .original-price {
+            color: #777;
+            font-size: 14px;
+            text-decoration: line-through;
+        }
+        /* برای پنهان کردن اسکرول بار افقی */
+        .discounted-products-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .discounted-products-slider {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* فوتر جدید و مدرن */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            font-size: 15px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            text-align: right;
+        }
+        
+        .footer-column h3 {
+            color: #FFD700;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .footer-column p {
+            line-height: 1.7;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            line-height: 1.6;
+        }
+        
+        .footer-column ul li i {
+            margin-left: 10px;
+            color: #FFD700;
+            font-size: 18px;
+        }
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #FFD700;
+        }
+        /* استایل برای آیکون های شبکه اجتماعی */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+        .social-icons a img {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+        .social-icons a:hover img {
+            transform: scale(1.1);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* ریسپانسیو برای فوتر در موبایل */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-column h3 {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .footer-column ul li {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- هدر بدون تغییر -->
-    
-    <main>
-        <h1 id="page-title"></h1>
-        <section class="filter-section" id="filter-buttons-container">
-            <!-- فیلترها به صورت دینامیک اضافه می‌شوند -->
-        </section>
-        
-        <div class="product-list-container" id="product-list">
-            <!-- محصولات به صورت دینامیک اضافه می‌شوند -->
-        </div>
-    </main>
-    
-    <!-- فوتر بدون تغییر -->
-    
-    <script>
-        // داده‌های محصولات با عکس‌های واقعی
-        const iphone16Products = [
-            { model: "iPhone 16 Pro Max", storage: "1TB", color: "Black", price: "205,000,000", region: "ZA NOT", category: "ProMax", image: "https://images.unsplash.com/photo-1695039814703-310b9a2f1a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" },
-            { model: "iPhone 16 Pro Max", storage: "512GB", color: "Silver", price: "173,000,000", region: "ZA NOT", category: "ProMax", image: "https://images.unsplash.com/photo-1695039814703-310b9a2f1a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" },
-            // بقیه محصولات آیفون...
-        ];
-
-        const appleWatchProducts = [
-            { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "https://images.unsplash.com/photo-1546868871-7041f2d55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" },
-            // بقیه محصولات اپل واچ...
-        ];
-
-        const airpodsProducts = [
-            { model: "AirPods Pro 2 Type-C", price: "16,450,000", category: "Pro2", image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" },
-            // بقیه ایرپادها...
-        ];
-
-        const generalProducts = [
-            {
-                id: 2,
-                name: "هدفون بی‌سیم Sony WH-1000XM4",
-                category: "headphone",
-                brand: "Sony",
-                description: "کیفیت صدای استثنایی با حذف نویز فعال، باتری 30 ساعته و طراحی ارگونومیک.",
-                price: "8,500,000",
-                imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-            },
-            {
-                id: 6,
-                name: "هندزفری بلوتوثی Xiaomi Buds 4 Pro",
-                category: "headphone",
-                brand: "Xiaomi",
-                description: "صدای Hi-Res و حذف نویز تا 48dB، اتصال همزمان به دو دستگاه.",
-                price: "3,100,000",
-                imageUrl: "https://images.unsplash.com/photo-1590650516494-1790f881bff3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            },
-            // بقیه محصولات عمومی...
-        ];
-
-        // بقیه اسکریپت‌ها بدون تغییر...
-    </script>
-</body>
-</html>
+    <header>
+        <div class="header-container">
+            <div class="logo">Telezone</div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html" data-category="home" class="nav-link">خانه</a></li> 
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">موبایل ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=mobile&brand=Apple" class="nav-link">Apple</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=Samsung" class="nav-link">Samsung</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=Xiaomi" class="nav-link">Xiaomi</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=OnePlus" class="nav-link">OnePlus</a></li>
+                            <li><a href="products-list.html?type=mobile&brand=NothingPhone" class="nav-link">Nothing Phone</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">هدفون و هندزفری ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=headphone&brand=Apple" class="nav-link">Apple</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=QCY" class="nav-link">QCY</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=Haylou" class="nav-link">Haylou</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=OneMore" class="nav-link">One More</a></li>
+                            <li><a href="products-list.html?type=headphone&brand=Anker" class="nav-link">Anker</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ایرپاد ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=airpods&filter=Pro2" class="nav-link">ایرپاد پرو ۲</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods4" class="nav-link">ایرپاد ۴</a></li>
+                            <li><a href="products-list.html?type=airpods&filter=AirPods2" class="nav-link">ایرپاد ۲</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">ساعت هوشمند ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=applewatch&brand=Apple" class="nav-link">Apple Watch</a></li>
+                            <li><a href="products-list.html?type=smartwatch&brand=Samsung" class="nav-link">Samsung Watch</a></li>
+                            <li><a href="products-list.html?type=smartwatch&brand=Xiaomi" class="nav-link">Xiaomi Watch</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">لوازم جانبی ▼</a>
+                        <ul class="dropdown-menu nested-dropdown-container">
+                            <li><a href="products-list.html?type=accessory&filter=adapter" class="nav-link">آداپتور</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=cable" class="nav-link">کابل</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=case_glass" class="nav-link">کاور و گلس</a></li>
+                            <li><a href="products-list.html?type=accessory&filter=powerbank" class="nav-link">پاور بانک</a></li>
+                        </ul>
+                    </li> 
+                    <li><a href="index.html#about-us-section" class="nav-link">درباره ما</a></li>
+                    <li><a href="index.html#contact-us-section" class="nav-link">تماس با ما</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="banner">
+            <img src="https://telezone.com/images/logo.png" alt="لوگوی Telezone"> 
+        </div>
+        
+        <section class="products-section">
+            <h2>دسته بندی محصولات</h2> 
+            <div class="categories-grid">
+                <div class="category-item" data-type="mobile">
+                    <img src="https://telezone.com/images/categories/mobile.jpg" alt="موبایل">
+                    <h3>موبایل</h3>
+                    <p>جدیدترین گوشی‌های هوشمند</p>
+                </div>
+                <div class="category-item" data-type="applewatch">
+                    <img src="https://telezone.com/images/categories/watch.jpg" alt="اپل واچ">
+                    <h3>اپل واچ</h3>
+                    <p>ساعت‌های هوشمند اپل</p>
+                </div>
+                <div class="category-item" data-type="headphone">
+                    <img src="https://telezone.com/images/categories/headphone.jpg" alt="هدفون و هندزفری">
+                    <h3>هدفون و هندزفری</h3>
+                    <p>بهترین کیفیت صدا برای شما</p>
+                </div>
+                <div class="category-item" data-type="airpods">
+                    <img src="https://telezone.com/images/categories/airpods.jpg" alt="ایرپاد">
+                    <h3>ایرپاد</h3>
+                    <p>هدفون‌های بی‌سیم اپل</p>
+                </div>
+                <div class="category-item" data-type="accessory">
+                    <img src="https://telezone.com/images/categories/accessory.jpg" alt="لوازم جانبی">
+                    <h3>لوازم جانبی</h3>
+                    <p>کاور، شارژر، گلس و ...</p>
+                </div>
+                <div class="category-item" data-type="repair"> 
+                    <img src="https://telezone.com/images/categories/repair.jpg" alt="تعمیرات">
+                    <h3>تعمیرات</h3>
+                    <p>تعمیرات تخصصی موبایل و تبلت</p>
+                </div>
+            </div>
+        </section>
+        <section class="discounted-products-section">
+            <h2>محصولات تخفیف‌دار</h2>
+            <div class="discounted-products-slider">
+                <div class="discounted-product-item">
+                    <div class="discounted-product-image">
+                        <img src="https://telezone.com/images/products/mobile-x1.jpg" alt="گوشی موبایل X1">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>گوشی موبایل X1</h3>
+                        <div class="discount-price">30,000,000 تومان</div>
+                        <div class="original-price">35,000,000 تومان</div>
+                    </div>
+                </div>
+                <div class="discounted-product-item">
+                    <div class="discounted-product-image">
+                        <img src="https://telezone.com/images/products/headphone-y2.jpg" alt="هدفون بی‌سیم Y2">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>هدفون بی‌سیم Y2</h3>
+                        <div class="discount-price">1,200,000 تومان</div>
+                        <div class="original-price">1,500,000 تومان</div>
+                    </div>
+                </div>
+                <div class="discounted-product-item">
+                    <div class="discounted-product-image">
+                        <img src="https://telezone.com/images/products/case-z3.jpg" alt="کاور محافظ Z3">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>کاور محافظ Z3</h3>
+                        <div class="discount-price">250,000 تومان</div>
+                        <div class="original-price">300,000 تومان</div>
+                    </div>
+                </div>
+                <div class="discounted-product-item">
+                    <div class="discounted-product-image">
+                        <img src="https://telezone.com/images/products/watch-w4.jpg" alt="ساعت هوشمند W4">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>ساعت هوشمند W4</h3>
+                        <div class="discount-price">8,000,000 تومان</div>
+                        <div class="original-price">10,000,000 تومان</div>
+                    </div>
+                </div>
+                <div class="discounted-product-item">
+                    <div class="discounted-product-image">
+                        <img src="https://telezone.com/images/products/powerbank-p5.jpg" alt="پاور بانک P5">
+                    </div>
+                    <div class="discounted-product-info">
+                        <h3>پاور بانک P5</h3>
+                        <div class="discount-price">700,000 تومان</div
