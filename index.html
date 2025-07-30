@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shabnam-font/5.0.1/font-face.css">
     
     <style>
+        html {
+            scroll-behavior: smooth; /* اسکرول نرم برای لینک‌های داخلی */
+        }
         /* استایل‌های عمومی */
         body {
             font-family: 'Shabnam', sans-serif; /* فونت شبنم اعمال شد */
@@ -132,22 +135,16 @@
             margin-bottom: 30px;
         }
         
-        /* .banner h1 { /* این بخش دیگر مورد نیاز نیست اگر تصویر جایگزین شود */
-            font-size: 36px;
-            margin-bottom: 15px;
-        } */
-        
         .banner p {
             font-size: 18px;
         }
         
-        /* این استایل برای `h2` در `products-section` است که الان به "دسته بندی محصولات" تغییر کرده */
         .products-section h2 {
             color: #000;
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 20px;
-            text-align: center; /* مرکز چین شد */
+            text-align: center;
         }
         
         /* محصولات */
@@ -228,16 +225,24 @@
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            display: flex; /* تغییر به flexbox برای کنترل بهتر */
+            justify-content: space-around; /* توزیع فاصله بین ستون‌ها */
+            align-items: flex-start; /* ستون‌ها از بالا هم‌تراز شوند */
             padding: 0 20px;
+            flex-wrap: wrap; /* اجازه می‌دهد آیتم‌ها در صفحه نمایش کوچک به خط بعدی بروند */
+        }
+        
+        .footer-column {
+            flex: 1; /* هر ستون به طور مساوی فضا بگیرد */
+            min-width: 250px; /* حداقل عرض برای هر ستون تا در هم نروند */
+            margin: 15px; /* فاصله بین ستون‌ها */
         }
         
         .footer-column h3 {
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 15px;
+            color: #FFD700; /* رنگ عنوان ستون‌ها */
         }
         
         .footer-column ul {
@@ -260,11 +265,18 @@
             color: #fff;
         }
         
+        .footer-column p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #ccc; /* رنگ متن ستون‌ها */
+        }
+
         .copyright {
             text-align: center;
             padding-top: 20px;
             margin-top: 20px;
             border-top: 1px solid #333;
+            color: #FFD700;
         }
         
         /* دکمه برگشت به بالا */
@@ -294,83 +306,91 @@
         /* برای نمایش منو به صورت عمودی در حالت موبایل */
         @media (max-width: 768px) { /* در صفحه نمایش‌های کوچک (موبایل و تبلت) */
             .header-container {
-                flex-wrap: wrap; /* اجازه می‌دهد آیتم‌ها به خط بعدی بروند */
-                justify-content: space-between; /* لوگو و منو در دو طرف */
+                flex-wrap: wrap;
+                justify-content: space-between;
             }
 
             .menu-toggle {
-                display: block; /* دکمه همبرگری نمایش داده شود */
+                display: block;
             }
 
             nav {
-                width: 100%; /* منو کل عرض را بگیرد */
-                order: 3; /* منو زیر لوگو قرار گیرد */
-                display: none; /* در حالت عادی مخفی باشد */
-                flex-direction: column; /* آیتم‌های منو زیر هم قرار گیرند */
-                background-color: #FFD700; /* رنگ پس‌زمینه منو */
+                width: 100%;
+                order: 3;
+                display: none;
+                flex-direction: column;
+                background-color: #FFD700;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.1);
                 padding: 10px 0;
             }
 
-            nav.active { /* کلاسی که با جاوااسکریپت اضافه می‌شود */
-                display: flex; /* منو نمایش داده شود */
+            nav.active {
+                display: flex;
             }
 
             nav ul {
-                flex-direction: column; /* آیتم‌های لیست عمودی شوند */
+                flex-direction: column;
                 width: 100%;
                 text-align: center;
             }
 
             nav ul li {
-                margin: 10px 0; /* فاصله بین آیتم‌های منو */
+                margin: 10px 0;
             }
 
             nav ul li a {
                 padding: 10px 0;
-                display: block; /* کل فضای آیتم قابل کلیک باشد */
+                display: block;
             }
 
             /* مخفی کردن زیرمنو در موبایل (به صورت پیش‌فرض) */
             .dropdown-menu {
-                display: none !important; /* مهم: برای اطمینان از مخفی ماندن در موبایل */
-                position: static; /* موقعیت استاتیک در موبایل */
+                display: none !important;
+                position: static;
                 box-shadow: none;
                 padding: 0;
             }
 
             /* نمایش زیرمنو در موبایل وقتی کلاس active-dropdown را بگیرد */
             .dropdown.active-dropdown .dropdown-menu {
-                display: block !important; /* یا flex برای انعطاف بیشتر */
+                display: block !important;
             }
-
 
             .dropdown-menu li a {
-                padding: 8px 16px; /* پدینگ کوچکتر برای آیتم‌های زیرمنو در موبایل */
+                padding: 8px 16px;
                 font-size: 15px;
             }
+
+            /* Responsive برای فوتر در موبایل */
+            .footer-container {
+                flex-direction: column; /* در موبایل ستون‌ها زیر هم قرار گیرند */
+                align-items: center; /* آیتم‌ها در مرکز قرار گیرند */
+            }
+            .footer-column {
+                min-width: unset; /* حداقل عرض را بردارید */
+                width: 90%; /* یا هر مقدار دیگری که مناسب می‌دانید */
+                text-align: center; /* متن در مرکز */
+                margin-bottom: 30px; /* فاصله بیشتر بین ستون‌ها */
+            }
+            .footer-column h3 {
+                border-bottom: none; /* خط زیر عنوان در موبایل حذف شود */
+                padding-bottom: 0;
+            }
         }
-
-        /* ** استایل‌های قبلی بخش فیلتر دسته‌بندی حذف شد **
-        .categories-filter { ... }
-        .filter-btn { ... }
-        .filter-btn:hover { ... }
-        .filter-btn.active { ... }
-        */
-
+        
         /* --- استایل‌های جدید برای بخش دسته‌بندی محصولات به صورت گرید --- */
-        .products-section h2:first-of-type { /* برای 'دسته بندی محصولات' */
+        .products-section h2:first-of-type {
             text-align: center;
             margin-bottom: 30px;
         }
 
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 ستون با عرض مساوی */
-            gap: 20px; /* فاصله بین آیتم‌های گرید */
-            max-width: 800px; /* عرض حداکثر برای گرید دسته‌بندی‌ها */
-            margin: 0 auto 50px auto; /* وسط چین و فاصله از پایین */
-            padding: 0 20px; /* پدینگ برای کناره‌ها */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
         }
 
         .category-item {
@@ -381,12 +401,12 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex; /* برای چیدمان داخلی محتوا */
-            flex-direction: column; /* محتوا زیر هم */
-            justify-content: center; /* محتوا وسط چین عمودی */
-            align-items: center; /* محتوا وسط چین افقی */
-            min-height: 180px; /* حداقل ارتفاع برای یکدست بودن */
-            border: 2px solid transparent; /* برای حالت active */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            border: 2px solid transparent;
         }
 
         .category-item:hover {
@@ -395,12 +415,12 @@
         }
 
         .category-item.active {
-            border-color: #FFD700; /* border زرد طلایی برای فعال بودن */
-            box-shadow: 0 0 0 3px #FFD700, 0 10px 25px rgba(0, 0, 0, 0.2); /* افکت active جذاب تر */
+            border-color: #FFD700;
+            box-shadow: 0 0 0 3px #FFD700, 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .category-item img {
-            max-width: 80px; /* اندازه آیکون */
+            max-width: 80px;
             height: auto;
             margin-bottom: 15px;
             filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
@@ -425,9 +445,8 @@
             border-bottom: 2px solid #FFD700;
             padding-bottom: 10px;
             margin-bottom: 20px;
-            text-align: right; /* راست چین کردن عنوان */
+            text-align: right;
         }
-
 
         /* استایل برای مخفی کردن محصولات */
         .product.hidden {
@@ -437,7 +456,7 @@
         /* ریسپانسیو برای گرید دسته‌بندی‌ها در موبایل */
         @media (max-width: 600px) {
             .categories-grid {
-                grid-template-columns: 1fr; /* در موبایل تک ستون شود */
+                grid-template-columns: 1fr;
                 max-width: 100%;
             }
         }
@@ -445,8 +464,7 @@
         /* استایل برای لینک فعال در منوی ناوبری */
         nav ul li a.active-nav-link {
             font-weight: bold;
-            color: #555; /* یا هر رنگی که دوست دارید برای لینک فعال */
-            /* می‌توانید border-bottom یا هر استایل دیگری اضافه کنید */
+            color: #555;
             border-bottom: 2px solid #000;
             padding-bottom: 5px;
         }
@@ -460,16 +478,18 @@
                 &#9776; </div>
             <nav id="main-nav">
                 <ul>
-                    <li><a href="#" data-category="home">خانه</a></li> 
-                    <li class="dropdown"> <a href="javascript:void(0);" class="nav-category-link dropdown-toggle">محصولات ▼</a> <ul class="dropdown-menu">
-                            <li><a href="#" data-category="all">همه محصولات</a></li>
-                            <li><a href="#" data-category="mobile">موبایل</a></li>
-                            <li><a href="#" data-category="accessory">لوازم جانبی</a></li>
-                            <li><a href="#" data-category="headphone">هدفون</a></li>
+                    <li><a href="#" data-category="home" class="nav-link">خانه</a></li> 
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle">محصولات ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-category="all" class="nav-link">همه محصولات</a></li>
+                            <li><a href="#" data-category="mobile" class="nav-link">موبایل</a></li>
+                            <li><a href="#" data-category="accessory" class="nav-link">لوازم جانبی</a></li>
+                            <li><a href="#" data-category="headphone" class="nav-link">هدفون</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">درباره ما</a></li>
-                    <li><a href="#">تماس با ما</a></li>
+                    <li><a href="#about-us" class="nav-link">درباره ما</a></li>
+                    <li><a href="#contact-us" class="nav-link">تماس با ما</a></li>
                 </ul>
             </nav>
         </div>
@@ -557,7 +577,7 @@
     
     <footer>
         <div class="footer-container">
-            <div class="footer-column">
+            <div class="footer-column" id="about-us">
                 <h3>درباره Telezone</h3>
                 <p>فروشگاه تخصصی موبایل و لوازم جانبی با بیش از 10 سال سابقه درخشان</p>
             </div>
@@ -572,7 +592,7 @@
                 </ul>
             </div>
             
-            <div class="footer-column">
+            <div class="footer-column" id="contact-us">
                 <h3>تماس با ما</h3>
                 <ul>
                     <li>**آدرس:** تهران، میدان فردوسی، مجتمع تجارت جهانی فردوسی، واحد ۲۵۲</li>
@@ -607,37 +627,22 @@
         const dropdownToggle = document.querySelector('.dropdown-toggle'); // انتخاب لینک 'محصولات'
 
         menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('active'); // کلاس 'active' را اضافه یا حذف می‌کند
-            // وقتی منوی همبرگری بسته می‌شود، مطمئن شوید که زیرمنو محصولات اگر باز بود، بسته شود
+            mainNav.classList.toggle('active');
             if (!mainNav.classList.contains('active')) {
                  dropdownToggle.parentElement.classList.remove('active-dropdown');
             }
         });
 
-        // برای بستن منو وقتی روی یک لینک کلیک می‌شود (اختیاری)
-        const navLinksAll = document.querySelectorAll('#main-nav ul li a:not(.dropdown-toggle)'); // انتخاب همه لینک‌های ناوبری به جز dropdown-toggle
-        navLinksAll.forEach(link => {
-            link.addEventListener('click', function() {
-                // اگر روی یک لینک از زیرمنو یا لینک اصلی (خانه، درباره ما، تماس با ما) کلیک شد، منوی همبرگری و زیرمنو بسته شود
-                if (mainNav.classList.contains('active')) {
-                     mainNav.classList.remove('active'); 
-                }
-                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
-            });
-        });
-
         // اضافه کردن event listener برای باز و بسته کردن زیرمنو در حالت موبایل
         dropdownToggle.addEventListener('click', function(e) {
-            // این شرط اطمینان می‌دهد که این عملکرد فقط در حالت موبایل (و نه در دسکتاپ که هاور داریم) فعال شود.
-            // window.innerWidth <= 768px همان media query استایل‌های موبایل است.
             if (window.innerWidth <= 768) { 
-                e.preventDefault(); // جلوگیری از رفتار پیش‌فرض (که باعث می‌شود به بالای صفحه برود)
-                this.parentElement.classList.toggle('active-dropdown'); // کلاس active-dropdown را اضافه یا حذف می‌کند
+                e.preventDefault();
+                this.parentElement.classList.toggle('active-dropdown');
             }
         });
 
         // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید و لینک‌های ناوبری) ---
-        const categoryItems = document.querySelectorAll('.category-item'); // مربع‌های دسته‌بندی
+        const categoryItems = document.querySelectorAll('.category-item');
         const products = document.querySelectorAll('.product');
 
         // تابع برای فیلتر کردن و نمایش محصولات
@@ -645,13 +650,12 @@
             products.forEach(product => {
                 const productCategory = product.dataset.category;
                 if (selectedCategory === 'all' || productCategory === selectedCategory) {
-                    product.classList.remove('hidden'); // نمایش محصول
+                    product.classList.remove('hidden');
                 } else {
-                    product.classList.add('hidden'); // مخفی کردن محصول
+                    product.classList.add('hidden');
                 }
             });
 
-            // به روز رسانی کلاس active برای مربع‌های دسته‌بندی
             categoryItems.forEach(item => {
                 if (item.dataset.category === selectedCategory) {
                     item.classList.add('active');
@@ -661,30 +665,24 @@
             });
 
             // به روز رسانی کلاس active برای لینک‌های ناوبری و زیرمنو
-            // ابتدا همه لینک‌های فعال را غیرفعال می‌کنیم
-            document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active-nav-link'));
+            document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
 
-            // سپس لینک‌های مربوطه را فعال می‌کنیم
-            // لینک‌های داخل زیرمنو
-            document.querySelectorAll('.dropdown-menu a').forEach(link => {
-                if (link.dataset.category === selectedCategory) {
-                    link.classList.add('active-nav-link');
-                }
-            });
-
-            // لینک اصلی "محصولات" (dropdown-toggle) را فعال می‌کنیم اگر یکی از زیرمجموعه‌های آن انتخاب شده باشد
+            // فعال کردن لینک مربوطه
+            const currentNavLink = document.querySelector(`a[data-category="${selectedCategory}"]`);
+            if (currentNavLink) {
+                currentNavLink.classList.add('active-nav-link');
+            }
+            // اگر یکی از زیردسته های محصولات انتخاب شده، لینک اصلی محصولات را هم فعال کنید
             const productSubCategorySelected = ['all', 'mobile', 'accessory', 'headphone'].includes(selectedCategory);
             if (productSubCategorySelected) {
                 dropdownToggle.classList.add('active-nav-link');
-            } else {
-                // اگر دسته بندی‌ای غیر از محصولات انتخاب شده، لینک محصولات غیرفعال شود
-                dropdownToggle.classList.remove('active-nav-link');
             }
 
-            // فعال کردن لینک 'خانه' اگر انتخاب شده
-            document.querySelector('a[data-category="home"]')?.classList.remove('active-nav-link'); // اطمینان از حذف از خانه
-            if (selectedCategory === 'home') {
-                 document.querySelector('a[data-category="home"]').classList.add('active-nav-link');
+            // اگر به یک بخش فوتر اسکرول شده، لینک‌های منو نیازی به active-nav-link ندارند
+            const currentHash = window.location.hash;
+            if (currentHash && (currentHash === '#about-us' || currentHash === '#contact-us')) {
+                document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
+                document.querySelector(`a[href="${currentHash}"]`).classList.add('active-nav-link');
             }
         };
 
@@ -694,52 +692,60 @@
             item.addEventListener('click', () => {
                 const selectedCategory = item.dataset.category;
                 filterProducts(selectedCategory);
-                mainNav.classList.remove('active'); // بستن منوی همبرگری پس از انتخاب
-                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
+                mainNav.classList.remove('active');
+                dropdownToggle.parentElement.classList.remove('active-dropdown');
             });
         });
 
         // اضافه کردن event listener برای لینک‌های داخل زیرمنو
-        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+        document.querySelectorAll('.dropdown-menu a.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault(); // جلوگیری از رفرش صفحه
+                e.preventDefault();
                 const selectedCategory = link.dataset.category;
                 filterProducts(selectedCategory);
-                mainNav.classList.remove('active'); // بستن منوی همبرگری پس از انتخاب
-                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
+                mainNav.classList.remove('active');
+                dropdownToggle.parentElement.classList.remove('active-dropdown');
             });
         });
 
         // اضافه کردن event listener برای لینک‌های اصلی ناوبری (خانه، درباره ما، تماس با ما)
-        document.querySelectorAll('nav > ul > li > a:not(.dropdown-toggle)').forEach(link => {
+        document.querySelectorAll('nav > ul > li > a.nav-link:not(.dropdown-toggle)').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const clickedCategory = link.dataset.category;
-
-                // اگر لینک "خانه" کلیک شد، همه محصولات را نمایش دهید
-                if (clickedCategory === 'home') {
-                    filterProducts('all'); 
-                } else {
-                    // برای بقیه لینک های اصلی (درباره ما، تماس با ما)، فقط active-nav-link را تنظیم کنید
-                    // و هیچ فیلتری روی محصولات اعمال نکنید (فرض بر این است که این صفحات جداگانه هستند)
-                     products.forEach(p => p.classList.remove('hidden')); // همه محصولات را نمایش دهید
+                // اگر لینک به ID اشاره می‌کند، از جلوگیری پیش‌فرض جلوگیری نکنید
+                if (!link.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault(); 
                 }
                 
-                // حذف active-nav-link از همه لینک‌ها
-                document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active-nav-link'));
-                // فعال کردن لینک کنونی
-                link.classList.add('active-nav-link');
+                const clickedCategory = link.dataset.category;
 
-                mainNav.classList.remove('active'); // بستن منوی همبرگری
-                dropdownToggle.parentElement.classList.remove('active-dropdown'); // بستن زیرمنو
+                if (clickedCategory === 'home') {
+                    filterProducts('all');
+                } else if (link.getAttribute('href')?.startsWith('#')) {
+                    // اگر لینک به بخش‌های فوتر است، فقط منو را ببندید
+                    // مرورگر خودش اسکرول را انجام می‌دهد
+                    document.querySelectorAll('nav ul li a.nav-link').forEach(l => l.classList.remove('active-nav-link'));
+                    link.classList.add('active-nav-link');
+                }
+                
+                mainNav.classList.remove('active');
+                dropdownToggle.parentElement.classList.remove('active-dropdown');
             });
         });
 
 
         // در ابتدا، همه محصولات را نمایش دهید (موقعی که صفحه لود می‌شود)
-        // و آیتم "همه محصولات" در هر دو بخش را فعال نگه دارید.
         window.addEventListener('DOMContentLoaded', () => {
-            filterProducts('all'); // فیلتر کردن محصولات برای نمایش همه در ابتدا
+            // بررسی هش URL در لود صفحه برای فعال کردن لینک مربوطه و اسکرول
+            const initialHash = window.location.hash;
+            if (initialHash && (initialHash === '#about-us' || initialHash === '#contact-us')) {
+                // اگر هش مربوط به فوتر است، فقط لینک مربوطه را فعال کنید و به آن اسکرول کنید
+                document.querySelectorAll('nav ul li a.nav-link').forEach(link => link.classList.remove('active-nav-link'));
+                document.querySelector(`a[href="${initialHash}"]`)?.classList.add('active-nav-link');
+                document.querySelector(initialHash)?.scrollIntoView(); // اسکرول به عنصر
+            } else {
+                // در غیر این صورت، محصولات را فیلتر کنید
+                filterProducts('all');
+            }
         });
     </script>
 </body>
