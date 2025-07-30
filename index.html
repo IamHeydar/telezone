@@ -66,6 +66,7 @@
         
         nav ul li {
             margin-right: 20px;
+            position: relative; /* برای زیرمنوها */
         }
         
         nav ul li a {
@@ -79,6 +80,40 @@
             color: #555;
         }
         
+        /* استایل برای زیرمنوها */
+        .dropdown-menu {
+            display: none; /* به صورت پیش‌فرض مخفی */
+            position: absolute;
+            top: 100%; /* زیر آیتم والد */
+            right: 0; /* راست چین */
+            background-color: #FFD700;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #000;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right; /* راست چین کردن متن زیرمنو */
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #FFC000;
+        }
+
+        /* نمایش زیرمنو با هاور در حالت دسکتاپ */
+        nav ul li:hover .dropdown-menu {
+            display: block;
+        }
+
         /* بخش اصلی */
         main {
             max-width: 1200px;
@@ -95,10 +130,10 @@
             margin-bottom: 30px;
         }
         
-        .banner h1 {
+        /* .banner h1 { /* این بخش دیگر مورد نیاز نیست اگر تصویر جایگزین شود */
             font-size: 36px;
             margin-bottom: 15px;
-        }
+        } */
         
         .banner p {
             font-size: 18px;
@@ -293,6 +328,20 @@
                 padding: 10px 0;
                 display: block; /* کل فضای آیتم قابل کلیک باشد */
             }
+
+            /* مخفی کردن زیرمنو در موبایل (چون با همبرگری باز می‌شود) */
+            .dropdown-menu {
+                display: none !important; /* مهم: برای اطمینان از مخفی ماندن در موبایل */
+                position: static; /* موقعیت استاتیک در موبایل */
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .dropdown-menu li a {
+                padding: 8px 16px; /* پدینگ کوچکتر برای آیتم‌های زیرمنو در موبایل */
+                font-size: 15px;
+            }
+            /* اگر می‌خواهید در منوی همبرگری هم زیرمنو باز شود، باید از جاوااسکریپت استفاده کنید */
         }
 
         /* ** استایل‌های قبلی بخش فیلتر دسته‌بندی حذف شد **
@@ -404,7 +453,15 @@
                 &#9776; </div>
             <nav id="main-nav">
                 <ul>
-                    <li><a href="#" data-category="home">خانه</a></li> <li><a href="#" data-category="all" class="nav-category-link active-nav-link">همه محصولات</a></li> <li><a href="#" data-category="mobile" class="nav-category-link">موبایل</a></li> <li><a href="#" data-category="accessory" class="nav-category-link">لوازم جانبی</a></li> <li><a href="#" data-category="headphone" class="nav-category-link">هدفون</a></li> <li><a href="#">درباره ما</a></li>
+                    <li><a href="#" data-category="home">خانه</a></li> 
+                    <li class="dropdown"> <a href="#" data-category="all" class="nav-category-link active-nav-link">محصولات ▼</a> <ul class="dropdown-menu">
+                            <li><a href="#" data-category="all">همه محصولات</a></li>
+                            <li><a href="#" data-category="mobile">موبایل</a></li>
+                            <li><a href="#" data-category="accessory">لوازم جانبی</a></li>
+                            <li><a href="#" data-category="headphone">هدفون</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">درباره ما</a></li>
                     <li><a href="#">تماس با ما</a></li>
                 </ul>
             </nav>
@@ -413,7 +470,7 @@
     
     <main>
         <div class="banner">
-            <h1>به فروشگاه Telezone خوش آمدید</h1>
+            <img src="1000121012.jpg" alt="لوگوی Telezone" style="max-width: 300px; height: auto; margin-bottom: 15px;">
             <p>تخصص ما در عرضه بهترین موبایل‌ها و لوازم جانبی با قیمت مناسب</p>
         </div>
         
@@ -549,14 +606,18 @@
         const navLinksAll = document.querySelectorAll('#main-nav ul li a'); // انتخاب همه لینک‌های ناوبری
         navLinksAll.forEach(link => {
             link.addEventListener('click', function() {
-                mainNav.classList.remove('active'); // منو را ببندید
+                // اگر روی یک لینک از زیرمنو کلیک شد، منوی همبرگری بسته شود
+                if (mainNav.classList.contains('active')) {
+                     mainNav.classList.remove('active'); 
+                }
             });
         });
 
 
         // --- اسکریپت برای فیلتر دسته‌بندی محصولات (با آیتم‌های گرید و لینک‌های ناوبری) ---
         const categoryItems = document.querySelectorAll('.category-item'); // مربع‌های دسته‌بندی
-        const navCategoryLinks = document.querySelectorAll('.nav-category-link'); // لینک‌های دسته‌بندی در ناوبری
+        const navCategoryLinks = document.querySelectorAll('.nav-category-link'); // لینک‌های دسته‌بندی در ناوبری (شامل لینک اصلی 'محصولات')
+        const dropdownMenuLinks = document.querySelectorAll('.dropdown-menu a'); // لینک‌های داخل زیرمنو
         const products = document.querySelectorAll('.product');
 
         // تابع برای فیلتر کردن و نمایش محصولات
@@ -579,9 +640,24 @@
                 }
             });
 
-            // به روز رسانی کلاس active برای لینک‌های ناوبری
+            // به روز رسانی کلاس active برای لینک‌های ناوبری (فقط لینک اصلی 'محصولات' و لینک‌های داخل زیرمنو)
             navCategoryLinks.forEach(link => {
-                if (link.dataset.category === selectedCategory) {
+                // اگر لینک اصلی "محصولات" است، active می شود
+                if (link.dataset.category === selectedCategory && link.parentElement.classList.contains('dropdown')) {
+                    link.classList.add('active-nav-link');
+                } else if (link.parentElement.classList.contains('dropdown') && selectedCategory !== 'all') {
+                    // اگر دسته بندی خاصی انتخاب شده و این لینک اصلی محصولات است، غیرفعال می شود
+                    link.classList.remove('active-nav-link');
+                } else if (link.dataset.category === selectedCategory) {
+                     // برای لینک های دیگر (مثلا خانه)
+                    link.classList.add('active-nav-link');
+                } else {
+                    link.classList.remove('active-nav-link');
+                }
+            });
+
+            dropdownMenuLinks.forEach(link => {
+                 if (link.dataset.category === selectedCategory) {
                     link.classList.add('active-nav-link');
                 } else {
                     link.classList.remove('active-nav-link');
@@ -598,7 +674,8 @@
         });
 
         // اضافه کردن event listener برای لینک‌های دسته‌بندی در ناوبری
-        navCategoryLinks.forEach(link => {
+        // شامل لینک اصلی "محصولات" و لینک‌های داخل زیرمنو
+        document.querySelectorAll('.nav-category-link, .dropdown-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault(); // جلوگیری از رفرش صفحه
                 const selectedCategory = link.dataset.category;
