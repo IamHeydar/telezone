@@ -214,3 +214,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+    // --- کدهای مربوط به فوتر آکاردئون (مخصوص موبایل) ---
+    const footerTitles = document.querySelectorAll('.footer-column-title');
+    if (footerTitles) {
+        footerTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                // اگر قبلا باز بود، بسته شود
+                if (title.classList.contains('active')) {
+                    title.classList.remove('active');
+                    title.nextElementSibling.classList.remove('active');
+                } else {
+                    // همه را ببند و فقط این یکی را باز کن
+                    document.querySelectorAll('.footer-column-title').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.footer-column-content').forEach(c => c.classList.remove('active'));
+                    
+                    title.classList.add('active');
+                    title.nextElementSibling.classList.add('active');
+                }
+            });
+        });
+    }
