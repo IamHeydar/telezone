@@ -1,52 +1,52 @@
 // Data for iPhone 16 series
 const iphone16Products = [
-    { model: "iPhone 16 Pro Max", storage: "1TB", color: "Black", price: "205,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "1TB", color: "Desert", price: "208,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Black", price: "171,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Silver", price: "173,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Desert", price: "172,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "149,500,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Silver", price: "151,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Natural", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "144,000,000", region: "CH NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "142,000,000", region: "CH NOT", category: "ProMax", image: "/images/iphone16_pro_max.jpg" },
-    { model: "iPhone 16 Pro", storage: "256GB", color: "Black", price: "143,500,000", region: "ZA NOT", category: "Pro", image: "/images/iphone16_pro.jpg" },
-    { model: "iPhone 16 Pro", storage: "256GB", color: "Silver", price: "143,000,000", region: "ZA NOT", category: "Pro", image: "/images/iphone16_pro.jpg" },
-    { model: "iPhone 16 Pro", storage: "256GB", color: "Natural", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "/images/iphone16_pro.jpg" },
-    { model: "iPhone 16 Pro", storage: "256GB", color: "Desert", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "/images/iphone16_pro.jpg" },
-    { model: "iPhone 16 Pro", storage: "128GB", color: "Desert", price: "134,000,000", region: "ZA NOT", category: "Pro", image: "/images/iphone16_pro.jpg" },
-    { model: "iPhone 16", storage: "256GB", color: "Black", price: "118,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" },
-    { model: "iPhone 16", storage: "256GB", color: "Silver", price: "117,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" },
-    { model: "iPhone 16", storage: "128GB", color: "Black", price: "97,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" },
-    { model: "iPhone 16", storage: "128GB", color: "Silver", price: "96,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" },
-    { model: "iPhone 16", storage: "128GB", color: "Blue", price: "96,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" },
-    { model: "iPhone 16", storage: "128GB", color: "Pink", price: "100,000,000", region: "CH NOT", category: "16", image: "/images/iphone16.jpg" }
+    { model: "iPhone 16 Pro Max", storage: "1TB", color: "Black", price: "205,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-black-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "1TB", color: "Desert", price: "208,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-natural-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Black", price: "171,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-black-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Silver", price: "173,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-white-titanium.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Desert", price: "172,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-natural-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "149,500,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-black-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Silver", price: "151,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-white-titanium.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Natural", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-natural-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "150,000,000", region: "ZA NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-natural-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Black", price: "144,000,000", region: "CH NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-black-titanium-1.jpg" },
+    { model: "iPhone 16 Pro Max", storage: "256GB", color: "Desert", price: "142,000,000", region: "CH NOT", category: "ProMax", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-max-natural-titanium-1.jpg" },
+    { model: "iPhone 16 Pro", storage: "256GB", color: "Black", price: "143,500,000", region: "ZA NOT", category: "Pro", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-black-titanium-1.jpg" },
+    { model: "iPhone 16 Pro", storage: "256GB", color: "Silver", price: "143,000,000", region: "ZA NOT", category: "Pro", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-white-titanium.jpg" },
+    { model: "iPhone 16 Pro", storage: "256GB", color: "Natural", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-natural-titanium.jpg" },
+    { model: "iPhone 16 Pro", storage: "256GB", color: "Desert", price: "144,000,000", region: "ZA NOT", category: "Pro", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-natural-titanium.jpg" },
+    { model: "iPhone 16 Pro", storage: "128GB", color: "Desert", price: "134,000,000", region: "ZA NOT", category: "Pro", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pro-natural-titanium.jpg" },
+    { model: "iPhone 16", storage: "256GB", color: "Black", price: "118,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-black.jpg" },
+    { model: "iPhone 16", storage: "256GB", color: "Silver", price: "117,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-white.jpg" },
+    { model: "iPhone 16", storage: "128GB", color: "Black", price: "97,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-black.jpg" },
+    { model: "iPhone 16", storage: "128GB", color: "Silver", price: "96,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-white.jpg" },
+    { model: "iPhone 16", storage: "128GB", color: "Blue", price: "96,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-blue.jpg" },
+    { model: "iPhone 16", storage: "128GB", color: "Pink", price: "100,000,000", region: "CH NOT", category: "16", image: "https://telezone.org/wp-content/uploads/2023/12/iphone-15-pink.jpg" }
 ];
 
 // Data for Apple Watch
 const appleWatchProducts = [
-    { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 10", size: "46mm", color: "Silver", price: "29,500,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 10", size: "46mm", color: "Rose Gold", price: "27,800,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 10", size: "42mm", color: "Jet Black", price: "28,400,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 10", size: "42mm", color: "Silver", price: "29,200,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 10", size: "42mm", color: "Rose Gold", price: "29,200,000", guaranty: true, category: "Series10", image: "/images/applewatch_series10.jpg" },
-    { model: "Apple Watch Series 9", size: "45mm", color: "Black", price: "تماس بگیرید", guaranty: true, category: "Series9", image: "/images/applewatch_series9.jpg" },
-    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Midnight", price: "19,600,000", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" },
-    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Silver", price: "تماس بگیرید", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" },
-    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Starlight", price: "19,600,000", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" },
-    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Black", price: "17,600,000", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" },
-    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Silver", price: "17,600,000", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" },
-    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Starlight", price: "17,600,000", guaranty: true, category: "SE", image: "/images/applewatch_se.jpg" }
+    { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRH23?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388487" },
+    { model: "Apple Watch Series 10", size: "46mm", color: "Silver", price: "29,500,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRH33?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388915" },
+    { model: "Apple Watch Series 10", size: "46mm", color: "Rose Gold", price: "27,800,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT9N3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388421" },
+    { model: "Apple Watch Series 10", size: "42mm", color: "Jet Black", price: "28,400,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRH23?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388487" },
+    { model: "Apple Watch Series 10", size: "42mm", color: "Silver", price: "29,200,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRH33?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388915" },
+    { model: "Apple Watch Series 10", size: "42mm", color: "Rose Gold", price: "29,200,000", guaranty: true, category: "Series10", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT9N3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388421" },
+    { model: "Apple Watch Series 9", size: "45mm", color: "Black", price: "تماس بگیرید", guaranty: true, category: "Series9", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4M3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388832" },
+    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Midnight", price: "19,600,000", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQ7U3_VW_34FR+watch-band-45mm-nike-sport-band-midnight_VW_34FR_watch-face-45-midnight-nike_VW_34FR_watch-case-45-midnight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388277" },
+    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Silver", price: "تماس بگیرید", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRF33_VW_34FR+watch-band-45mm-sport-band-starlight_VW_34FR_watch-face-45-starlight_VW_34FR_watch-case-45-starlight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388713" },
+    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Starlight", price: "19,600,000", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQ7U3_VW_34FR+watch-band-45mm-nike-sport-band-midnight_VW_34FR_watch-face-45-midnight-nike_VW_34FR_watch-case-45-midnight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388277" },
+    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Black", price: "17,600,000", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPUJ3_VW_34FR+watch-band-41mm-sport-band-starlight_VW_34FR_watch-face-41-starlight_VW_34FR_watch-case-41-starlight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388142" },
+    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Silver", price: "17,600,000", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPUJ3_VW_34FR+watch-band-41mm-sport-band-starlight_VW_34FR_watch-face-41-starlight_VW_34FR_watch-case-41-starlight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388142" },
+    { model: "Apple Watch SE", size: "40mm", year: "2024", color: "Starlight", price: "17,600,000", guaranty: true, category: "SE", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPUJ3_VW_34FR+watch-band-41mm-sport-band-starlight_VW_34FR_watch-face-41-starlight_VW_34FR_watch-case-41-starlight-alum_VW_34FR?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1690226388142" }
 ];
 
 // New data for AirPods
 const airpodsProducts = [
-    { model: "AirPods Pro 2 Type-C", price: "16,450,000", category: "Pro2", image: "/images/airpods_pro2.jpg" },
-    { model: "AirPods 4 ANC", price: "13,650,000", category: "AirPods4", image: "/images/airpods4_anc.jpg" },
-    { model: "AirPods 4", price: "10,250,000", category: "AirPods4", image: "/images/airpods4.jpg" },
-    { model: "AirPods 2", price: "8,600,000", category: "AirPods2", image: "/images/airpods2.jpg" }
+    { model: "AirPods Pro 2 Type-C", price: "16,450,000", category: "Pro2", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-pro-2nd-gen-hero-202309?wid=940&hei=1175&fmt=jpeg&qlt=95&.v=1692882771569" },
+    { model: "AirPods 4 ANC", price: "13,650,000", category: "AirPods4", image: "https://www.apple.com/v/airpods/shared/compare/e/images/compare_airpods_pro_2nd_gen__bg4z569gq9sm_large.png" },
+    { model: "AirPods 4", price: "10,250,000", category: "AirPods4", image: "https://www.apple.com/v/airpods/shared/compare/e/images/compare_airpods_3rd_gen__dy98n056o9q6_large.png" },
+    { model: "AirPods 2", price: "8,600,000", category: "AirPods2", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MMEF2_VW_2?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1672346761042" }
 ];
 
 // Refined general products (only relevant ones for new categories)
@@ -58,7 +58,7 @@ const generalProducts = [
         brand: "Sony",
         description: "کیفیت صدای استثنایی با حذف نویز فعال، باتری 30 ساعته و طراحی ارگونومیک.",
         price: "8,500,000",
-        imageUrl: "/images/headphone_sony_wh1000xm4.jpg"
+        imageUrl: "https://www.sony.com/image/WH-1000XM4_MainImage_1_2020-08-06_12-42-03_2375811776.png"
     },
     {
         id: 6,
@@ -67,7 +67,7 @@ const generalProducts = [
         brand: "Xiaomi",
         description: "صدای Hi-Res و حذف نویز تا 48dB، اتصال همزمان به دو دستگاه.",
         price: "3,100,000",
-        imageUrl: "/images/headphone_xiaomi_buds4pro.jpg"
+        imageUrl: "https://i01.appmifile.com/webfile/globalimg/0805/accessory/buds4pro-1.png"
     },
     {
         id: 9,
@@ -76,15 +76,15 @@ const generalProducts = [
         brand: "Samsung",
         description: "ردیابی سلامت پیشرفته و امکانات هوشمند، طراحی شیک.",
         price: "9,000,000",
-        imageUrl: "/images/smartwatch_samsung_galaxy6.jpg"
+        imageUrl: "https://images.samsung.com/is/image/samsung/p6pim/levant/2307/gallery/levant-galaxy-watch6-r930-469032-sm-r930nzkamea-thumb-537330761?$344_344_JPG$"
     },
     // New accessories from your list, mapped to new categories
-    { model: "Apple 20W org Adapter", category: "adapter", price: "1,640,000", image: "/images/accessory_apple_20w_adapter.jpg", brand: "Apple" },
-    { model: "Apple Cable Type-C to Lightning", category: "cable", price: "1,000,000", image: "/images/accessory_apple_cable_typec_lightning.jpg", brand: "Apple" },
-    { model: "Apple Cable Type-C to Type-C", category: "cable", price: "1,300,000", image: "/images/accessory_apple_cable_typec_typec.jpg", brand: "Apple" },
-    { model: "Apple Cable USB to Lightning", category: "cable", price: "800,000", image: "/images/accessory_apple_cable_usb_lightning.jpg", brand: "Apple" },
-    { model: "کاور سیلیکونی آیفون 14 Pro", category: "case_glass", brand: "Apple", description: "محافظت عالی با طراحی زیبا و رنگ‌بندی متنوع، جنس نرم و ضد لغزش.", price: "450,000", image: "/images/accessory_iphone14pro_case.jpg", brand: "Apple" },
-    { model: "پاور بانک 20000mAh شیائومی", category: "powerbank", brand: "Xiaomi", description: "ظرفیت بالا برای شارژ چندین باره گوشی، دارای پورت‌های USB-C و USB-A.", price: "900,000", image: "/images/accessory_xiaomi_powerbank_20000mah.jpg", brand: "Xiaomi" }
+    { model: "Apple 20W org Adapter", category: "adapter", price: "1,640,000", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHJA3?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1646269472661", brand: "Apple" },
+    { model: "Apple Cable Type-C to Lightning", category: "cable", price: "1,000,000", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MMT52?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1646269661448", brand: "Apple" },
+    { model: "Apple Cable Type-C to Type-C", category: "cable", price: "1,300,000", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MUF72?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1646269661146", brand: "Apple" },
+    { model: "Apple Cable USB to Lightning", category: "cable", price: "800,000", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX0K2?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1646269661109", brand: "Apple" },
+    { model: "کاور سیلیکونی آیفون 14 Pro", category: "case_glass", brand: "Apple", description: "محافظت عالی با طراحی زیبا و رنگ‌بندی متنوع، جنس نرم و ضد لغزش.", price: "450,000", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPUX3?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1662582845664", brand: "Apple" },
+    { model: "پاور بانک 20000mAh شیائومی", category: "powerbank", brand: "Xiaomi", description: "ظرفیت بالا برای شارژ چندین باره گوشی، دارای پورت‌های USB-C و USB-A.", price: "900,000", image: "https://i01.appmifile.com/webfile/globalimg/powerbank20000mah.jpg", brand: "Xiaomi" }
 ];
 
 // Centralized product data configuration
