@@ -722,36 +722,36 @@ footer {
     .product-item-details {
         text-align: center;
     }
-}/* --- استایل‌های بخش درباره ما جدید --- */
+/* --- استایل‌های بخش درباره ما جدید --- */
 .about-us-alt-section {
     background-color: var(--secondary-color);
-    padding: 40px 20px; /* کاهش padding برای کوچکتر شدن ارتفاع بخش */
-    margin-top: 40px;
+    padding: 30px 15px; /* padding کمتر برای کوچکتر شدن ارتفاع و عرض بخش */
+    margin-top: 30px; /* کاهش فاصله از بالا */
     border-radius: 8px;
     box-shadow: var(--box-shadow-dark);
     text-align: center;
 }
 
 .about-us-alt-container {
-    max-width: 900px;
+    max-width: 700px; /* حداکثر عرض کانتینر کمتر */
     margin: 0 auto;
 }
 
 .about-us-alt-logo {
     color: var(--primary-color);
-    font-size: 32px;
+    font-size: 28px; /* کاهش سایز لوگو */
     font-weight: bold;
     border: 2px solid var(--primary-color);
-    padding: 10px 20px;
+    padding: 8px 16px; /* padding کمتر برای لوگو */
     border-radius: 50px;
     display: inline-block;
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* فاصله از پایین کمتر */
 }
 
 .about-us-alt-section p {
     color: var(--light-text-color);
-    font-size: 16px; /* کاهش اندازه فونت */
-    line-height: 1.8; /* کاهش فاصله خطوط برای خوانایی بهتر */
-    max-width: 800px;
+    font-size: 15px; /* کاهش بیشتر اندازه فونت */
+    line-height: 1.7; /* کاهش فاصله خطوط برای فشرده‌تر شدن متن */
+    max-width: 600px;
     margin: 0 auto;
 }
