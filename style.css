@@ -372,89 +372,6 @@ main {
     line-height: 1.8;
     color: #ccc;
 }
-/* --- بخش‌های جدید بالای فوتر --- */
-.footer-top-links {
-    background-color: var(--secondary-color);
-    color: var(--light-text-color);
-    padding: 50px 20px;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.footer-top-links-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.footer-top-links h4 {
-    color: var(--primary-color);
-    font-size: 28px;
-    margin: 0 0 10px;
-}
-
-.footer-top-links p {
-    font-size: 16px;
-    margin-bottom: 25px;
-    color: #ccc;
-    line-height: 1.8;
-}
-
-.footer-cta-button {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 15px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.3s;
-    font-size: 16px;
-}
-
-.footer-cta-button:hover {
-    background-color: #f7d018;
-    transform: translateY(-2px);
-}
-
-.footer-newsletter {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 30px 20px;
-    text-align: center;
-}
-
-.footer-newsletter-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-newsletter h3 {
-    margin: 0 0 20px;
-    font-size: 24px;
-}
-
-.newsletter-button {
-    background-color: var(--secondary-color);
-    color: var(--light-text-color);
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.newsletter-button:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-}
-
 /* --- استایل‌های فوتر اصلی --- */
 footer {
     background-color: var(--footer-bg-color); /* مشکی تیره */
@@ -598,12 +515,6 @@ footer {
 
 /* نمایش فوتر به صورت آکاردئون در موبایل */
 @media (max-width: 768px) {
-    .footer-top-links h4 {
-        font-size: 22px;
-    }
-    .footer-newsletter h3 {
-        font-size: 20px;
-    }
     .footer-container {
         display: block;
         padding: 0 20px;
@@ -811,4 +722,37 @@ footer {
     .product-item-details {
         text-align: center;
     }
+}
+/* --- استایل‌های بخش درباره ما جدید --- */
+.about-us-alt-section {
+    background-color: var(--secondary-color);
+    padding: 60px 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-dark);
+    text-align: center;
+}
+
+.about-us-alt-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-us-alt-logo {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: bold;
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.about-us-alt-section p {
+    color: var(--light-text-color);
+    font-size: 18px;
+    line-height: 2.2;
+    max-width: 800px;
+    margin: 0 auto;
 }
