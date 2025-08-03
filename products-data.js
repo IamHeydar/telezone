@@ -1,87 +1,71 @@
-const iphone16Products = [
-    { model: "iPhone 16 Pro Max", storage: "1TB", color: "Black", price: "205,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/150/000000/FFFFFF?text=iPhone+16+Pro+Max" },
-    { model: "iPhone 16 Pro Max", storage: "512GB", color: "Black", price: "171,000,000", region: "ZA NOT", category: "ProMax", image: "https://via.placeholder.com/150/000000/FFFFFF?text=iPhone+16+Pro+Max" },
-    { model: "iPhone 16 Pro", storage: "256GB", color: "Black", price: "143,500,000", region: "ZA NOT", category: "Pro", image: "https://via.placeholder.com/150/808080/FFFFFF?text=iPhone+16+Pro" },
-    { model: "iPhone 16", storage: "128GB", color: "Black", price: "97,000,000", region: "CH NOT", category: "16", image: "https://via.placeholder.com/150/333333/FFFFFF?text=iPhone+16" },
-];
-
-const appleWatchProducts = [
-    { model: "Apple Watch Series 10", size: "46mm", color: "Jet Black", price: "30,300,000", guaranty: true, category: "Series10", image: "https://via.placeholder.com/150/663399/FFFFFF?text=Apple+Watch+10" },
-    { model: "Apple Watch Series 9", size: "45mm", color: "Black", price: "تماس بگیرید", guaranty: true, category: "Series9", image: "https://via.placeholder.com/150/663399/FFFFFF?text=Apple+Watch+9" },
-    { model: "Apple Watch SE", size: "44mm", year: "2024", color: "Midnight", price: "19,600,000", guaranty: true, category: "SE", image: "https://via.placeholder.com/150/663399/FFFFFF?text=Apple+Watch+SE" },
-];
-
-const airpodsProducts = [
-    { model: "AirPods Pro 2 Type-C", price: "16,450,000", category: "Pro2", image: "https://via.placeholder.com/150/f0f0f0/000000?text=AirPods+Pro+2" },
-    { model: "AirPods 4 ANC", price: "13,650,000", category: "AirPods4", image: "https://via.placeholder.com/150/f0f0f0/000000?text=AirPods+4+ANC" },
-    { model: "AirPods 2", price: "8,600,000", category: "AirPods2", image: "https://via.placeholder.com/150/f0f0f0/000000?text=AirPods+2" }
-];
-
-const generalProducts = [
-    { model: "هدفون بی‌سیم Sony WH-1000XM4", category: "headphone", brand: "Sony", price: "8,500,000", image: "https://via.placeholder.com/150/ff4500/FFFFFF?text=Sony+Headphone" },
-    { model: "هندزفری بلوتوثی Xiaomi Buds 4 Pro", category: "headphone", brand: "Xiaomi", price: "3,100,000", image: "https://via.placeholder.com/150/ff4500/FFFFFF?text=Xiaomi+Buds" },
-    { model: "ساعت هوشمند سامسونگ Galaxy Watch 6", category: "smartwatch", brand: "Samsung", price: "9,000,000", image: "https://via.placeholder.com/150/1e90ff/FFFFFF?text=Galaxy+Watch+6" },
-    { model: "کابل شارژ Type-C", category: "accessory", filter: "cable", brand: "Apple", price: "1,300,000", image: "https://via.placeholder.com/150/008000/FFFFFF?text=Type-C+Cable" },
-];
-
-// داده‌های اصلی محصولات
 const productsData = {
     'mobile': {
-        title: 'لیست گوشی‌های موبایل',
-        products: iphone16Products,
+        title: 'گوشی‌های موبایل',
         filters: [
             { id: 'all', text: 'همه' },
-            { id: 'ProMax', text: 'Pro Max' },
-            { id: 'Pro', text: 'Pro' },
-            { id: '16', text: 'iPhone 16' }
-        ]
-    },
-    'applewatch': {
-        title: 'لیست ساعت‌های هوشمند Apple Watch',
-        products: appleWatchProducts,
-        filters: [
-            { id: 'all', text: 'همه' },
-            { id: 'Series10', text: 'Series 10' },
-            { id: 'Series9', text: 'Series 9' },
-            { id: 'SE', text: 'SE 2024' }
+            { id: 'Apple', text: 'Apple' },
+            { id: 'Samsung', text: 'Samsung' },
+            { id: 'Xiaomi', text: 'Xiaomi' }
+        ],
+        products: [
+            { model: 'iPhone 15 Pro Max', brand: 'Apple', region: 'ZA/A', storage: '256GB', color: 'مشکی تیتانیوم', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-black-titanium-select-202309', price: '75,000,000', category: 'Apple' },
+            { model: 'Galaxy S24 Ultra', brand: 'Samsung', region: 'CH', storage: '512GB', color: 'خاکستری تیتانیوم', image: 'https://images.samsung.com/is/image/samsung/p6pim/levant/2401/gallery/levant-galaxy-s24-ultra-sm-s928bztgmea-thumb-539573859', price: '68,000,000', category: 'Samsung' },
+            { model: 'Xiaomi 13T Pro', brand: 'Xiaomi', region: 'Global', storage: '256GB', color: 'مشکی', image: 'https://m.media-amazon.com/images/I/71N-E4d-EHL._AC_SL1500_.jpg', price: '28,000,000', category: 'Xiaomi' },
+            { model: 'iPhone 14 Pro', brand: 'Apple', region: 'LL/A', storage: '128GB', color: 'بنفش', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-deep-purple-select-202209', price: '52,000,000', category: 'Apple' },
         ]
     },
     'headphone': {
         title: 'هدفون و هندزفری',
-        products: generalProducts.filter(p => p.category === 'headphone'),
         filters: [
             { id: 'all', text: 'همه' },
-            { id: 'Sony', text: 'Sony' },
-            { id: 'Xiaomi', text: 'Xiaomi' }
+            { id: 'Apple', text: 'Apple' },
+            { id: 'QCY', text: 'QCY' },
+            { id: 'Haylou', text: 'Haylou' },
+        ],
+        products: [
+            { model: 'Apple AirPods Max', brand: 'Apple', description: 'هدفون روگوشی با کیفیت صدای عالی و نویز کنسلینگ', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-green-select-202011', price: '32,000,000', category: 'Apple' },
+            { model: 'QCY T13', brand: 'QCY', description: 'هندزفری بی‌سیم با کیفیت بالا و عمر باتری طولانی', image: 'https://m.media-amazon.com/images/I/51wWwBvV1pL._AC_SL1500_.jpg', price: '950,000', category: 'QCY' },
+            { model: 'Haylou GT7 Neo', brand: 'Haylou', description: 'هندزفری بی‌سیم با طراحی ارگونومیک و صدای استریو', image: 'https://cdn.shopify.com/s/files/1/0278/1824/2916/products/GT7_1.jpg?v=1648020999', price: '750,000', category: 'Haylou' }
         ]
     },
     'airpods': {
         title: 'ایرپاد',
-        products: airpodsProducts,
         filters: [
             { id: 'all', text: 'همه' },
-            { id: 'Pro2', text: 'Pro 2' },
-            { id: 'AirPods4', text: 'AirPods 4' },
-            { id: 'AirPods2', text: 'AirPods 2' }
+            { id: 'airpods-pro', text: 'AirPods Pro' },
+            { id: 'airpods', text: 'AirPods' }
+        ],
+        products: [
+            { model: 'Apple AirPods Pro 2', brand: 'Apple', description: 'هندزفری بی‌سیم با نویز کنسلینگ فعال', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MME73?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1632861342000', price: '12,000,000', category: 'airpods-pro' },
+            { model: 'Apple AirPods 3', brand: 'Apple', description: 'نسل سوم ایرپاد با طراحی جدید', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MME73?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1632861342000', price: '8,500,000', category: 'airpods' }
+        ]
+    },
+    'applewatch': {
+        title: 'اپل واچ',
+        filters: [
+            { id: 'all', text: 'همه' },
+            { id: 'series9', text: 'Series 9' },
+            { id: 'ultra2', text: 'Ultra 2' },
+        ],
+        products: [
+            { model: 'Apple Watch Ultra 2', brand: 'Apple', size: '49mm', color: 'تیتانیوم', year: '2023', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4M3_VW_PF_watch_band_config?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1690069418654', price: '38,000,000', category: 'ultra2', guaranty: true },
+            { model: 'Apple Watch Series 9', brand: 'Apple', size: '45mm', color: 'مشکی', year: '2023', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT5V3_VW_PF_watch_band_config?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1690069695028', price: '22,000,000', category: 'series9', guaranty: true },
+            { model: 'Apple Watch Series 9', brand: 'Apple', size: '41mm', color: 'صورتی', year: '2023', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT5K3_VW_PF_watch_band_config?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1690069708754', price: '18,000,000', category: 'series9', guaranty: true }
         ]
     },
     'accessory': {
         title: 'لوازم جانبی',
-        products: generalProducts.filter(p => p.category === 'accessory'),
         filters: [
             { id: 'all', text: 'همه' },
-            { id: 'adapter', text: 'آداپتور' },
+            { id: 'adapter', text: 'آداپتور و شارژر' },
             { id: 'cable', text: 'کابل' },
             { id: 'case_glass', text: 'کاور و گلس' }
-        ]
-    },
-    'smartwatch': {
-        title: 'ساعت‌های هوشمند (متفرقه)',
-        products: generalProducts.filter(p => p.category === 'smartwatch'),
-        filters: [
-            { id: 'all', text: 'همه' },
-            { id: 'Samsung', text: 'Samsung' }
+        ],
+        products: [
+            { model: 'آداپتور 20 وات اپل', brand: 'Apple', description: 'شارژر اصلی ۲۰ واتی مناسب آیفون', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7V2?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1708892694767', price: '1,500,000', category: 'adapter' },
+            { model: 'کابل شارژ Type-C به Lightning', brand: 'Apple', description: 'کابل اصلی برای آیفون، ۱ متری', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQGH2?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661608670180', price: '900,000', category: 'cable' },
+            { model: 'گلس محافظ صفحه نمایش', brand: 'Samsung', description: 'محافظ صفحه نمایش شفاف و ضد ضربه', image: 'https://m.media-amazon.com/images/I/61r5K8s-8PL._AC_SL1500_.jpg', price: '300,000', category: 'case_glass' },
+            { model: 'کاور سیلیکونی آیفون', brand: 'Apple', description: 'کاور اصلی با جنس سیلیکونی برای آیفون', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU33?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661448056557', price: '450,000', category: 'case_glass' }
         ]
     }
 };
-
