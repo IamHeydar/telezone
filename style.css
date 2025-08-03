@@ -1,7 +1,7 @@
 /* تعریف متغیرهای CSS برای مدیریت آسان‌تر رنگ‌ها */
 :root {
     --primary-color: #FFD700; /* رنگ زرد طلایی */
-    --secondary-color: #000; /* رنگ مشکی */
+    --secondary-color: #1a1a1a; /* رنگ مشکی یکدست */
     --text-color: #333; /* رنگ متن اصلی */
     --light-bg-color: #f5f5f5; /* رنگ پس‌زمینه روشن */
     --box-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -374,7 +374,7 @@ main {
 }
 /* --- استایل‌های فوتر اصلی --- */
 footer {
-    background-color: var(--footer-bg-color); /* مشکی تیره */
+    background-color: var(--secondary-color); /* استفاده از رنگ مشکی یکدست */
     color: var(--light-text-color);
     padding: 40px 0 20px;
     font-size: 15px;
@@ -390,7 +390,37 @@ footer {
     align-items: center;
 }
 
+/* استایل بخش جدید درباره ما در فوتر */
+.footer-about-us {
+    max-width: 500px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.footer-about-us-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.footer-about-us p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+    margin: 0;
+}
+
+.footer-main-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: right;
+    margin-top: 20px; /* اضافه کردن margin بالا برای فاصله از بخش درباره ما */
+}
+
 .footer-socials {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
@@ -415,13 +445,6 @@ footer {
 .footer-social-icons a:hover {
     transform: scale(1.1);
     color: var(--primary-color); /* آیکون‌ها روی هاور زرد می‌شوند */
-}
-
-.footer-main-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    text-align: right;
 }
 
 .footer-column {
@@ -535,6 +558,21 @@ footer {
     }
     .footer-links-bottom, .copyright {
         text-align: center;
+    }
+
+    .footer-main-links {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
+    .footer-socials {
+        order: 1; /* این بخش در حالت موبایل به بالا منتقل می‌شود */
+    }
+    .footer-main-links {
+        order: 2;
+    }
+    .footer-about-us {
+        order: 3;
     }
 }
 
@@ -722,36 +760,4 @@ footer {
     .product-item-details {
         text-align: center;
     }
-/* --- استایل‌های بخش درباره ما جدید --- */
-.about-us-alt-section {
-    background-color: var(--secondary-color);
-    padding: 30px 15px; /* padding کمتر برای کوچکتر شدن ارتفاع و عرض بخش */
-    margin-top: 30px; /* کاهش فاصله از بالا */
-    border-radius: 8px;
-    box-shadow: var(--box-shadow-dark);
-    text-align: center;
-}
-
-.about-us-alt-container {
-    max-width: 700px; /* حداکثر عرض کانتینر کمتر */
-    margin: 0 auto;
-}
-
-.about-us-alt-logo {
-    color: var(--primary-color);
-    font-size: 28px; /* کاهش سایز لوگو */
-    font-weight: bold;
-    border: 2px solid var(--primary-color);
-    padding: 8px 16px; /* padding کمتر برای لوگو */
-    border-radius: 50px;
-    display: inline-block;
-    margin-bottom: 20px; /* فاصله از پایین کمتر */
-}
-
-.about-us-alt-section p {
-    color: var(--light-text-color);
-    font-size: 15px; /* کاهش بیشتر اندازه فونت */
-    line-height: 1.7; /* کاهش فاصله خطوط برای فشرده‌تر شدن متن */
-    max-width: 600px;
-    margin: 0 auto;
 }
