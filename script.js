@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const backToTop = document.getElementById('back-to-top');
     const dropdownToggles = document.querySelectorAll('nav .dropdown > .dropdown-toggle');
+    const footerTitles = document.querySelectorAll('.footer-column-title');
+    const accordionTitles = document.querySelectorAll('.accordion-title');
+
 
     // تابع برای مدیریت منوی همبرگری
     menuToggle.addEventListener('click', () => {
@@ -66,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const brandParam = urlParams.get('brand');
             const filterParam = urlParams.get('filter');
             
-            // پیدا کردن لینک دقیق
             let selector = `nav ul li a[href*="?type=${typeParam}"]`;
             if (brandParam) selector += `[href*="brand=${brandParam}"]`;
             if (filterParam) selector += `[href*="filter=${filterParam}"]`;
@@ -79,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     parentDropdownToggle.classList.add('active-nav-link');
                 }
             } else {
-                // اگر لینک دقیق پیدا نشد، لینک اصلی دسته‌بندی را فعال می‌کنیم
                 const parentToggle = document.querySelector(`nav ul li a.nav-link.dropdown-toggle[href*="?type=${typeParam}"]`);
                 if (parentToggle) {
                     parentToggle.classList.add('active-nav-link');
@@ -91,6 +92,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // اجرای تابع setActiveNavLink در زمان بارگذاری و تغییر هش URL
     setActiveNavLink();
     window.addEventListener('hashchange', setActiveNavLink);
+
+    // --- کدهای مربوط به فوتر آکاردئون (مخصوص موبایل) ---
+    if (footerTitles) {
+        footerTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    const content = title.nextElementSibling;
+                    const isActive = title.classList.contains('active');
+
+                    // بستن همه آکاردئون‌ها
+                    document.querySelectorAll('.footer-column-title').forEach(t => {
+                        t.classList.remove('active');
+                        t.nextElementSibling.classList.remove('active');
+                    });
+
+                    // باز کردن آکاردئون فعلی اگر قبلا بسته بود
+                    if (!isActive) {
+                        title.classList.add('active');
+                        content.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+
+    // --- کدهای مخصوص بخش FAQ ---
+    accordionTitles.forEach(title => {
+        title.addEventListener('click', () => {
+            const content = title.nextElementSibling;
+            const isActive = title.classList.contains('active');
+
+            // بستن همه آکاردئون‌ها
+            accordionTitles.forEach(t => {
+                t.classList.remove('active');
+                t.nextElementSibling.classList.remove('active');
+            });
+
+            // باز کردن آکاردئون فعلی اگر قبلا بسته بود
+            if (!isActive) {
+                title.classList.add('active');
+                content.classList.add('active');
+            }
+        });
+    });
+
 
     // --- کدهای مخصوص صفحه لیست محصولات ---
     if (document.getElementById('product-list')) {
@@ -106,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (productsData[productType]) {
             pageTitle.textContent = productsData[productType].title;
 
-            // ساخت دکمه‌های فیلتر
             if (productsData[productType].filters) {
                 filterButtonsContainer.innerHTML = '';
                 productsData[productType].filters.forEach(filter => {
@@ -121,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterButtonsContainer.style.display = 'none';
             }
 
-            // مدیریت فیلتر محصولات
             const filterAndDisplayProducts = (filterCategory, productType, brand) => {
                 const currentProductsArray = productsData[productType]?.products || [];
                 let filtered = [];
@@ -137,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProducts(filtered, productType);
             };
 
-            // رندر محصولات
             const renderProducts = (productsToRender, productType) => {
                 productListContainer.innerHTML = '';
                 if (productsToRender.length === 0) {
@@ -182,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            // افزودن ایونت‌لیسنر برای دکمه‌های فیلتر
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -191,12 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // اجرای اولیه فیلتر
             if (initialBrand) {
-                // اگر برند در URL بود، محصولات بر اساس برند فیلتر می‌شوند
                 filterAndDisplayProducts(null, productType, initialBrand);
             } else {
-                // در غیر این صورت، بر اساس فیلترهای دسته بندی
                 const activeFilterButton = document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`);
                 if (activeFilterButton) {
                     activeFilterButton.classList.add('active');
@@ -214,23 +253,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-    // --- کدهای مربوط به فوتر آکاردئون (مخصوص موبایل) ---
-    const footerTitles = document.querySelectorAll('.footer-column-title');
-    if (footerTitles) {
-        footerTitles.forEach(title => {
-            title.addEventListener('click', () => {
-                // اگر قبلا باز بود، بسته شود
-                if (title.classList.contains('active')) {
-                    title.classList.remove('active');
-                    title.nextElementSibling.classList.remove('active');
-                } else {
-                    // همه را ببند و فقط این یکی را باز کن
-                    document.querySelectorAll('.footer-column-title').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.footer-column-content').forEach(c => c.classList.remove('active'));
-                    
-                    title.classList.add('active');
-                    title.nextElementSibling.classList.add('active');
-                }
-            });
-        });
-    }
