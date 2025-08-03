@@ -177,6 +177,7 @@ main {
     padding: 0 20px;
 }
 
+/* استایل جدید برای آیتم‌های دسته‌بندی (تغییر از div به a) */
 .category-item {
     background-color: #fff;
     border-radius: 12px;
@@ -191,6 +192,8 @@ main {
     align-items: center;
     min-height: 180px;
     border: 2px solid transparent;
+    text-decoration: none; /* حذف زیرخط لینک */
+    color: var(--text-color); /* حفظ رنگ متن */
 }
 
 .category-item:hover {
@@ -237,6 +240,7 @@ main {
     -webkit-overflow-scrolling: touch;
 }
 
+/* استایل جدید برای آیتم‌های تخفیف‌دار (تغییر از div به a) */
 .discounted-product-item {
     background-color: #f9f9f9;
     border: 1px solid #eee;
@@ -247,6 +251,9 @@ main {
     transition: transform 0.3s;
     cursor: pointer;
     scroll-snap-align: start;
+    display: block; /* برای اینکه به اندازه کافی بزرگ باشد */
+    text-decoration: none; /* حذف زیرخط لینک */
+    color: var(--text-color); /* حفظ رنگ متن */
 }
 
 .discounted-product-item:hover {
