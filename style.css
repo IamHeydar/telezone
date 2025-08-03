@@ -722,11 +722,10 @@ footer {
     .product-item-details {
         text-align: center;
     }
-}
-/* --- استایل‌های بخش درباره ما جدید --- */
+}/* --- استایل‌های بخش درباره ما جدید --- */
 .about-us-alt-section {
     background-color: var(--secondary-color);
-    padding: 60px 20px;
+    padding: 40px 20px; /* کاهش padding برای کوچکتر شدن ارتفاع بخش */
     margin-top: 40px;
     border-radius: 8px;
     box-shadow: var(--box-shadow-dark);
@@ -751,8 +750,8 @@ footer {
 
 .about-us-alt-section p {
     color: var(--light-text-color);
-    font-size: 18px;
-    line-height: 2.2;
+    font-size: 16px; /* کاهش اندازه فونت */
+    line-height: 1.8; /* کاهش فاصله خطوط برای خوانایی بهتر */
     max-width: 800px;
     margin: 0 auto;
 }
