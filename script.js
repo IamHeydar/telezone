@@ -58,12 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const content = title.nextElementSibling;
             const isActive = title.classList.contains('active');
 
-            // Check if it's a mobile accordion or a footer accordion
             const isFooterAccordion = title.closest('footer');
             const shouldToggle = !isFooterAccordion || window.innerWidth <= 768;
 
             if (shouldToggle) {
-                // Close all other accordions in the same group
                 const titlesToClose = isFooterAccordion ? footerTitles : accordionTitles;
                 titlesToClose.forEach(t => {
                     if (t !== title) {
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Toggle the clicked accordion
                 if (!isActive) {
                     title.classList.add('active');
                     content.classList.add('active');
@@ -173,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProducts(filteredProducts);
             };
 
-            // Set up filter buttons event listeners
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -182,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Initial product display based on URL
             let activeFilterId = 'all';
             if (initialBrand) {
                 activeFilterId = initialBrand;
@@ -200,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     allButton.classList.add('active');
                     filterAndDisplayProducts('all');
                 } else {
-                    filterAndDisplayProducts('all'); // Fallback to display all products
+                    filterAndDisplayProducts('all'); 
                 }
             }
         }
